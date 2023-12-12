@@ -40,6 +40,8 @@ let package = Package(
                       "format_all.sh",
                       "gn",
                       ".github",
+                      "include/spirv/unified1/spirv.hpp",
+                      "include/spirv/unified1/spirv.hpp11"
             ],
             publicHeadersPath: "include/spirv/unified1",
             cxxSettings: [
