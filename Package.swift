@@ -40,7 +40,7 @@ let package = Package(
                       "gn",
                       ".github",
             ],
-            publicHeadersPath: "include/unified1",
+            publicHeadersPath: "include/spirv/unified1",
             cxxSettings: [
                 .define("SPIRV_CROSS_C_API_CPP", to: "0"), // According to the docs, it is deprecated
                 .define("SPIRV_CROSS_C_API_GLSL", to: "1"),
