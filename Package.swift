@@ -35,6 +35,7 @@ let package = Package(
                       "BUILD.gn",
                       "tools",
                       "test",
+                      "tests",
                       "cmake",
                       "format_all.sh",
                       "gn",
