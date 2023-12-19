@@ -33,16 +33,16 @@
 ** Enumeration tokens for SPIR-V, in various styles:
 **   C, C++, C++11, JSON, Lua, Python, C#, D, Beef
 ** 
-** - C will have tokens with a "Spv" prefix, e.g.: SpvSourceLanguageGLSL
+** - C will have tokens with a "Spirv" prefix, e.g.: SpirvSourceLanguageGLSL
 ** - C++ will have tokens in the "spv" name space, e.g.: spv::SourceLanguageGLSL
 ** - C++11 will use enum classes in the spv namespace, e.g.: spv::SourceLanguage::GLSL
 ** - Lua will use tables, e.g.: spv.SourceLanguage.GLSL
 ** - Python will use dictionaries, e.g.: spv['SourceLanguage']['GLSL']
-** - C# will use enum classes in the Specification class located in the "Spv" namespace,
-**     e.g.: Spv.Specification.SourceLanguage.GLSL
+** - C# will use enum classes in the Specification class located in the "Spirv" namespace,
+**     e.g.: Spirv.Specification.SourceLanguage.GLSL
 ** - D will have tokens under the "spv" module, e.g: spv.SourceLanguage.GLSL
-** - Beef will use enum classes in the Specification class located in the "Spv" namespace,
-**     e.g.: Spv.Specification.SourceLanguage.GLSL
+** - Beef will use enum classes in the Specification class located in the "Spirv" namespace,
+**     e.g.: Spirv.Specification.SourceLanguage.GLSL
 ** 
 ** Some tokens act like mask values, which can be OR'd together,
 ** while others are mutually exclusive.  The mask-like ones have
@@ -53,2782 +53,2782 @@
 #ifndef spirv_H
 #define spirv_H
 
-typedef unsigned int SpvId;
+typedef unsigned int SpirvId;
 
 #define SPV_VERSION 0x10600
 #define SPV_REVISION 1
 
-static const unsigned int SpvMagicNumber = 0x07230203;
-static const unsigned int SpvVersion = 0x00010600;
-static const unsigned int SpvRevision = 1;
-static const unsigned int SpvOpCodeMask = 0xffff;
-static const unsigned int SpvWordCountShift = 16;
+static const unsigned int SpirvMagicNumber = 0x07230203;
+static const unsigned int SpirvVersion = 0x00010600;
+static const unsigned int SpirvRevision = 1;
+static const unsigned int SpirvOpCodeMask = 0xffff;
+static const unsigned int SpirvWordCountShift = 16;
 
-typedef enum SpvSourceLanguage_ {
-    SpvSourceLanguageUnknown = 0,
-    SpvSourceLanguageESSL = 1,
-    SpvSourceLanguageGLSL = 2,
-    SpvSourceLanguageOpenCL_C = 3,
-    SpvSourceLanguageOpenCL_CPP = 4,
-    SpvSourceLanguageHLSL = 5,
-    SpvSourceLanguageCPP_for_OpenCL = 6,
-    SpvSourceLanguageSYCL = 7,
-    SpvSourceLanguageHERO_C = 8,
-    SpvSourceLanguageNZSL = 9,
-    SpvSourceLanguageWGSL = 10,
-    SpvSourceLanguageSlang = 11,
-    SpvSourceLanguageMax = 0x7fffffff,
-} SpvSourceLanguage;
+typedef enum SpirvSourceLanguage_ {
+    SpirvSourceLanguageUnknown = 0,
+    SpirvSourceLanguageESSL = 1,
+    SpirvSourceLanguageGLSL = 2,
+    SpirvSourceLanguageOpenCL_C = 3,
+    SpirvSourceLanguageOpenCL_CPP = 4,
+    SpirvSourceLanguageHLSL = 5,
+    SpirvSourceLanguageCPP_for_OpenCL = 6,
+    SpirvSourceLanguageSYCL = 7,
+    SpirvSourceLanguageHERO_C = 8,
+    SpirvSourceLanguageNZSL = 9,
+    SpirvSourceLanguageWGSL = 10,
+    SpirvSourceLanguageSlang = 11,
+    SpirvSourceLanguageMax = 0x7fffffff,
+} SpirvSourceLanguage;
 
-typedef enum SpvExecutionModel_ {
-    SpvExecutionModelVertex = 0,
-    SpvExecutionModelTessellationControl = 1,
-    SpvExecutionModelTessellationEvaluation = 2,
-    SpvExecutionModelGeometry = 3,
-    SpvExecutionModelFragment = 4,
-    SpvExecutionModelGLCompute = 5,
-    SpvExecutionModelKernel = 6,
-    SpvExecutionModelTaskNV = 5267,
-    SpvExecutionModelMeshNV = 5268,
-    SpvExecutionModelRayGenerationKHR = 5313,
-    SpvExecutionModelRayGenerationNV = 5313,
-    SpvExecutionModelIntersectionKHR = 5314,
-    SpvExecutionModelIntersectionNV = 5314,
-    SpvExecutionModelAnyHitKHR = 5315,
-    SpvExecutionModelAnyHitNV = 5315,
-    SpvExecutionModelClosestHitKHR = 5316,
-    SpvExecutionModelClosestHitNV = 5316,
-    SpvExecutionModelMissKHR = 5317,
-    SpvExecutionModelMissNV = 5317,
-    SpvExecutionModelCallableKHR = 5318,
-    SpvExecutionModelCallableNV = 5318,
-    SpvExecutionModelTaskEXT = 5364,
-    SpvExecutionModelMeshEXT = 5365,
-    SpvExecutionModelMax = 0x7fffffff,
-} SpvExecutionModel;
+typedef enum SpirvExecutionModel_ {
+    SpirvExecutionModelVertex = 0,
+    SpirvExecutionModelTessellationControl = 1,
+    SpirvExecutionModelTessellationEvaluation = 2,
+    SpirvExecutionModelGeometry = 3,
+    SpirvExecutionModelFragment = 4,
+    SpirvExecutionModelGLCompute = 5,
+    SpirvExecutionModelKernel = 6,
+    SpirvExecutionModelTaskNV = 5267,
+    SpirvExecutionModelMeshNV = 5268,
+    SpirvExecutionModelRayGenerationKHR = 5313,
+    SpirvExecutionModelRayGenerationNV = 5313,
+    SpirvExecutionModelIntersectionKHR = 5314,
+    SpirvExecutionModelIntersectionNV = 5314,
+    SpirvExecutionModelAnyHitKHR = 5315,
+    SpirvExecutionModelAnyHitNV = 5315,
+    SpirvExecutionModelClosestHitKHR = 5316,
+    SpirvExecutionModelClosestHitNV = 5316,
+    SpirvExecutionModelMissKHR = 5317,
+    SpirvExecutionModelMissNV = 5317,
+    SpirvExecutionModelCallableKHR = 5318,
+    SpirvExecutionModelCallableNV = 5318,
+    SpirvExecutionModelTaskEXT = 5364,
+    SpirvExecutionModelMeshEXT = 5365,
+    SpirvExecutionModelMax = 0x7fffffff,
+} SpirvExecutionModel;
 
-typedef enum SpvAddressingModel_ {
-    SpvAddressingModelLogical = 0,
-    SpvAddressingModelPhysical32 = 1,
-    SpvAddressingModelPhysical64 = 2,
-    SpvAddressingModelPhysicalStorageBuffer64 = 5348,
-    SpvAddressingModelPhysicalStorageBuffer64EXT = 5348,
-    SpvAddressingModelMax = 0x7fffffff,
-} SpvAddressingModel;
+typedef enum SpirvAddressingModel_ {
+    SpirvAddressingModelLogical = 0,
+    SpirvAddressingModelPhysical32 = 1,
+    SpirvAddressingModelPhysical64 = 2,
+    SpirvAddressingModelPhysicalStorageBuffer64 = 5348,
+    SpirvAddressingModelPhysicalStorageBuffer64EXT = 5348,
+    SpirvAddressingModelMax = 0x7fffffff,
+} SpirvAddressingModel;
 
-typedef enum SpvMemoryModel_ {
-    SpvMemoryModelSimple = 0,
-    SpvMemoryModelGLSL450 = 1,
-    SpvMemoryModelOpenCL = 2,
-    SpvMemoryModelVulkan = 3,
-    SpvMemoryModelVulkanKHR = 3,
-    SpvMemoryModelMax = 0x7fffffff,
-} SpvMemoryModel;
+typedef enum SpirvMemoryModel_ {
+    SpirvMemoryModelSimple = 0,
+    SpirvMemoryModelGLSL450 = 1,
+    SpirvMemoryModelOpenCL = 2,
+    SpirvMemoryModelVulkan = 3,
+    SpirvMemoryModelVulkanKHR = 3,
+    SpirvMemoryModelMax = 0x7fffffff,
+} SpirvMemoryModel;
 
-typedef enum SpvExecutionMode_ {
-    SpvExecutionModeInvocations = 0,
-    SpvExecutionModeSpacingEqual = 1,
-    SpvExecutionModeSpacingFractionalEven = 2,
-    SpvExecutionModeSpacingFractionalOdd = 3,
-    SpvExecutionModeVertexOrderCw = 4,
-    SpvExecutionModeVertexOrderCcw = 5,
-    SpvExecutionModePixelCenterInteger = 6,
-    SpvExecutionModeOriginUpperLeft = 7,
-    SpvExecutionModeOriginLowerLeft = 8,
-    SpvExecutionModeEarlyFragmentTests = 9,
-    SpvExecutionModePointMode = 10,
-    SpvExecutionModeXfb = 11,
-    SpvExecutionModeDepthReplacing = 12,
-    SpvExecutionModeDepthGreater = 14,
-    SpvExecutionModeDepthLess = 15,
-    SpvExecutionModeDepthUnchanged = 16,
-    SpvExecutionModeLocalSize = 17,
-    SpvExecutionModeLocalSizeHint = 18,
-    SpvExecutionModeInputPoints = 19,
-    SpvExecutionModeInputLines = 20,
-    SpvExecutionModeInputLinesAdjacency = 21,
-    SpvExecutionModeTriangles = 22,
-    SpvExecutionModeInputTrianglesAdjacency = 23,
-    SpvExecutionModeQuads = 24,
-    SpvExecutionModeIsolines = 25,
-    SpvExecutionModeOutputVertices = 26,
-    SpvExecutionModeOutputPoints = 27,
-    SpvExecutionModeOutputLineStrip = 28,
-    SpvExecutionModeOutputTriangleStrip = 29,
-    SpvExecutionModeVecTypeHint = 30,
-    SpvExecutionModeContractionOff = 31,
-    SpvExecutionModeInitializer = 33,
-    SpvExecutionModeFinalizer = 34,
-    SpvExecutionModeSubgroupSize = 35,
-    SpvExecutionModeSubgroupsPerWorkgroup = 36,
-    SpvExecutionModeSubgroupsPerWorkgroupId = 37,
-    SpvExecutionModeLocalSizeId = 38,
-    SpvExecutionModeLocalSizeHintId = 39,
-    SpvExecutionModeNonCoherentColorAttachmentReadEXT = 4169,
-    SpvExecutionModeNonCoherentDepthAttachmentReadEXT = 4170,
-    SpvExecutionModeNonCoherentStencilAttachmentReadEXT = 4171,
-    SpvExecutionModeSubgroupUniformControlFlowKHR = 4421,
-    SpvExecutionModePostDepthCoverage = 4446,
-    SpvExecutionModeDenormPreserve = 4459,
-    SpvExecutionModeDenormFlushToZero = 4460,
-    SpvExecutionModeSignedZeroInfNanPreserve = 4461,
-    SpvExecutionModeRoundingModeRTE = 4462,
-    SpvExecutionModeRoundingModeRTZ = 4463,
-    SpvExecutionModeEarlyAndLateFragmentTestsAMD = 5017,
-    SpvExecutionModeStencilRefReplacingEXT = 5027,
-    SpvExecutionModeCoalescingAMDX = 5069,
-    SpvExecutionModeMaxNodeRecursionAMDX = 5071,
-    SpvExecutionModeStaticNumWorkgroupsAMDX = 5072,
-    SpvExecutionModeShaderIndexAMDX = 5073,
-    SpvExecutionModeMaxNumWorkgroupsAMDX = 5077,
-    SpvExecutionModeStencilRefUnchangedFrontAMD = 5079,
-    SpvExecutionModeStencilRefGreaterFrontAMD = 5080,
-    SpvExecutionModeStencilRefLessFrontAMD = 5081,
-    SpvExecutionModeStencilRefUnchangedBackAMD = 5082,
-    SpvExecutionModeStencilRefGreaterBackAMD = 5083,
-    SpvExecutionModeStencilRefLessBackAMD = 5084,
-    SpvExecutionModeOutputLinesEXT = 5269,
-    SpvExecutionModeOutputLinesNV = 5269,
-    SpvExecutionModeOutputPrimitivesEXT = 5270,
-    SpvExecutionModeOutputPrimitivesNV = 5270,
-    SpvExecutionModeDerivativeGroupQuadsNV = 5289,
-    SpvExecutionModeDerivativeGroupLinearNV = 5290,
-    SpvExecutionModeOutputTrianglesEXT = 5298,
-    SpvExecutionModeOutputTrianglesNV = 5298,
-    SpvExecutionModePixelInterlockOrderedEXT = 5366,
-    SpvExecutionModePixelInterlockUnorderedEXT = 5367,
-    SpvExecutionModeSampleInterlockOrderedEXT = 5368,
-    SpvExecutionModeSampleInterlockUnorderedEXT = 5369,
-    SpvExecutionModeShadingRateInterlockOrderedEXT = 5370,
-    SpvExecutionModeShadingRateInterlockUnorderedEXT = 5371,
-    SpvExecutionModeSharedLocalMemorySizeINTEL = 5618,
-    SpvExecutionModeRoundingModeRTPINTEL = 5620,
-    SpvExecutionModeRoundingModeRTNINTEL = 5621,
-    SpvExecutionModeFloatingPointModeALTINTEL = 5622,
-    SpvExecutionModeFloatingPointModeIEEEINTEL = 5623,
-    SpvExecutionModeMaxWorkgroupSizeINTEL = 5893,
-    SpvExecutionModeMaxWorkDimINTEL = 5894,
-    SpvExecutionModeNoGlobalOffsetINTEL = 5895,
-    SpvExecutionModeNumSIMDWorkitemsINTEL = 5896,
-    SpvExecutionModeSchedulerTargetFmaxMhzINTEL = 5903,
-    SpvExecutionModeStreamingInterfaceINTEL = 6154,
-    SpvExecutionModeRegisterMapInterfaceINTEL = 6160,
-    SpvExecutionModeNamedBarrierCountINTEL = 6417,
-    SpvExecutionModeMax = 0x7fffffff,
-} SpvExecutionMode;
+typedef enum SpirvExecutionMode_ {
+    SpirvExecutionModeInvocations = 0,
+    SpirvExecutionModeSpacingEqual = 1,
+    SpirvExecutionModeSpacingFractionalEven = 2,
+    SpirvExecutionModeSpacingFractionalOdd = 3,
+    SpirvExecutionModeVertexOrderCw = 4,
+    SpirvExecutionModeVertexOrderCcw = 5,
+    SpirvExecutionModePixelCenterInteger = 6,
+    SpirvExecutionModeOriginUpperLeft = 7,
+    SpirvExecutionModeOriginLowerLeft = 8,
+    SpirvExecutionModeEarlyFragmentTests = 9,
+    SpirvExecutionModePointMode = 10,
+    SpirvExecutionModeXfb = 11,
+    SpirvExecutionModeDepthReplacing = 12,
+    SpirvExecutionModeDepthGreater = 14,
+    SpirvExecutionModeDepthLess = 15,
+    SpirvExecutionModeDepthUnchanged = 16,
+    SpirvExecutionModeLocalSize = 17,
+    SpirvExecutionModeLocalSizeHint = 18,
+    SpirvExecutionModeInputPoints = 19,
+    SpirvExecutionModeInputLines = 20,
+    SpirvExecutionModeInputLinesAdjacency = 21,
+    SpirvExecutionModeTriangles = 22,
+    SpirvExecutionModeInputTrianglesAdjacency = 23,
+    SpirvExecutionModeQuads = 24,
+    SpirvExecutionModeIsolines = 25,
+    SpirvExecutionModeOutputVertices = 26,
+    SpirvExecutionModeOutputPoints = 27,
+    SpirvExecutionModeOutputLineStrip = 28,
+    SpirvExecutionModeOutputTriangleStrip = 29,
+    SpirvExecutionModeVecTypeHint = 30,
+    SpirvExecutionModeContractionOff = 31,
+    SpirvExecutionModeInitializer = 33,
+    SpirvExecutionModeFinalizer = 34,
+    SpirvExecutionModeSubgroupSize = 35,
+    SpirvExecutionModeSubgroupsPerWorkgroup = 36,
+    SpirvExecutionModeSubgroupsPerWorkgroupId = 37,
+    SpirvExecutionModeLocalSizeId = 38,
+    SpirvExecutionModeLocalSizeHintId = 39,
+    SpirvExecutionModeNonCoherentColorAttachmentReadEXT = 4169,
+    SpirvExecutionModeNonCoherentDepthAttachmentReadEXT = 4170,
+    SpirvExecutionModeNonCoherentStencilAttachmentReadEXT = 4171,
+    SpirvExecutionModeSubgroupUniformControlFlowKHR = 4421,
+    SpirvExecutionModePostDepthCoverage = 4446,
+    SpirvExecutionModeDenormPreserve = 4459,
+    SpirvExecutionModeDenormFlushToZero = 4460,
+    SpirvExecutionModeSignedZeroInfNanPreserve = 4461,
+    SpirvExecutionModeRoundingModeRTE = 4462,
+    SpirvExecutionModeRoundingModeRTZ = 4463,
+    SpirvExecutionModeEarlyAndLateFragmentTestsAMD = 5017,
+    SpirvExecutionModeStencilRefReplacingEXT = 5027,
+    SpirvExecutionModeCoalescingAMDX = 5069,
+    SpirvExecutionModeMaxNodeRecursionAMDX = 5071,
+    SpirvExecutionModeStaticNumWorkgroupsAMDX = 5072,
+    SpirvExecutionModeShaderIndexAMDX = 5073,
+    SpirvExecutionModeMaxNumWorkgroupsAMDX = 5077,
+    SpirvExecutionModeStencilRefUnchangedFrontAMD = 5079,
+    SpirvExecutionModeStencilRefGreaterFrontAMD = 5080,
+    SpirvExecutionModeStencilRefLessFrontAMD = 5081,
+    SpirvExecutionModeStencilRefUnchangedBackAMD = 5082,
+    SpirvExecutionModeStencilRefGreaterBackAMD = 5083,
+    SpirvExecutionModeStencilRefLessBackAMD = 5084,
+    SpirvExecutionModeOutputLinesEXT = 5269,
+    SpirvExecutionModeOutputLinesNV = 5269,
+    SpirvExecutionModeOutputPrimitivesEXT = 5270,
+    SpirvExecutionModeOutputPrimitivesNV = 5270,
+    SpirvExecutionModeDerivativeGroupQuadsNV = 5289,
+    SpirvExecutionModeDerivativeGroupLinearNV = 5290,
+    SpirvExecutionModeOutputTrianglesEXT = 5298,
+    SpirvExecutionModeOutputTrianglesNV = 5298,
+    SpirvExecutionModePixelInterlockOrderedEXT = 5366,
+    SpirvExecutionModePixelInterlockUnorderedEXT = 5367,
+    SpirvExecutionModeSampleInterlockOrderedEXT = 5368,
+    SpirvExecutionModeSampleInterlockUnorderedEXT = 5369,
+    SpirvExecutionModeShadingRateInterlockOrderedEXT = 5370,
+    SpirvExecutionModeShadingRateInterlockUnorderedEXT = 5371,
+    SpirvExecutionModeSharedLocalMemorySizeINTEL = 5618,
+    SpirvExecutionModeRoundingModeRTPINTEL = 5620,
+    SpirvExecutionModeRoundingModeRTNINTEL = 5621,
+    SpirvExecutionModeFloatingPointModeALTINTEL = 5622,
+    SpirvExecutionModeFloatingPointModeIEEEINTEL = 5623,
+    SpirvExecutionModeMaxWorkgroupSizeINTEL = 5893,
+    SpirvExecutionModeMaxWorkDimINTEL = 5894,
+    SpirvExecutionModeNoGlobalOffsetINTEL = 5895,
+    SpirvExecutionModeNumSIMDWorkitemsINTEL = 5896,
+    SpirvExecutionModeSchedulerTargetFmaxMhzINTEL = 5903,
+    SpirvExecutionModeStreamingInterfaceINTEL = 6154,
+    SpirvExecutionModeRegisterMapInterfaceINTEL = 6160,
+    SpirvExecutionModeNamedBarrierCountINTEL = 6417,
+    SpirvExecutionModeMax = 0x7fffffff,
+} SpirvExecutionMode;
 
-typedef enum SpvStorageClass_ {
-    SpvStorageClassUniformConstant = 0,
-    SpvStorageClassInput = 1,
-    SpvStorageClassUniform = 2,
-    SpvStorageClassOutput = 3,
-    SpvStorageClassWorkgroup = 4,
-    SpvStorageClassCrossWorkgroup = 5,
-    SpvStorageClassPrivate = 6,
-    SpvStorageClassFunction = 7,
-    SpvStorageClassGeneric = 8,
-    SpvStorageClassPushConstant = 9,
-    SpvStorageClassAtomicCounter = 10,
-    SpvStorageClassImage = 11,
-    SpvStorageClassStorageBuffer = 12,
-    SpvStorageClassTileImageEXT = 4172,
-    SpvStorageClassNodePayloadAMDX = 5068,
-    SpvStorageClassNodeOutputPayloadAMDX = 5076,
-    SpvStorageClassCallableDataKHR = 5328,
-    SpvStorageClassCallableDataNV = 5328,
-    SpvStorageClassIncomingCallableDataKHR = 5329,
-    SpvStorageClassIncomingCallableDataNV = 5329,
-    SpvStorageClassRayPayloadKHR = 5338,
-    SpvStorageClassRayPayloadNV = 5338,
-    SpvStorageClassHitAttributeKHR = 5339,
-    SpvStorageClassHitAttributeNV = 5339,
-    SpvStorageClassIncomingRayPayloadKHR = 5342,
-    SpvStorageClassIncomingRayPayloadNV = 5342,
-    SpvStorageClassShaderRecordBufferKHR = 5343,
-    SpvStorageClassShaderRecordBufferNV = 5343,
-    SpvStorageClassPhysicalStorageBuffer = 5349,
-    SpvStorageClassPhysicalStorageBufferEXT = 5349,
-    SpvStorageClassHitObjectAttributeNV = 5385,
-    SpvStorageClassTaskPayloadWorkgroupEXT = 5402,
-    SpvStorageClassCodeSectionINTEL = 5605,
-    SpvStorageClassDeviceOnlyINTEL = 5936,
-    SpvStorageClassHostOnlyINTEL = 5937,
-    SpvStorageClassMax = 0x7fffffff,
-} SpvStorageClass;
+typedef enum SpirvStorageClass_ {
+    SpirvStorageClassUniformConstant = 0,
+    SpirvStorageClassInput = 1,
+    SpirvStorageClassUniform = 2,
+    SpirvStorageClassOutput = 3,
+    SpirvStorageClassWorkgroup = 4,
+    SpirvStorageClassCrossWorkgroup = 5,
+    SpirvStorageClassPrivate = 6,
+    SpirvStorageClassFunction = 7,
+    SpirvStorageClassGeneric = 8,
+    SpirvStorageClassPushConstant = 9,
+    SpirvStorageClassAtomicCounter = 10,
+    SpirvStorageClassImage = 11,
+    SpirvStorageClassStorageBuffer = 12,
+    SpirvStorageClassTileImageEXT = 4172,
+    SpirvStorageClassNodePayloadAMDX = 5068,
+    SpirvStorageClassNodeOutputPayloadAMDX = 5076,
+    SpirvStorageClassCallableDataKHR = 5328,
+    SpirvStorageClassCallableDataNV = 5328,
+    SpirvStorageClassIncomingCallableDataKHR = 5329,
+    SpirvStorageClassIncomingCallableDataNV = 5329,
+    SpirvStorageClassRayPayloadKHR = 5338,
+    SpirvStorageClassRayPayloadNV = 5338,
+    SpirvStorageClassHitAttributeKHR = 5339,
+    SpirvStorageClassHitAttributeNV = 5339,
+    SpirvStorageClassIncomingRayPayloadKHR = 5342,
+    SpirvStorageClassIncomingRayPayloadNV = 5342,
+    SpirvStorageClassShaderRecordBufferKHR = 5343,
+    SpirvStorageClassShaderRecordBufferNV = 5343,
+    SpirvStorageClassPhysicalStorageBuffer = 5349,
+    SpirvStorageClassPhysicalStorageBufferEXT = 5349,
+    SpirvStorageClassHitObjectAttributeNV = 5385,
+    SpirvStorageClassTaskPayloadWorkgroupEXT = 5402,
+    SpirvStorageClassCodeSectionINTEL = 5605,
+    SpirvStorageClassDeviceOnlyINTEL = 5936,
+    SpirvStorageClassHostOnlyINTEL = 5937,
+    SpirvStorageClassMax = 0x7fffffff,
+} SpirvStorageClass;
 
-typedef enum SpvDim_ {
-    SpvDim1D = 0,
-    SpvDim2D = 1,
-    SpvDim3D = 2,
-    SpvDimCube = 3,
-    SpvDimRect = 4,
-    SpvDimBuffer = 5,
-    SpvDimSubpassData = 6,
-    SpvDimTileImageDataEXT = 4173,
-    SpvDimMax = 0x7fffffff,
-} SpvDim;
+typedef enum SpirvDim_ {
+    SpirvDim1D = 0,
+    SpirvDim2D = 1,
+    SpirvDim3D = 2,
+    SpirvDimCube = 3,
+    SpirvDimRect = 4,
+    SpirvDimBuffer = 5,
+    SpirvDimSubpassData = 6,
+    SpirvDimTileImageDataEXT = 4173,
+    SpirvDimMax = 0x7fffffff,
+} SpirvDim;
 
-typedef enum SpvSamplerAddressingMode_ {
-    SpvSamplerAddressingModeNone = 0,
-    SpvSamplerAddressingModeClampToEdge = 1,
-    SpvSamplerAddressingModeClamp = 2,
-    SpvSamplerAddressingModeRepeat = 3,
-    SpvSamplerAddressingModeRepeatMirrored = 4,
-    SpvSamplerAddressingModeMax = 0x7fffffff,
-} SpvSamplerAddressingMode;
+typedef enum SpirvSamplerAddressingMode_ {
+    SpirvSamplerAddressingModeNone = 0,
+    SpirvSamplerAddressingModeClampToEdge = 1,
+    SpirvSamplerAddressingModeClamp = 2,
+    SpirvSamplerAddressingModeRepeat = 3,
+    SpirvSamplerAddressingModeRepeatMirrored = 4,
+    SpirvSamplerAddressingModeMax = 0x7fffffff,
+} SpirvSamplerAddressingMode;
 
-typedef enum SpvSamplerFilterMode_ {
-    SpvSamplerFilterModeNearest = 0,
-    SpvSamplerFilterModeLinear = 1,
-    SpvSamplerFilterModeMax = 0x7fffffff,
-} SpvSamplerFilterMode;
+typedef enum SpirvSamplerFilterMode_ {
+    SpirvSamplerFilterModeNearest = 0,
+    SpirvSamplerFilterModeLinear = 1,
+    SpirvSamplerFilterModeMax = 0x7fffffff,
+} SpirvSamplerFilterMode;
 
-typedef enum SpvImageFormat_ {
-    SpvImageFormatUnknown = 0,
-    SpvImageFormatRgba32f = 1,
-    SpvImageFormatRgba16f = 2,
-    SpvImageFormatR32f = 3,
-    SpvImageFormatRgba8 = 4,
-    SpvImageFormatRgba8Snorm = 5,
-    SpvImageFormatRg32f = 6,
-    SpvImageFormatRg16f = 7,
-    SpvImageFormatR11fG11fB10f = 8,
-    SpvImageFormatR16f = 9,
-    SpvImageFormatRgba16 = 10,
-    SpvImageFormatRgb10A2 = 11,
-    SpvImageFormatRg16 = 12,
-    SpvImageFormatRg8 = 13,
-    SpvImageFormatR16 = 14,
-    SpvImageFormatR8 = 15,
-    SpvImageFormatRgba16Snorm = 16,
-    SpvImageFormatRg16Snorm = 17,
-    SpvImageFormatRg8Snorm = 18,
-    SpvImageFormatR16Snorm = 19,
-    SpvImageFormatR8Snorm = 20,
-    SpvImageFormatRgba32i = 21,
-    SpvImageFormatRgba16i = 22,
-    SpvImageFormatRgba8i = 23,
-    SpvImageFormatR32i = 24,
-    SpvImageFormatRg32i = 25,
-    SpvImageFormatRg16i = 26,
-    SpvImageFormatRg8i = 27,
-    SpvImageFormatR16i = 28,
-    SpvImageFormatR8i = 29,
-    SpvImageFormatRgba32ui = 30,
-    SpvImageFormatRgba16ui = 31,
-    SpvImageFormatRgba8ui = 32,
-    SpvImageFormatR32ui = 33,
-    SpvImageFormatRgb10a2ui = 34,
-    SpvImageFormatRg32ui = 35,
-    SpvImageFormatRg16ui = 36,
-    SpvImageFormatRg8ui = 37,
-    SpvImageFormatR16ui = 38,
-    SpvImageFormatR8ui = 39,
-    SpvImageFormatR64ui = 40,
-    SpvImageFormatR64i = 41,
-    SpvImageFormatMax = 0x7fffffff,
-} SpvImageFormat;
+typedef enum SpirvImageFormat_ {
+    SpirvImageFormatUnknown = 0,
+    SpirvImageFormatRgba32f = 1,
+    SpirvImageFormatRgba16f = 2,
+    SpirvImageFormatR32f = 3,
+    SpirvImageFormatRgba8 = 4,
+    SpirvImageFormatRgba8Snorm = 5,
+    SpirvImageFormatRg32f = 6,
+    SpirvImageFormatRg16f = 7,
+    SpirvImageFormatR11fG11fB10f = 8,
+    SpirvImageFormatR16f = 9,
+    SpirvImageFormatRgba16 = 10,
+    SpirvImageFormatRgb10A2 = 11,
+    SpirvImageFormatRg16 = 12,
+    SpirvImageFormatRg8 = 13,
+    SpirvImageFormatR16 = 14,
+    SpirvImageFormatR8 = 15,
+    SpirvImageFormatRgba16Snorm = 16,
+    SpirvImageFormatRg16Snorm = 17,
+    SpirvImageFormatRg8Snorm = 18,
+    SpirvImageFormatR16Snorm = 19,
+    SpirvImageFormatR8Snorm = 20,
+    SpirvImageFormatRgba32i = 21,
+    SpirvImageFormatRgba16i = 22,
+    SpirvImageFormatRgba8i = 23,
+    SpirvImageFormatR32i = 24,
+    SpirvImageFormatRg32i = 25,
+    SpirvImageFormatRg16i = 26,
+    SpirvImageFormatRg8i = 27,
+    SpirvImageFormatR16i = 28,
+    SpirvImageFormatR8i = 29,
+    SpirvImageFormatRgba32ui = 30,
+    SpirvImageFormatRgba16ui = 31,
+    SpirvImageFormatRgba8ui = 32,
+    SpirvImageFormatR32ui = 33,
+    SpirvImageFormatRgb10a2ui = 34,
+    SpirvImageFormatRg32ui = 35,
+    SpirvImageFormatRg16ui = 36,
+    SpirvImageFormatRg8ui = 37,
+    SpirvImageFormatR16ui = 38,
+    SpirvImageFormatR8ui = 39,
+    SpirvImageFormatR64ui = 40,
+    SpirvImageFormatR64i = 41,
+    SpirvImageFormatMax = 0x7fffffff,
+} SpirvImageFormat;
 
-typedef enum SpvImageChannelOrder_ {
-    SpvImageChannelOrderR = 0,
-    SpvImageChannelOrderA = 1,
-    SpvImageChannelOrderRG = 2,
-    SpvImageChannelOrderRA = 3,
-    SpvImageChannelOrderRGB = 4,
-    SpvImageChannelOrderRGBA = 5,
-    SpvImageChannelOrderBGRA = 6,
-    SpvImageChannelOrderARGB = 7,
-    SpvImageChannelOrderIntensity = 8,
-    SpvImageChannelOrderLuminance = 9,
-    SpvImageChannelOrderRx = 10,
-    SpvImageChannelOrderRGx = 11,
-    SpvImageChannelOrderRGBx = 12,
-    SpvImageChannelOrderDepth = 13,
-    SpvImageChannelOrderDepthStencil = 14,
-    SpvImageChannelOrdersRGB = 15,
-    SpvImageChannelOrdersRGBx = 16,
-    SpvImageChannelOrdersRGBA = 17,
-    SpvImageChannelOrdersBGRA = 18,
-    SpvImageChannelOrderABGR = 19,
-    SpvImageChannelOrderMax = 0x7fffffff,
-} SpvImageChannelOrder;
+typedef enum SpirvImageChannelOrder_ {
+    SpirvImageChannelOrderR = 0,
+    SpirvImageChannelOrderA = 1,
+    SpirvImageChannelOrderRG = 2,
+    SpirvImageChannelOrderRA = 3,
+    SpirvImageChannelOrderRGB = 4,
+    SpirvImageChannelOrderRGBA = 5,
+    SpirvImageChannelOrderBGRA = 6,
+    SpirvImageChannelOrderARGB = 7,
+    SpirvImageChannelOrderIntensity = 8,
+    SpirvImageChannelOrderLuminance = 9,
+    SpirvImageChannelOrderRx = 10,
+    SpirvImageChannelOrderRGx = 11,
+    SpirvImageChannelOrderRGBx = 12,
+    SpirvImageChannelOrderDepth = 13,
+    SpirvImageChannelOrderDepthStencil = 14,
+    SpirvImageChannelOrdersRGB = 15,
+    SpirvImageChannelOrdersRGBx = 16,
+    SpirvImageChannelOrdersRGBA = 17,
+    SpirvImageChannelOrdersBGRA = 18,
+    SpirvImageChannelOrderABGR = 19,
+    SpirvImageChannelOrderMax = 0x7fffffff,
+} SpirvImageChannelOrder;
 
-typedef enum SpvImageChannelDataType_ {
-    SpvImageChannelDataTypeSnormInt8 = 0,
-    SpvImageChannelDataTypeSnormInt16 = 1,
-    SpvImageChannelDataTypeUnormInt8 = 2,
-    SpvImageChannelDataTypeUnormInt16 = 3,
-    SpvImageChannelDataTypeUnormShort565 = 4,
-    SpvImageChannelDataTypeUnormShort555 = 5,
-    SpvImageChannelDataTypeUnormInt101010 = 6,
-    SpvImageChannelDataTypeSignedInt8 = 7,
-    SpvImageChannelDataTypeSignedInt16 = 8,
-    SpvImageChannelDataTypeSignedInt32 = 9,
-    SpvImageChannelDataTypeUnsignedInt8 = 10,
-    SpvImageChannelDataTypeUnsignedInt16 = 11,
-    SpvImageChannelDataTypeUnsignedInt32 = 12,
-    SpvImageChannelDataTypeHalfFloat = 13,
-    SpvImageChannelDataTypeFloat = 14,
-    SpvImageChannelDataTypeUnormInt24 = 15,
-    SpvImageChannelDataTypeUnormInt101010_2 = 16,
-    SpvImageChannelDataTypeUnsignedIntRaw10EXT = 19,
-    SpvImageChannelDataTypeUnsignedIntRaw12EXT = 20,
-    SpvImageChannelDataTypeMax = 0x7fffffff,
-} SpvImageChannelDataType;
+typedef enum SpirvImageChannelDataType_ {
+    SpirvImageChannelDataTypeSnormInt8 = 0,
+    SpirvImageChannelDataTypeSnormInt16 = 1,
+    SpirvImageChannelDataTypeUnormInt8 = 2,
+    SpirvImageChannelDataTypeUnormInt16 = 3,
+    SpirvImageChannelDataTypeUnormShort565 = 4,
+    SpirvImageChannelDataTypeUnormShort555 = 5,
+    SpirvImageChannelDataTypeUnormInt101010 = 6,
+    SpirvImageChannelDataTypeSignedInt8 = 7,
+    SpirvImageChannelDataTypeSignedInt16 = 8,
+    SpirvImageChannelDataTypeSignedInt32 = 9,
+    SpirvImageChannelDataTypeUnsignedInt8 = 10,
+    SpirvImageChannelDataTypeUnsignedInt16 = 11,
+    SpirvImageChannelDataTypeUnsignedInt32 = 12,
+    SpirvImageChannelDataTypeHalfFloat = 13,
+    SpirvImageChannelDataTypeFloat = 14,
+    SpirvImageChannelDataTypeUnormInt24 = 15,
+    SpirvImageChannelDataTypeUnormInt101010_2 = 16,
+    SpirvImageChannelDataTypeUnsignedIntRaw10EXT = 19,
+    SpirvImageChannelDataTypeUnsignedIntRaw12EXT = 20,
+    SpirvImageChannelDataTypeMax = 0x7fffffff,
+} SpirvImageChannelDataType;
 
-typedef enum SpvImageOperandsShift_ {
-    SpvImageOperandsBiasShift = 0,
-    SpvImageOperandsLodShift = 1,
-    SpvImageOperandsGradShift = 2,
-    SpvImageOperandsConstOffsetShift = 3,
-    SpvImageOperandsOffsetShift = 4,
-    SpvImageOperandsConstOffsetsShift = 5,
-    SpvImageOperandsSampleShift = 6,
-    SpvImageOperandsMinLodShift = 7,
-    SpvImageOperandsMakeTexelAvailableShift = 8,
-    SpvImageOperandsMakeTexelAvailableKHRShift = 8,
-    SpvImageOperandsMakeTexelVisibleShift = 9,
-    SpvImageOperandsMakeTexelVisibleKHRShift = 9,
-    SpvImageOperandsNonPrivateTexelShift = 10,
-    SpvImageOperandsNonPrivateTexelKHRShift = 10,
-    SpvImageOperandsVolatileTexelShift = 11,
-    SpvImageOperandsVolatileTexelKHRShift = 11,
-    SpvImageOperandsSignExtendShift = 12,
-    SpvImageOperandsZeroExtendShift = 13,
-    SpvImageOperandsNontemporalShift = 14,
-    SpvImageOperandsOffsetsShift = 16,
-    SpvImageOperandsMax = 0x7fffffff,
-} SpvImageOperandsShift;
+typedef enum SpirvImageOperandsShift_ {
+    SpirvImageOperandsBiasShift = 0,
+    SpirvImageOperandsLodShift = 1,
+    SpirvImageOperandsGradShift = 2,
+    SpirvImageOperandsConstOffsetShift = 3,
+    SpirvImageOperandsOffsetShift = 4,
+    SpirvImageOperandsConstOffsetsShift = 5,
+    SpirvImageOperandsSampleShift = 6,
+    SpirvImageOperandsMinLodShift = 7,
+    SpirvImageOperandsMakeTexelAvailableShift = 8,
+    SpirvImageOperandsMakeTexelAvailableKHRShift = 8,
+    SpirvImageOperandsMakeTexelVisibleShift = 9,
+    SpirvImageOperandsMakeTexelVisibleKHRShift = 9,
+    SpirvImageOperandsNonPrivateTexelShift = 10,
+    SpirvImageOperandsNonPrivateTexelKHRShift = 10,
+    SpirvImageOperandsVolatileTexelShift = 11,
+    SpirvImageOperandsVolatileTexelKHRShift = 11,
+    SpirvImageOperandsSignExtendShift = 12,
+    SpirvImageOperandsZeroExtendShift = 13,
+    SpirvImageOperandsNontemporalShift = 14,
+    SpirvImageOperandsOffsetsShift = 16,
+    SpirvImageOperandsMax = 0x7fffffff,
+} SpirvImageOperandsShift;
 
-typedef enum SpvImageOperandsMask_ {
-    SpvImageOperandsMaskNone = 0,
-    SpvImageOperandsBiasMask = 0x00000001,
-    SpvImageOperandsLodMask = 0x00000002,
-    SpvImageOperandsGradMask = 0x00000004,
-    SpvImageOperandsConstOffsetMask = 0x00000008,
-    SpvImageOperandsOffsetMask = 0x00000010,
-    SpvImageOperandsConstOffsetsMask = 0x00000020,
-    SpvImageOperandsSampleMask = 0x00000040,
-    SpvImageOperandsMinLodMask = 0x00000080,
-    SpvImageOperandsMakeTexelAvailableMask = 0x00000100,
-    SpvImageOperandsMakeTexelAvailableKHRMask = 0x00000100,
-    SpvImageOperandsMakeTexelVisibleMask = 0x00000200,
-    SpvImageOperandsMakeTexelVisibleKHRMask = 0x00000200,
-    SpvImageOperandsNonPrivateTexelMask = 0x00000400,
-    SpvImageOperandsNonPrivateTexelKHRMask = 0x00000400,
-    SpvImageOperandsVolatileTexelMask = 0x00000800,
-    SpvImageOperandsVolatileTexelKHRMask = 0x00000800,
-    SpvImageOperandsSignExtendMask = 0x00001000,
-    SpvImageOperandsZeroExtendMask = 0x00002000,
-    SpvImageOperandsNontemporalMask = 0x00004000,
-    SpvImageOperandsOffsetsMask = 0x00010000,
-} SpvImageOperandsMask;
+typedef enum SpirvImageOperandsMask_ {
+    SpirvImageOperandsMaskNone = 0,
+    SpirvImageOperandsBiasMask = 0x00000001,
+    SpirvImageOperandsLodMask = 0x00000002,
+    SpirvImageOperandsGradMask = 0x00000004,
+    SpirvImageOperandsConstOffsetMask = 0x00000008,
+    SpirvImageOperandsOffsetMask = 0x00000010,
+    SpirvImageOperandsConstOffsetsMask = 0x00000020,
+    SpirvImageOperandsSampleMask = 0x00000040,
+    SpirvImageOperandsMinLodMask = 0x00000080,
+    SpirvImageOperandsMakeTexelAvailableMask = 0x00000100,
+    SpirvImageOperandsMakeTexelAvailableKHRMask = 0x00000100,
+    SpirvImageOperandsMakeTexelVisibleMask = 0x00000200,
+    SpirvImageOperandsMakeTexelVisibleKHRMask = 0x00000200,
+    SpirvImageOperandsNonPrivateTexelMask = 0x00000400,
+    SpirvImageOperandsNonPrivateTexelKHRMask = 0x00000400,
+    SpirvImageOperandsVolatileTexelMask = 0x00000800,
+    SpirvImageOperandsVolatileTexelKHRMask = 0x00000800,
+    SpirvImageOperandsSignExtendMask = 0x00001000,
+    SpirvImageOperandsZeroExtendMask = 0x00002000,
+    SpirvImageOperandsNontemporalMask = 0x00004000,
+    SpirvImageOperandsOffsetsMask = 0x00010000,
+} SpirvImageOperandsMask;
 
-typedef enum SpvFPFastMathModeShift_ {
-    SpvFPFastMathModeNotNaNShift = 0,
-    SpvFPFastMathModeNotInfShift = 1,
-    SpvFPFastMathModeNSZShift = 2,
-    SpvFPFastMathModeAllowRecipShift = 3,
-    SpvFPFastMathModeFastShift = 4,
-    SpvFPFastMathModeAllowContractFastINTELShift = 16,
-    SpvFPFastMathModeAllowReassocINTELShift = 17,
-    SpvFPFastMathModeMax = 0x7fffffff,
-} SpvFPFastMathModeShift;
+typedef enum SpirvFPFastMathModeShift_ {
+    SpirvFPFastMathModeNotNaNShift = 0,
+    SpirvFPFastMathModeNotInfShift = 1,
+    SpirvFPFastMathModeNSZShift = 2,
+    SpirvFPFastMathModeAllowRecipShift = 3,
+    SpirvFPFastMathModeFastShift = 4,
+    SpirvFPFastMathModeAllowContractFastINTELShift = 16,
+    SpirvFPFastMathModeAllowReassocINTELShift = 17,
+    SpirvFPFastMathModeMax = 0x7fffffff,
+} SpirvFPFastMathModeShift;
 
-typedef enum SpvFPFastMathModeMask_ {
-    SpvFPFastMathModeMaskNone = 0,
-    SpvFPFastMathModeNotNaNMask = 0x00000001,
-    SpvFPFastMathModeNotInfMask = 0x00000002,
-    SpvFPFastMathModeNSZMask = 0x00000004,
-    SpvFPFastMathModeAllowRecipMask = 0x00000008,
-    SpvFPFastMathModeFastMask = 0x00000010,
-    SpvFPFastMathModeAllowContractFastINTELMask = 0x00010000,
-    SpvFPFastMathModeAllowReassocINTELMask = 0x00020000,
-} SpvFPFastMathModeMask;
+typedef enum SpirvFPFastMathModeMask_ {
+    SpirvFPFastMathModeMaskNone = 0,
+    SpirvFPFastMathModeNotNaNMask = 0x00000001,
+    SpirvFPFastMathModeNotInfMask = 0x00000002,
+    SpirvFPFastMathModeNSZMask = 0x00000004,
+    SpirvFPFastMathModeAllowRecipMask = 0x00000008,
+    SpirvFPFastMathModeFastMask = 0x00000010,
+    SpirvFPFastMathModeAllowContractFastINTELMask = 0x00010000,
+    SpirvFPFastMathModeAllowReassocINTELMask = 0x00020000,
+} SpirvFPFastMathModeMask;
 
-typedef enum SpvFPRoundingMode_ {
-    SpvFPRoundingModeRTE = 0,
-    SpvFPRoundingModeRTZ = 1,
-    SpvFPRoundingModeRTP = 2,
-    SpvFPRoundingModeRTN = 3,
-    SpvFPRoundingModeMax = 0x7fffffff,
-} SpvFPRoundingMode;
+typedef enum SpirvFPRoundingMode_ {
+    SpirvFPRoundingModeRTE = 0,
+    SpirvFPRoundingModeRTZ = 1,
+    SpirvFPRoundingModeRTP = 2,
+    SpirvFPRoundingModeRTN = 3,
+    SpirvFPRoundingModeMax = 0x7fffffff,
+} SpirvFPRoundingMode;
 
-typedef enum SpvLinkageType_ {
-    SpvLinkageTypeExport = 0,
-    SpvLinkageTypeImport = 1,
-    SpvLinkageTypeLinkOnceODR = 2,
-    SpvLinkageTypeMax = 0x7fffffff,
-} SpvLinkageType;
+typedef enum SpirvLinkageType_ {
+    SpirvLinkageTypeExport = 0,
+    SpirvLinkageTypeImport = 1,
+    SpirvLinkageTypeLinkOnceODR = 2,
+    SpirvLinkageTypeMax = 0x7fffffff,
+} SpirvLinkageType;
 
-typedef enum SpvAccessQualifier_ {
-    SpvAccessQualifierReadOnly = 0,
-    SpvAccessQualifierWriteOnly = 1,
-    SpvAccessQualifierReadWrite = 2,
-    SpvAccessQualifierMax = 0x7fffffff,
-} SpvAccessQualifier;
+typedef enum SpirvAccessQualifier_ {
+    SpirvAccessQualifierReadOnly = 0,
+    SpirvAccessQualifierWriteOnly = 1,
+    SpirvAccessQualifierReadWrite = 2,
+    SpirvAccessQualifierMax = 0x7fffffff,
+} SpirvAccessQualifier;
 
-typedef enum SpvFunctionParameterAttribute_ {
-    SpvFunctionParameterAttributeZext = 0,
-    SpvFunctionParameterAttributeSext = 1,
-    SpvFunctionParameterAttributeByVal = 2,
-    SpvFunctionParameterAttributeSret = 3,
-    SpvFunctionParameterAttributeNoAlias = 4,
-    SpvFunctionParameterAttributeNoCapture = 5,
-    SpvFunctionParameterAttributeNoWrite = 6,
-    SpvFunctionParameterAttributeNoReadWrite = 7,
-    SpvFunctionParameterAttributeRuntimeAlignedINTEL = 5940,
-    SpvFunctionParameterAttributeMax = 0x7fffffff,
-} SpvFunctionParameterAttribute;
+typedef enum SpirvFunctionParameterAttribute_ {
+    SpirvFunctionParameterAttributeZext = 0,
+    SpirvFunctionParameterAttributeSext = 1,
+    SpirvFunctionParameterAttributeByVal = 2,
+    SpirvFunctionParameterAttributeSret = 3,
+    SpirvFunctionParameterAttributeNoAlias = 4,
+    SpirvFunctionParameterAttributeNoCapture = 5,
+    SpirvFunctionParameterAttributeNoWrite = 6,
+    SpirvFunctionParameterAttributeNoReadWrite = 7,
+    SpirvFunctionParameterAttributeRuntimeAlignedINTEL = 5940,
+    SpirvFunctionParameterAttributeMax = 0x7fffffff,
+} SpirvFunctionParameterAttribute;
 
-typedef enum SpvDecoration_ {
-    SpvDecorationRelaxedPrecision = 0,
-    SpvDecorationSpecId = 1,
-    SpvDecorationBlock = 2,
-    SpvDecorationBufferBlock = 3,
-    SpvDecorationRowMajor = 4,
-    SpvDecorationColMajor = 5,
-    SpvDecorationArrayStride = 6,
-    SpvDecorationMatrixStride = 7,
-    SpvDecorationGLSLShared = 8,
-    SpvDecorationGLSLPacked = 9,
-    SpvDecorationCPacked = 10,
-    SpvDecorationBuiltIn = 11,
-    SpvDecorationNoPerspective = 13,
-    SpvDecorationFlat = 14,
-    SpvDecorationPatch = 15,
-    SpvDecorationCentroid = 16,
-    SpvDecorationSample = 17,
-    SpvDecorationInvariant = 18,
-    SpvDecorationRestrict = 19,
-    SpvDecorationAliased = 20,
-    SpvDecorationVolatile = 21,
-    SpvDecorationConstant = 22,
-    SpvDecorationCoherent = 23,
-    SpvDecorationNonWritable = 24,
-    SpvDecorationNonReadable = 25,
-    SpvDecorationUniform = 26,
-    SpvDecorationUniformId = 27,
-    SpvDecorationSaturatedConversion = 28,
-    SpvDecorationStream = 29,
-    SpvDecorationLocation = 30,
-    SpvDecorationComponent = 31,
-    SpvDecorationIndex = 32,
-    SpvDecorationBinding = 33,
-    SpvDecorationDescriptorSet = 34,
-    SpvDecorationOffset = 35,
-    SpvDecorationXfbBuffer = 36,
-    SpvDecorationXfbStride = 37,
-    SpvDecorationFuncParamAttr = 38,
-    SpvDecorationFPRoundingMode = 39,
-    SpvDecorationFPFastMathMode = 40,
-    SpvDecorationLinkageAttributes = 41,
-    SpvDecorationNoContraction = 42,
-    SpvDecorationInputAttachmentIndex = 43,
-    SpvDecorationAlignment = 44,
-    SpvDecorationMaxByteOffset = 45,
-    SpvDecorationAlignmentId = 46,
-    SpvDecorationMaxByteOffsetId = 47,
-    SpvDecorationNoSignedWrap = 4469,
-    SpvDecorationNoUnsignedWrap = 4470,
-    SpvDecorationWeightTextureQCOM = 4487,
-    SpvDecorationBlockMatchTextureQCOM = 4488,
-    SpvDecorationExplicitInterpAMD = 4999,
-    SpvDecorationNodeSharesPayloadLimitsWithAMDX = 5019,
-    SpvDecorationNodeMaxPayloadsAMDX = 5020,
-    SpvDecorationTrackFinishWritingAMDX = 5078,
-    SpvDecorationPayloadNodeNameAMDX = 5091,
-    SpvDecorationOverrideCoverageNV = 5248,
-    SpvDecorationPassthroughNV = 5250,
-    SpvDecorationViewportRelativeNV = 5252,
-    SpvDecorationSecondaryViewportRelativeNV = 5256,
-    SpvDecorationPerPrimitiveEXT = 5271,
-    SpvDecorationPerPrimitiveNV = 5271,
-    SpvDecorationPerViewNV = 5272,
-    SpvDecorationPerTaskNV = 5273,
-    SpvDecorationPerVertexKHR = 5285,
-    SpvDecorationPerVertexNV = 5285,
-    SpvDecorationNonUniform = 5300,
-    SpvDecorationNonUniformEXT = 5300,
-    SpvDecorationRestrictPointer = 5355,
-    SpvDecorationRestrictPointerEXT = 5355,
-    SpvDecorationAliasedPointer = 5356,
-    SpvDecorationAliasedPointerEXT = 5356,
-    SpvDecorationHitObjectShaderRecordBufferNV = 5386,
-    SpvDecorationBindlessSamplerNV = 5398,
-    SpvDecorationBindlessImageNV = 5399,
-    SpvDecorationBoundSamplerNV = 5400,
-    SpvDecorationBoundImageNV = 5401,
-    SpvDecorationSIMTCallINTEL = 5599,
-    SpvDecorationReferencedIndirectlyINTEL = 5602,
-    SpvDecorationClobberINTEL = 5607,
-    SpvDecorationSideEffectsINTEL = 5608,
-    SpvDecorationVectorComputeVariableINTEL = 5624,
-    SpvDecorationFuncParamIOKindINTEL = 5625,
-    SpvDecorationVectorComputeFunctionINTEL = 5626,
-    SpvDecorationStackCallINTEL = 5627,
-    SpvDecorationGlobalVariableOffsetINTEL = 5628,
-    SpvDecorationCounterBuffer = 5634,
-    SpvDecorationHlslCounterBufferGOOGLE = 5634,
-    SpvDecorationHlslSemanticGOOGLE = 5635,
-    SpvDecorationUserSemantic = 5635,
-    SpvDecorationUserTypeGOOGLE = 5636,
-    SpvDecorationFunctionRoundingModeINTEL = 5822,
-    SpvDecorationFunctionDenormModeINTEL = 5823,
-    SpvDecorationRegisterINTEL = 5825,
-    SpvDecorationMemoryINTEL = 5826,
-    SpvDecorationNumbanksINTEL = 5827,
-    SpvDecorationBankwidthINTEL = 5828,
-    SpvDecorationMaxPrivateCopiesINTEL = 5829,
-    SpvDecorationSinglepumpINTEL = 5830,
-    SpvDecorationDoublepumpINTEL = 5831,
-    SpvDecorationMaxReplicatesINTEL = 5832,
-    SpvDecorationSimpleDualPortINTEL = 5833,
-    SpvDecorationMergeINTEL = 5834,
-    SpvDecorationBankBitsINTEL = 5835,
-    SpvDecorationForcePow2DepthINTEL = 5836,
-    SpvDecorationStridesizeINTEL = 5883,
-    SpvDecorationWordsizeINTEL = 5884,
-    SpvDecorationTrueDualPortINTEL = 5885,
-    SpvDecorationBurstCoalesceINTEL = 5899,
-    SpvDecorationCacheSizeINTEL = 5900,
-    SpvDecorationDontStaticallyCoalesceINTEL = 5901,
-    SpvDecorationPrefetchINTEL = 5902,
-    SpvDecorationStallEnableINTEL = 5905,
-    SpvDecorationFuseLoopsInFunctionINTEL = 5907,
-    SpvDecorationMathOpDSPModeINTEL = 5909,
-    SpvDecorationAliasScopeINTEL = 5914,
-    SpvDecorationNoAliasINTEL = 5915,
-    SpvDecorationInitiationIntervalINTEL = 5917,
-    SpvDecorationMaxConcurrencyINTEL = 5918,
-    SpvDecorationPipelineEnableINTEL = 5919,
-    SpvDecorationBufferLocationINTEL = 5921,
-    SpvDecorationIOPipeStorageINTEL = 5944,
-    SpvDecorationFunctionFloatingPointModeINTEL = 6080,
-    SpvDecorationSingleElementVectorINTEL = 6085,
-    SpvDecorationVectorComputeCallableFunctionINTEL = 6087,
-    SpvDecorationMediaBlockIOINTEL = 6140,
-    SpvDecorationStallFreeINTEL = 6151,
-    SpvDecorationFPMaxErrorDecorationINTEL = 6170,
-    SpvDecorationLatencyControlLabelINTEL = 6172,
-    SpvDecorationLatencyControlConstraintINTEL = 6173,
-    SpvDecorationConduitKernelArgumentINTEL = 6175,
-    SpvDecorationRegisterMapKernelArgumentINTEL = 6176,
-    SpvDecorationMMHostInterfaceAddressWidthINTEL = 6177,
-    SpvDecorationMMHostInterfaceDataWidthINTEL = 6178,
-    SpvDecorationMMHostInterfaceLatencyINTEL = 6179,
-    SpvDecorationMMHostInterfaceReadWriteModeINTEL = 6180,
-    SpvDecorationMMHostInterfaceMaxBurstINTEL = 6181,
-    SpvDecorationMMHostInterfaceWaitRequestINTEL = 6182,
-    SpvDecorationStableKernelArgumentINTEL = 6183,
-    SpvDecorationHostAccessINTEL = 6188,
-    SpvDecorationInitModeINTEL = 6190,
-    SpvDecorationImplementInRegisterMapINTEL = 6191,
-    SpvDecorationCacheControlLoadINTEL = 6442,
-    SpvDecorationCacheControlStoreINTEL = 6443,
-    SpvDecorationMax = 0x7fffffff,
-} SpvDecoration;
+typedef enum SpirvDecoration_ {
+    SpirvDecorationRelaxedPrecision = 0,
+    SpirvDecorationSpecId = 1,
+    SpirvDecorationBlock = 2,
+    SpirvDecorationBufferBlock = 3,
+    SpirvDecorationRowMajor = 4,
+    SpirvDecorationColMajor = 5,
+    SpirvDecorationArrayStride = 6,
+    SpirvDecorationMatrixStride = 7,
+    SpirvDecorationGLSLShared = 8,
+    SpirvDecorationGLSLPacked = 9,
+    SpirvDecorationCPacked = 10,
+    SpirvDecorationBuiltIn = 11,
+    SpirvDecorationNoPerspective = 13,
+    SpirvDecorationFlat = 14,
+    SpirvDecorationPatch = 15,
+    SpirvDecorationCentroid = 16,
+    SpirvDecorationSample = 17,
+    SpirvDecorationInvariant = 18,
+    SpirvDecorationRestrict = 19,
+    SpirvDecorationAliased = 20,
+    SpirvDecorationVolatile = 21,
+    SpirvDecorationConstant = 22,
+    SpirvDecorationCoherent = 23,
+    SpirvDecorationNonWritable = 24,
+    SpirvDecorationNonReadable = 25,
+    SpirvDecorationUniform = 26,
+    SpirvDecorationUniformId = 27,
+    SpirvDecorationSaturatedConversion = 28,
+    SpirvDecorationStream = 29,
+    SpirvDecorationLocation = 30,
+    SpirvDecorationComponent = 31,
+    SpirvDecorationIndex = 32,
+    SpirvDecorationBinding = 33,
+    SpirvDecorationDescriptorSet = 34,
+    SpirvDecorationOffset = 35,
+    SpirvDecorationXfbBuffer = 36,
+    SpirvDecorationXfbStride = 37,
+    SpirvDecorationFuncParamAttr = 38,
+    SpirvDecorationFPRoundingMode = 39,
+    SpirvDecorationFPFastMathMode = 40,
+    SpirvDecorationLinkageAttributes = 41,
+    SpirvDecorationNoContraction = 42,
+    SpirvDecorationInputAttachmentIndex = 43,
+    SpirvDecorationAlignment = 44,
+    SpirvDecorationMaxByteOffset = 45,
+    SpirvDecorationAlignmentId = 46,
+    SpirvDecorationMaxByteOffsetId = 47,
+    SpirvDecorationNoSignedWrap = 4469,
+    SpirvDecorationNoUnsignedWrap = 4470,
+    SpirvDecorationWeightTextureQCOM = 4487,
+    SpirvDecorationBlockMatchTextureQCOM = 4488,
+    SpirvDecorationExplicitInterpAMD = 4999,
+    SpirvDecorationNodeSharesPayloadLimitsWithAMDX = 5019,
+    SpirvDecorationNodeMaxPayloadsAMDX = 5020,
+    SpirvDecorationTrackFinishWritingAMDX = 5078,
+    SpirvDecorationPayloadNodeNameAMDX = 5091,
+    SpirvDecorationOverrideCoverageNV = 5248,
+    SpirvDecorationPassthroughNV = 5250,
+    SpirvDecorationViewportRelativeNV = 5252,
+    SpirvDecorationSecondaryViewportRelativeNV = 5256,
+    SpirvDecorationPerPrimitiveEXT = 5271,
+    SpirvDecorationPerPrimitiveNV = 5271,
+    SpirvDecorationPerViewNV = 5272,
+    SpirvDecorationPerTaskNV = 5273,
+    SpirvDecorationPerVertexKHR = 5285,
+    SpirvDecorationPerVertexNV = 5285,
+    SpirvDecorationNonUniform = 5300,
+    SpirvDecorationNonUniformEXT = 5300,
+    SpirvDecorationRestrictPointer = 5355,
+    SpirvDecorationRestrictPointerEXT = 5355,
+    SpirvDecorationAliasedPointer = 5356,
+    SpirvDecorationAliasedPointerEXT = 5356,
+    SpirvDecorationHitObjectShaderRecordBufferNV = 5386,
+    SpirvDecorationBindlessSamplerNV = 5398,
+    SpirvDecorationBindlessImageNV = 5399,
+    SpirvDecorationBoundSamplerNV = 5400,
+    SpirvDecorationBoundImageNV = 5401,
+    SpirvDecorationSIMTCallINTEL = 5599,
+    SpirvDecorationReferencedIndirectlyINTEL = 5602,
+    SpirvDecorationClobberINTEL = 5607,
+    SpirvDecorationSideEffectsINTEL = 5608,
+    SpirvDecorationVectorComputeVariableINTEL = 5624,
+    SpirvDecorationFuncParamIOKindINTEL = 5625,
+    SpirvDecorationVectorComputeFunctionINTEL = 5626,
+    SpirvDecorationStackCallINTEL = 5627,
+    SpirvDecorationGlobalVariableOffsetINTEL = 5628,
+    SpirvDecorationCounterBuffer = 5634,
+    SpirvDecorationHlslCounterBufferGOOGLE = 5634,
+    SpirvDecorationHlslSemanticGOOGLE = 5635,
+    SpirvDecorationUserSemantic = 5635,
+    SpirvDecorationUserTypeGOOGLE = 5636,
+    SpirvDecorationFunctionRoundingModeINTEL = 5822,
+    SpirvDecorationFunctionDenormModeINTEL = 5823,
+    SpirvDecorationRegisterINTEL = 5825,
+    SpirvDecorationMemoryINTEL = 5826,
+    SpirvDecorationNumbanksINTEL = 5827,
+    SpirvDecorationBankwidthINTEL = 5828,
+    SpirvDecorationMaxPrivateCopiesINTEL = 5829,
+    SpirvDecorationSinglepumpINTEL = 5830,
+    SpirvDecorationDoublepumpINTEL = 5831,
+    SpirvDecorationMaxReplicatesINTEL = 5832,
+    SpirvDecorationSimpleDualPortINTEL = 5833,
+    SpirvDecorationMergeINTEL = 5834,
+    SpirvDecorationBankBitsINTEL = 5835,
+    SpirvDecorationForcePow2DepthINTEL = 5836,
+    SpirvDecorationStridesizeINTEL = 5883,
+    SpirvDecorationWordsizeINTEL = 5884,
+    SpirvDecorationTrueDualPortINTEL = 5885,
+    SpirvDecorationBurstCoalesceINTEL = 5899,
+    SpirvDecorationCacheSizeINTEL = 5900,
+    SpirvDecorationDontStaticallyCoalesceINTEL = 5901,
+    SpirvDecorationPrefetchINTEL = 5902,
+    SpirvDecorationStallEnableINTEL = 5905,
+    SpirvDecorationFuseLoopsInFunctionINTEL = 5907,
+    SpirvDecorationMathOpDSPModeINTEL = 5909,
+    SpirvDecorationAliasScopeINTEL = 5914,
+    SpirvDecorationNoAliasINTEL = 5915,
+    SpirvDecorationInitiationIntervalINTEL = 5917,
+    SpirvDecorationMaxConcurrencyINTEL = 5918,
+    SpirvDecorationPipelineEnableINTEL = 5919,
+    SpirvDecorationBufferLocationINTEL = 5921,
+    SpirvDecorationIOPipeStorageINTEL = 5944,
+    SpirvDecorationFunctionFloatingPointModeINTEL = 6080,
+    SpirvDecorationSingleElementVectorINTEL = 6085,
+    SpirvDecorationVectorComputeCallableFunctionINTEL = 6087,
+    SpirvDecorationMediaBlockIOINTEL = 6140,
+    SpirvDecorationStallFreeINTEL = 6151,
+    SpirvDecorationFPMaxErrorDecorationINTEL = 6170,
+    SpirvDecorationLatencyControlLabelINTEL = 6172,
+    SpirvDecorationLatencyControlConstraintINTEL = 6173,
+    SpirvDecorationConduitKernelArgumentINTEL = 6175,
+    SpirvDecorationRegisterMapKernelArgumentINTEL = 6176,
+    SpirvDecorationMMHostInterfaceAddressWidthINTEL = 6177,
+    SpirvDecorationMMHostInterfaceDataWidthINTEL = 6178,
+    SpirvDecorationMMHostInterfaceLatencyINTEL = 6179,
+    SpirvDecorationMMHostInterfaceReadWriteModeINTEL = 6180,
+    SpirvDecorationMMHostInterfaceMaxBurstINTEL = 6181,
+    SpirvDecorationMMHostInterfaceWaitRequestINTEL = 6182,
+    SpirvDecorationStableKernelArgumentINTEL = 6183,
+    SpirvDecorationHostAccessINTEL = 6188,
+    SpirvDecorationInitModeINTEL = 6190,
+    SpirvDecorationImplementInRegisterMapINTEL = 6191,
+    SpirvDecorationCacheControlLoadINTEL = 6442,
+    SpirvDecorationCacheControlStoreINTEL = 6443,
+    SpirvDecorationMax = 0x7fffffff,
+} SpirvDecoration;
 
-typedef enum SpvBuiltIn_ {
-    SpvBuiltInPosition = 0,
-    SpvBuiltInPointSize = 1,
-    SpvBuiltInClipDistance = 3,
-    SpvBuiltInCullDistance = 4,
-    SpvBuiltInVertexId = 5,
-    SpvBuiltInInstanceId = 6,
-    SpvBuiltInPrimitiveId = 7,
-    SpvBuiltInInvocationId = 8,
-    SpvBuiltInLayer = 9,
-    SpvBuiltInViewportIndex = 10,
-    SpvBuiltInTessLevelOuter = 11,
-    SpvBuiltInTessLevelInner = 12,
-    SpvBuiltInTessCoord = 13,
-    SpvBuiltInPatchVertices = 14,
-    SpvBuiltInFragCoord = 15,
-    SpvBuiltInPointCoord = 16,
-    SpvBuiltInFrontFacing = 17,
-    SpvBuiltInSampleId = 18,
-    SpvBuiltInSamplePosition = 19,
-    SpvBuiltInSampleMask = 20,
-    SpvBuiltInFragDepth = 22,
-    SpvBuiltInHelperInvocation = 23,
-    SpvBuiltInNumWorkgroups = 24,
-    SpvBuiltInWorkgroupSize = 25,
-    SpvBuiltInWorkgroupId = 26,
-    SpvBuiltInLocalInvocationId = 27,
-    SpvBuiltInGlobalInvocationId = 28,
-    SpvBuiltInLocalInvocationIndex = 29,
-    SpvBuiltInWorkDim = 30,
-    SpvBuiltInGlobalSize = 31,
-    SpvBuiltInEnqueuedWorkgroupSize = 32,
-    SpvBuiltInGlobalOffset = 33,
-    SpvBuiltInGlobalLinearId = 34,
-    SpvBuiltInSubgroupSize = 36,
-    SpvBuiltInSubgroupMaxSize = 37,
-    SpvBuiltInNumSubgroups = 38,
-    SpvBuiltInNumEnqueuedSubgroups = 39,
-    SpvBuiltInSubgroupId = 40,
-    SpvBuiltInSubgroupLocalInvocationId = 41,
-    SpvBuiltInVertexIndex = 42,
-    SpvBuiltInInstanceIndex = 43,
-    SpvBuiltInCoreIDARM = 4160,
-    SpvBuiltInCoreCountARM = 4161,
-    SpvBuiltInCoreMaxIDARM = 4162,
-    SpvBuiltInWarpIDARM = 4163,
-    SpvBuiltInWarpMaxIDARM = 4164,
-    SpvBuiltInSubgroupEqMask = 4416,
-    SpvBuiltInSubgroupEqMaskKHR = 4416,
-    SpvBuiltInSubgroupGeMask = 4417,
-    SpvBuiltInSubgroupGeMaskKHR = 4417,
-    SpvBuiltInSubgroupGtMask = 4418,
-    SpvBuiltInSubgroupGtMaskKHR = 4418,
-    SpvBuiltInSubgroupLeMask = 4419,
-    SpvBuiltInSubgroupLeMaskKHR = 4419,
-    SpvBuiltInSubgroupLtMask = 4420,
-    SpvBuiltInSubgroupLtMaskKHR = 4420,
-    SpvBuiltInBaseVertex = 4424,
-    SpvBuiltInBaseInstance = 4425,
-    SpvBuiltInDrawIndex = 4426,
-    SpvBuiltInPrimitiveShadingRateKHR = 4432,
-    SpvBuiltInDeviceIndex = 4438,
-    SpvBuiltInViewIndex = 4440,
-    SpvBuiltInShadingRateKHR = 4444,
-    SpvBuiltInBaryCoordNoPerspAMD = 4992,
-    SpvBuiltInBaryCoordNoPerspCentroidAMD = 4993,
-    SpvBuiltInBaryCoordNoPerspSampleAMD = 4994,
-    SpvBuiltInBaryCoordSmoothAMD = 4995,
-    SpvBuiltInBaryCoordSmoothCentroidAMD = 4996,
-    SpvBuiltInBaryCoordSmoothSampleAMD = 4997,
-    SpvBuiltInBaryCoordPullModelAMD = 4998,
-    SpvBuiltInFragStencilRefEXT = 5014,
-    SpvBuiltInCoalescedInputCountAMDX = 5021,
-    SpvBuiltInShaderIndexAMDX = 5073,
-    SpvBuiltInViewportMaskNV = 5253,
-    SpvBuiltInSecondaryPositionNV = 5257,
-    SpvBuiltInSecondaryViewportMaskNV = 5258,
-    SpvBuiltInPositionPerViewNV = 5261,
-    SpvBuiltInViewportMaskPerViewNV = 5262,
-    SpvBuiltInFullyCoveredEXT = 5264,
-    SpvBuiltInTaskCountNV = 5274,
-    SpvBuiltInPrimitiveCountNV = 5275,
-    SpvBuiltInPrimitiveIndicesNV = 5276,
-    SpvBuiltInClipDistancePerViewNV = 5277,
-    SpvBuiltInCullDistancePerViewNV = 5278,
-    SpvBuiltInLayerPerViewNV = 5279,
-    SpvBuiltInMeshViewCountNV = 5280,
-    SpvBuiltInMeshViewIndicesNV = 5281,
-    SpvBuiltInBaryCoordKHR = 5286,
-    SpvBuiltInBaryCoordNV = 5286,
-    SpvBuiltInBaryCoordNoPerspKHR = 5287,
-    SpvBuiltInBaryCoordNoPerspNV = 5287,
-    SpvBuiltInFragSizeEXT = 5292,
-    SpvBuiltInFragmentSizeNV = 5292,
-    SpvBuiltInFragInvocationCountEXT = 5293,
-    SpvBuiltInInvocationsPerPixelNV = 5293,
-    SpvBuiltInPrimitivePointIndicesEXT = 5294,
-    SpvBuiltInPrimitiveLineIndicesEXT = 5295,
-    SpvBuiltInPrimitiveTriangleIndicesEXT = 5296,
-    SpvBuiltInCullPrimitiveEXT = 5299,
-    SpvBuiltInLaunchIdKHR = 5319,
-    SpvBuiltInLaunchIdNV = 5319,
-    SpvBuiltInLaunchSizeKHR = 5320,
-    SpvBuiltInLaunchSizeNV = 5320,
-    SpvBuiltInWorldRayOriginKHR = 5321,
-    SpvBuiltInWorldRayOriginNV = 5321,
-    SpvBuiltInWorldRayDirectionKHR = 5322,
-    SpvBuiltInWorldRayDirectionNV = 5322,
-    SpvBuiltInObjectRayOriginKHR = 5323,
-    SpvBuiltInObjectRayOriginNV = 5323,
-    SpvBuiltInObjectRayDirectionKHR = 5324,
-    SpvBuiltInObjectRayDirectionNV = 5324,
-    SpvBuiltInRayTminKHR = 5325,
-    SpvBuiltInRayTminNV = 5325,
-    SpvBuiltInRayTmaxKHR = 5326,
-    SpvBuiltInRayTmaxNV = 5326,
-    SpvBuiltInInstanceCustomIndexKHR = 5327,
-    SpvBuiltInInstanceCustomIndexNV = 5327,
-    SpvBuiltInObjectToWorldKHR = 5330,
-    SpvBuiltInObjectToWorldNV = 5330,
-    SpvBuiltInWorldToObjectKHR = 5331,
-    SpvBuiltInWorldToObjectNV = 5331,
-    SpvBuiltInHitTNV = 5332,
-    SpvBuiltInHitKindKHR = 5333,
-    SpvBuiltInHitKindNV = 5333,
-    SpvBuiltInCurrentRayTimeNV = 5334,
-    SpvBuiltInHitTriangleVertexPositionsKHR = 5335,
-    SpvBuiltInHitMicroTriangleVertexPositionsNV = 5337,
-    SpvBuiltInHitMicroTriangleVertexBarycentricsNV = 5344,
-    SpvBuiltInIncomingRayFlagsKHR = 5351,
-    SpvBuiltInIncomingRayFlagsNV = 5351,
-    SpvBuiltInRayGeometryIndexKHR = 5352,
-    SpvBuiltInWarpsPerSMNV = 5374,
-    SpvBuiltInSMCountNV = 5375,
-    SpvBuiltInWarpIDNV = 5376,
-    SpvBuiltInSMIDNV = 5377,
-    SpvBuiltInHitKindFrontFacingMicroTriangleNV = 5405,
-    SpvBuiltInHitKindBackFacingMicroTriangleNV = 5406,
-    SpvBuiltInCullMaskKHR = 6021,
-    SpvBuiltInMax = 0x7fffffff,
-} SpvBuiltIn;
+typedef enum SpirvBuiltIn_ {
+    SpirvBuiltInPosition = 0,
+    SpirvBuiltInPointSize = 1,
+    SpirvBuiltInClipDistance = 3,
+    SpirvBuiltInCullDistance = 4,
+    SpirvBuiltInVertexId = 5,
+    SpirvBuiltInInstanceId = 6,
+    SpirvBuiltInPrimitiveId = 7,
+    SpirvBuiltInInvocationId = 8,
+    SpirvBuiltInLayer = 9,
+    SpirvBuiltInViewportIndex = 10,
+    SpirvBuiltInTessLevelOuter = 11,
+    SpirvBuiltInTessLevelInner = 12,
+    SpirvBuiltInTessCoord = 13,
+    SpirvBuiltInPatchVertices = 14,
+    SpirvBuiltInFragCoord = 15,
+    SpirvBuiltInPointCoord = 16,
+    SpirvBuiltInFrontFacing = 17,
+    SpirvBuiltInSampleId = 18,
+    SpirvBuiltInSamplePosition = 19,
+    SpirvBuiltInSampleMask = 20,
+    SpirvBuiltInFragDepth = 22,
+    SpirvBuiltInHelperInvocation = 23,
+    SpirvBuiltInNumWorkgroups = 24,
+    SpirvBuiltInWorkgroupSize = 25,
+    SpirvBuiltInWorkgroupId = 26,
+    SpirvBuiltInLocalInvocationId = 27,
+    SpirvBuiltInGlobalInvocationId = 28,
+    SpirvBuiltInLocalInvocationIndex = 29,
+    SpirvBuiltInWorkDim = 30,
+    SpirvBuiltInGlobalSize = 31,
+    SpirvBuiltInEnqueuedWorkgroupSize = 32,
+    SpirvBuiltInGlobalOffset = 33,
+    SpirvBuiltInGlobalLinearId = 34,
+    SpirvBuiltInSubgroupSize = 36,
+    SpirvBuiltInSubgroupMaxSize = 37,
+    SpirvBuiltInNumSubgroups = 38,
+    SpirvBuiltInNumEnqueuedSubgroups = 39,
+    SpirvBuiltInSubgroupId = 40,
+    SpirvBuiltInSubgroupLocalInvocationId = 41,
+    SpirvBuiltInVertexIndex = 42,
+    SpirvBuiltInInstanceIndex = 43,
+    SpirvBuiltInCoreIDARM = 4160,
+    SpirvBuiltInCoreCountARM = 4161,
+    SpirvBuiltInCoreMaxIDARM = 4162,
+    SpirvBuiltInWarpIDARM = 4163,
+    SpirvBuiltInWarpMaxIDARM = 4164,
+    SpirvBuiltInSubgroupEqMask = 4416,
+    SpirvBuiltInSubgroupEqMaskKHR = 4416,
+    SpirvBuiltInSubgroupGeMask = 4417,
+    SpirvBuiltInSubgroupGeMaskKHR = 4417,
+    SpirvBuiltInSubgroupGtMask = 4418,
+    SpirvBuiltInSubgroupGtMaskKHR = 4418,
+    SpirvBuiltInSubgroupLeMask = 4419,
+    SpirvBuiltInSubgroupLeMaskKHR = 4419,
+    SpirvBuiltInSubgroupLtMask = 4420,
+    SpirvBuiltInSubgroupLtMaskKHR = 4420,
+    SpirvBuiltInBaseVertex = 4424,
+    SpirvBuiltInBaseInstance = 4425,
+    SpirvBuiltInDrawIndex = 4426,
+    SpirvBuiltInPrimitiveShadingRateKHR = 4432,
+    SpirvBuiltInDeviceIndex = 4438,
+    SpirvBuiltInViewIndex = 4440,
+    SpirvBuiltInShadingRateKHR = 4444,
+    SpirvBuiltInBaryCoordNoPerspAMD = 4992,
+    SpirvBuiltInBaryCoordNoPerspCentroidAMD = 4993,
+    SpirvBuiltInBaryCoordNoPerspSampleAMD = 4994,
+    SpirvBuiltInBaryCoordSmoothAMD = 4995,
+    SpirvBuiltInBaryCoordSmoothCentroidAMD = 4996,
+    SpirvBuiltInBaryCoordSmoothSampleAMD = 4997,
+    SpirvBuiltInBaryCoordPullModelAMD = 4998,
+    SpirvBuiltInFragStencilRefEXT = 5014,
+    SpirvBuiltInCoalescedInputCountAMDX = 5021,
+    SpirvBuiltInShaderIndexAMDX = 5073,
+    SpirvBuiltInViewportMaskNV = 5253,
+    SpirvBuiltInSecondaryPositionNV = 5257,
+    SpirvBuiltInSecondaryViewportMaskNV = 5258,
+    SpirvBuiltInPositionPerViewNV = 5261,
+    SpirvBuiltInViewportMaskPerViewNV = 5262,
+    SpirvBuiltInFullyCoveredEXT = 5264,
+    SpirvBuiltInTaskCountNV = 5274,
+    SpirvBuiltInPrimitiveCountNV = 5275,
+    SpirvBuiltInPrimitiveIndicesNV = 5276,
+    SpirvBuiltInClipDistancePerViewNV = 5277,
+    SpirvBuiltInCullDistancePerViewNV = 5278,
+    SpirvBuiltInLayerPerViewNV = 5279,
+    SpirvBuiltInMeshViewCountNV = 5280,
+    SpirvBuiltInMeshViewIndicesNV = 5281,
+    SpirvBuiltInBaryCoordKHR = 5286,
+    SpirvBuiltInBaryCoordNV = 5286,
+    SpirvBuiltInBaryCoordNoPerspKHR = 5287,
+    SpirvBuiltInBaryCoordNoPerspNV = 5287,
+    SpirvBuiltInFragSizeEXT = 5292,
+    SpirvBuiltInFragmentSizeNV = 5292,
+    SpirvBuiltInFragInvocationCountEXT = 5293,
+    SpirvBuiltInInvocationsPerPixelNV = 5293,
+    SpirvBuiltInPrimitivePointIndicesEXT = 5294,
+    SpirvBuiltInPrimitiveLineIndicesEXT = 5295,
+    SpirvBuiltInPrimitiveTriangleIndicesEXT = 5296,
+    SpirvBuiltInCullPrimitiveEXT = 5299,
+    SpirvBuiltInLaunchIdKHR = 5319,
+    SpirvBuiltInLaunchIdNV = 5319,
+    SpirvBuiltInLaunchSizeKHR = 5320,
+    SpirvBuiltInLaunchSizeNV = 5320,
+    SpirvBuiltInWorldRayOriginKHR = 5321,
+    SpirvBuiltInWorldRayOriginNV = 5321,
+    SpirvBuiltInWorldRayDirectionKHR = 5322,
+    SpirvBuiltInWorldRayDirectionNV = 5322,
+    SpirvBuiltInObjectRayOriginKHR = 5323,
+    SpirvBuiltInObjectRayOriginNV = 5323,
+    SpirvBuiltInObjectRayDirectionKHR = 5324,
+    SpirvBuiltInObjectRayDirectionNV = 5324,
+    SpirvBuiltInRayTminKHR = 5325,
+    SpirvBuiltInRayTminNV = 5325,
+    SpirvBuiltInRayTmaxKHR = 5326,
+    SpirvBuiltInRayTmaxNV = 5326,
+    SpirvBuiltInInstanceCustomIndexKHR = 5327,
+    SpirvBuiltInInstanceCustomIndexNV = 5327,
+    SpirvBuiltInObjectToWorldKHR = 5330,
+    SpirvBuiltInObjectToWorldNV = 5330,
+    SpirvBuiltInWorldToObjectKHR = 5331,
+    SpirvBuiltInWorldToObjectNV = 5331,
+    SpirvBuiltInHitTNV = 5332,
+    SpirvBuiltInHitKindKHR = 5333,
+    SpirvBuiltInHitKindNV = 5333,
+    SpirvBuiltInCurrentRayTimeNV = 5334,
+    SpirvBuiltInHitTriangleVertexPositionsKHR = 5335,
+    SpirvBuiltInHitMicroTriangleVertexPositionsNV = 5337,
+    SpirvBuiltInHitMicroTriangleVertexBarycentricsNV = 5344,
+    SpirvBuiltInIncomingRayFlagsKHR = 5351,
+    SpirvBuiltInIncomingRayFlagsNV = 5351,
+    SpirvBuiltInRayGeometryIndexKHR = 5352,
+    SpirvBuiltInWarpsPerSMNV = 5374,
+    SpirvBuiltInSMCountNV = 5375,
+    SpirvBuiltInWarpIDNV = 5376,
+    SpirvBuiltInSMIDNV = 5377,
+    SpirvBuiltInHitKindFrontFacingMicroTriangleNV = 5405,
+    SpirvBuiltInHitKindBackFacingMicroTriangleNV = 5406,
+    SpirvBuiltInCullMaskKHR = 6021,
+    SpirvBuiltInMax = 0x7fffffff,
+} SpirvBuiltIn;
 
-typedef enum SpvSelectionControlShift_ {
-    SpvSelectionControlFlattenShift = 0,
-    SpvSelectionControlDontFlattenShift = 1,
-    SpvSelectionControlMax = 0x7fffffff,
-} SpvSelectionControlShift;
+typedef enum SpirvSelectionControlShift_ {
+    SpirvSelectionControlFlattenShift = 0,
+    SpirvSelectionControlDontFlattenShift = 1,
+    SpirvSelectionControlMax = 0x7fffffff,
+} SpirvSelectionControlShift;
 
-typedef enum SpvSelectionControlMask_ {
-    SpvSelectionControlMaskNone = 0,
-    SpvSelectionControlFlattenMask = 0x00000001,
-    SpvSelectionControlDontFlattenMask = 0x00000002,
-} SpvSelectionControlMask;
+typedef enum SpirvSelectionControlMask_ {
+    SpirvSelectionControlMaskNone = 0,
+    SpirvSelectionControlFlattenMask = 0x00000001,
+    SpirvSelectionControlDontFlattenMask = 0x00000002,
+} SpirvSelectionControlMask;
 
-typedef enum SpvLoopControlShift_ {
-    SpvLoopControlUnrollShift = 0,
-    SpvLoopControlDontUnrollShift = 1,
-    SpvLoopControlDependencyInfiniteShift = 2,
-    SpvLoopControlDependencyLengthShift = 3,
-    SpvLoopControlMinIterationsShift = 4,
-    SpvLoopControlMaxIterationsShift = 5,
-    SpvLoopControlIterationMultipleShift = 6,
-    SpvLoopControlPeelCountShift = 7,
-    SpvLoopControlPartialCountShift = 8,
-    SpvLoopControlInitiationIntervalINTELShift = 16,
-    SpvLoopControlMaxConcurrencyINTELShift = 17,
-    SpvLoopControlDependencyArrayINTELShift = 18,
-    SpvLoopControlPipelineEnableINTELShift = 19,
-    SpvLoopControlLoopCoalesceINTELShift = 20,
-    SpvLoopControlMaxInterleavingINTELShift = 21,
-    SpvLoopControlSpeculatedIterationsINTELShift = 22,
-    SpvLoopControlNoFusionINTELShift = 23,
-    SpvLoopControlLoopCountINTELShift = 24,
-    SpvLoopControlMaxReinvocationDelayINTELShift = 25,
-    SpvLoopControlMax = 0x7fffffff,
-} SpvLoopControlShift;
+typedef enum SpirvLoopControlShift_ {
+    SpirvLoopControlUnrollShift = 0,
+    SpirvLoopControlDontUnrollShift = 1,
+    SpirvLoopControlDependencyInfiniteShift = 2,
+    SpirvLoopControlDependencyLengthShift = 3,
+    SpirvLoopControlMinIterationsShift = 4,
+    SpirvLoopControlMaxIterationsShift = 5,
+    SpirvLoopControlIterationMultipleShift = 6,
+    SpirvLoopControlPeelCountShift = 7,
+    SpirvLoopControlPartialCountShift = 8,
+    SpirvLoopControlInitiationIntervalINTELShift = 16,
+    SpirvLoopControlMaxConcurrencyINTELShift = 17,
+    SpirvLoopControlDependencyArrayINTELShift = 18,
+    SpirvLoopControlPipelineEnableINTELShift = 19,
+    SpirvLoopControlLoopCoalesceINTELShift = 20,
+    SpirvLoopControlMaxInterleavingINTELShift = 21,
+    SpirvLoopControlSpeculatedIterationsINTELShift = 22,
+    SpirvLoopControlNoFusionINTELShift = 23,
+    SpirvLoopControlLoopCountINTELShift = 24,
+    SpirvLoopControlMaxReinvocationDelayINTELShift = 25,
+    SpirvLoopControlMax = 0x7fffffff,
+} SpirvLoopControlShift;
 
-typedef enum SpvLoopControlMask_ {
-    SpvLoopControlMaskNone = 0,
-    SpvLoopControlUnrollMask = 0x00000001,
-    SpvLoopControlDontUnrollMask = 0x00000002,
-    SpvLoopControlDependencyInfiniteMask = 0x00000004,
-    SpvLoopControlDependencyLengthMask = 0x00000008,
-    SpvLoopControlMinIterationsMask = 0x00000010,
-    SpvLoopControlMaxIterationsMask = 0x00000020,
-    SpvLoopControlIterationMultipleMask = 0x00000040,
-    SpvLoopControlPeelCountMask = 0x00000080,
-    SpvLoopControlPartialCountMask = 0x00000100,
-    SpvLoopControlInitiationIntervalINTELMask = 0x00010000,
-    SpvLoopControlMaxConcurrencyINTELMask = 0x00020000,
-    SpvLoopControlDependencyArrayINTELMask = 0x00040000,
-    SpvLoopControlPipelineEnableINTELMask = 0x00080000,
-    SpvLoopControlLoopCoalesceINTELMask = 0x00100000,
-    SpvLoopControlMaxInterleavingINTELMask = 0x00200000,
-    SpvLoopControlSpeculatedIterationsINTELMask = 0x00400000,
-    SpvLoopControlNoFusionINTELMask = 0x00800000,
-    SpvLoopControlLoopCountINTELMask = 0x01000000,
-    SpvLoopControlMaxReinvocationDelayINTELMask = 0x02000000,
-} SpvLoopControlMask;
+typedef enum SpirvLoopControlMask_ {
+    SpirvLoopControlMaskNone = 0,
+    SpirvLoopControlUnrollMask = 0x00000001,
+    SpirvLoopControlDontUnrollMask = 0x00000002,
+    SpirvLoopControlDependencyInfiniteMask = 0x00000004,
+    SpirvLoopControlDependencyLengthMask = 0x00000008,
+    SpirvLoopControlMinIterationsMask = 0x00000010,
+    SpirvLoopControlMaxIterationsMask = 0x00000020,
+    SpirvLoopControlIterationMultipleMask = 0x00000040,
+    SpirvLoopControlPeelCountMask = 0x00000080,
+    SpirvLoopControlPartialCountMask = 0x00000100,
+    SpirvLoopControlInitiationIntervalINTELMask = 0x00010000,
+    SpirvLoopControlMaxConcurrencyINTELMask = 0x00020000,
+    SpirvLoopControlDependencyArrayINTELMask = 0x00040000,
+    SpirvLoopControlPipelineEnableINTELMask = 0x00080000,
+    SpirvLoopControlLoopCoalesceINTELMask = 0x00100000,
+    SpirvLoopControlMaxInterleavingINTELMask = 0x00200000,
+    SpirvLoopControlSpeculatedIterationsINTELMask = 0x00400000,
+    SpirvLoopControlNoFusionINTELMask = 0x00800000,
+    SpirvLoopControlLoopCountINTELMask = 0x01000000,
+    SpirvLoopControlMaxReinvocationDelayINTELMask = 0x02000000,
+} SpirvLoopControlMask;
 
-typedef enum SpvFunctionControlShift_ {
-    SpvFunctionControlInlineShift = 0,
-    SpvFunctionControlDontInlineShift = 1,
-    SpvFunctionControlPureShift = 2,
-    SpvFunctionControlConstShift = 3,
-    SpvFunctionControlOptNoneINTELShift = 16,
-    SpvFunctionControlMax = 0x7fffffff,
-} SpvFunctionControlShift;
+typedef enum SpirvFunctionControlShift_ {
+    SpirvFunctionControlInlineShift = 0,
+    SpirvFunctionControlDontInlineShift = 1,
+    SpirvFunctionControlPureShift = 2,
+    SpirvFunctionControlConstShift = 3,
+    SpirvFunctionControlOptNoneINTELShift = 16,
+    SpirvFunctionControlMax = 0x7fffffff,
+} SpirvFunctionControlShift;
 
-typedef enum SpvFunctionControlMask_ {
-    SpvFunctionControlMaskNone = 0,
-    SpvFunctionControlInlineMask = 0x00000001,
-    SpvFunctionControlDontInlineMask = 0x00000002,
-    SpvFunctionControlPureMask = 0x00000004,
-    SpvFunctionControlConstMask = 0x00000008,
-    SpvFunctionControlOptNoneINTELMask = 0x00010000,
-} SpvFunctionControlMask;
+typedef enum SpirvFunctionControlMask_ {
+    SpirvFunctionControlMaskNone = 0,
+    SpirvFunctionControlInlineMask = 0x00000001,
+    SpirvFunctionControlDontInlineMask = 0x00000002,
+    SpirvFunctionControlPureMask = 0x00000004,
+    SpirvFunctionControlConstMask = 0x00000008,
+    SpirvFunctionControlOptNoneINTELMask = 0x00010000,
+} SpirvFunctionControlMask;
 
-typedef enum SpvMemorySemanticsShift_ {
-    SpvMemorySemanticsAcquireShift = 1,
-    SpvMemorySemanticsReleaseShift = 2,
-    SpvMemorySemanticsAcquireReleaseShift = 3,
-    SpvMemorySemanticsSequentiallyConsistentShift = 4,
-    SpvMemorySemanticsUniformMemoryShift = 6,
-    SpvMemorySemanticsSubgroupMemoryShift = 7,
-    SpvMemorySemanticsWorkgroupMemoryShift = 8,
-    SpvMemorySemanticsCrossWorkgroupMemoryShift = 9,
-    SpvMemorySemanticsAtomicCounterMemoryShift = 10,
-    SpvMemorySemanticsImageMemoryShift = 11,
-    SpvMemorySemanticsOutputMemoryShift = 12,
-    SpvMemorySemanticsOutputMemoryKHRShift = 12,
-    SpvMemorySemanticsMakeAvailableShift = 13,
-    SpvMemorySemanticsMakeAvailableKHRShift = 13,
-    SpvMemorySemanticsMakeVisibleShift = 14,
-    SpvMemorySemanticsMakeVisibleKHRShift = 14,
-    SpvMemorySemanticsVolatileShift = 15,
-    SpvMemorySemanticsMax = 0x7fffffff,
-} SpvMemorySemanticsShift;
+typedef enum SpirvMemorySemanticsShift_ {
+    SpirvMemorySemanticsAcquireShift = 1,
+    SpirvMemorySemanticsReleaseShift = 2,
+    SpirvMemorySemanticsAcquireReleaseShift = 3,
+    SpirvMemorySemanticsSequentiallyConsistentShift = 4,
+    SpirvMemorySemanticsUniformMemoryShift = 6,
+    SpirvMemorySemanticsSubgroupMemoryShift = 7,
+    SpirvMemorySemanticsWorkgroupMemoryShift = 8,
+    SpirvMemorySemanticsCrossWorkgroupMemoryShift = 9,
+    SpirvMemorySemanticsAtomicCounterMemoryShift = 10,
+    SpirvMemorySemanticsImageMemoryShift = 11,
+    SpirvMemorySemanticsOutputMemoryShift = 12,
+    SpirvMemorySemanticsOutputMemoryKHRShift = 12,
+    SpirvMemorySemanticsMakeAvailableShift = 13,
+    SpirvMemorySemanticsMakeAvailableKHRShift = 13,
+    SpirvMemorySemanticsMakeVisibleShift = 14,
+    SpirvMemorySemanticsMakeVisibleKHRShift = 14,
+    SpirvMemorySemanticsVolatileShift = 15,
+    SpirvMemorySemanticsMax = 0x7fffffff,
+} SpirvMemorySemanticsShift;
 
-typedef enum SpvMemorySemanticsMask_ {
-    SpvMemorySemanticsMaskNone = 0,
-    SpvMemorySemanticsAcquireMask = 0x00000002,
-    SpvMemorySemanticsReleaseMask = 0x00000004,
-    SpvMemorySemanticsAcquireReleaseMask = 0x00000008,
-    SpvMemorySemanticsSequentiallyConsistentMask = 0x00000010,
-    SpvMemorySemanticsUniformMemoryMask = 0x00000040,
-    SpvMemorySemanticsSubgroupMemoryMask = 0x00000080,
-    SpvMemorySemanticsWorkgroupMemoryMask = 0x00000100,
-    SpvMemorySemanticsCrossWorkgroupMemoryMask = 0x00000200,
-    SpvMemorySemanticsAtomicCounterMemoryMask = 0x00000400,
-    SpvMemorySemanticsImageMemoryMask = 0x00000800,
-    SpvMemorySemanticsOutputMemoryMask = 0x00001000,
-    SpvMemorySemanticsOutputMemoryKHRMask = 0x00001000,
-    SpvMemorySemanticsMakeAvailableMask = 0x00002000,
-    SpvMemorySemanticsMakeAvailableKHRMask = 0x00002000,
-    SpvMemorySemanticsMakeVisibleMask = 0x00004000,
-    SpvMemorySemanticsMakeVisibleKHRMask = 0x00004000,
-    SpvMemorySemanticsVolatileMask = 0x00008000,
-} SpvMemorySemanticsMask;
+typedef enum SpirvMemorySemanticsMask_ {
+    SpirvMemorySemanticsMaskNone = 0,
+    SpirvMemorySemanticsAcquireMask = 0x00000002,
+    SpirvMemorySemanticsReleaseMask = 0x00000004,
+    SpirvMemorySemanticsAcquireReleaseMask = 0x00000008,
+    SpirvMemorySemanticsSequentiallyConsistentMask = 0x00000010,
+    SpirvMemorySemanticsUniformMemoryMask = 0x00000040,
+    SpirvMemorySemanticsSubgroupMemoryMask = 0x00000080,
+    SpirvMemorySemanticsWorkgroupMemoryMask = 0x00000100,
+    SpirvMemorySemanticsCrossWorkgroupMemoryMask = 0x00000200,
+    SpirvMemorySemanticsAtomicCounterMemoryMask = 0x00000400,
+    SpirvMemorySemanticsImageMemoryMask = 0x00000800,
+    SpirvMemorySemanticsOutputMemoryMask = 0x00001000,
+    SpirvMemorySemanticsOutputMemoryKHRMask = 0x00001000,
+    SpirvMemorySemanticsMakeAvailableMask = 0x00002000,
+    SpirvMemorySemanticsMakeAvailableKHRMask = 0x00002000,
+    SpirvMemorySemanticsMakeVisibleMask = 0x00004000,
+    SpirvMemorySemanticsMakeVisibleKHRMask = 0x00004000,
+    SpirvMemorySemanticsVolatileMask = 0x00008000,
+} SpirvMemorySemanticsMask;
 
-typedef enum SpvMemoryAccessShift_ {
-    SpvMemoryAccessVolatileShift = 0,
-    SpvMemoryAccessAlignedShift = 1,
-    SpvMemoryAccessNontemporalShift = 2,
-    SpvMemoryAccessMakePointerAvailableShift = 3,
-    SpvMemoryAccessMakePointerAvailableKHRShift = 3,
-    SpvMemoryAccessMakePointerVisibleShift = 4,
-    SpvMemoryAccessMakePointerVisibleKHRShift = 4,
-    SpvMemoryAccessNonPrivatePointerShift = 5,
-    SpvMemoryAccessNonPrivatePointerKHRShift = 5,
-    SpvMemoryAccessAliasScopeINTELMaskShift = 16,
-    SpvMemoryAccessNoAliasINTELMaskShift = 17,
-    SpvMemoryAccessMax = 0x7fffffff,
-} SpvMemoryAccessShift;
+typedef enum SpirvMemoryAccessShift_ {
+    SpirvMemoryAccessVolatileShift = 0,
+    SpirvMemoryAccessAlignedShift = 1,
+    SpirvMemoryAccessNontemporalShift = 2,
+    SpirvMemoryAccessMakePointerAvailableShift = 3,
+    SpirvMemoryAccessMakePointerAvailableKHRShift = 3,
+    SpirvMemoryAccessMakePointerVisibleShift = 4,
+    SpirvMemoryAccessMakePointerVisibleKHRShift = 4,
+    SpirvMemoryAccessNonPrivatePointerShift = 5,
+    SpirvMemoryAccessNonPrivatePointerKHRShift = 5,
+    SpirvMemoryAccessAliasScopeINTELMaskShift = 16,
+    SpirvMemoryAccessNoAliasINTELMaskShift = 17,
+    SpirvMemoryAccessMax = 0x7fffffff,
+} SpirvMemoryAccessShift;
 
-typedef enum SpvMemoryAccessMask_ {
-    SpvMemoryAccessMaskNone = 0,
-    SpvMemoryAccessVolatileMask = 0x00000001,
-    SpvMemoryAccessAlignedMask = 0x00000002,
-    SpvMemoryAccessNontemporalMask = 0x00000004,
-    SpvMemoryAccessMakePointerAvailableMask = 0x00000008,
-    SpvMemoryAccessMakePointerAvailableKHRMask = 0x00000008,
-    SpvMemoryAccessMakePointerVisibleMask = 0x00000010,
-    SpvMemoryAccessMakePointerVisibleKHRMask = 0x00000010,
-    SpvMemoryAccessNonPrivatePointerMask = 0x00000020,
-    SpvMemoryAccessNonPrivatePointerKHRMask = 0x00000020,
-    SpvMemoryAccessAliasScopeINTELMaskMask = 0x00010000,
-    SpvMemoryAccessNoAliasINTELMaskMask = 0x00020000,
-} SpvMemoryAccessMask;
+typedef enum SpirvMemoryAccessMask_ {
+    SpirvMemoryAccessMaskNone = 0,
+    SpirvMemoryAccessVolatileMask = 0x00000001,
+    SpirvMemoryAccessAlignedMask = 0x00000002,
+    SpirvMemoryAccessNontemporalMask = 0x00000004,
+    SpirvMemoryAccessMakePointerAvailableMask = 0x00000008,
+    SpirvMemoryAccessMakePointerAvailableKHRMask = 0x00000008,
+    SpirvMemoryAccessMakePointerVisibleMask = 0x00000010,
+    SpirvMemoryAccessMakePointerVisibleKHRMask = 0x00000010,
+    SpirvMemoryAccessNonPrivatePointerMask = 0x00000020,
+    SpirvMemoryAccessNonPrivatePointerKHRMask = 0x00000020,
+    SpirvMemoryAccessAliasScopeINTELMaskMask = 0x00010000,
+    SpirvMemoryAccessNoAliasINTELMaskMask = 0x00020000,
+} SpirvMemoryAccessMask;
 
-typedef enum SpvScope_ {
-    SpvScopeCrossDevice = 0,
-    SpvScopeDevice = 1,
-    SpvScopeWorkgroup = 2,
-    SpvScopeSubgroup = 3,
-    SpvScopeInvocation = 4,
-    SpvScopeQueueFamily = 5,
-    SpvScopeQueueFamilyKHR = 5,
-    SpvScopeShaderCallKHR = 6,
-    SpvScopeMax = 0x7fffffff,
-} SpvScope;
+typedef enum SpirvScope_ {
+    SpirvScopeCrossDevice = 0,
+    SpirvScopeDevice = 1,
+    SpirvScopeWorkgroup = 2,
+    SpirvScopeSubgroup = 3,
+    SpirvScopeInvocation = 4,
+    SpirvScopeQueueFamily = 5,
+    SpirvScopeQueueFamilyKHR = 5,
+    SpirvScopeShaderCallKHR = 6,
+    SpirvScopeMax = 0x7fffffff,
+} SpirvScope;
 
-typedef enum SpvGroupOperation_ {
-    SpvGroupOperationReduce = 0,
-    SpvGroupOperationInclusiveScan = 1,
-    SpvGroupOperationExclusiveScan = 2,
-    SpvGroupOperationClusteredReduce = 3,
-    SpvGroupOperationPartitionedReduceNV = 6,
-    SpvGroupOperationPartitionedInclusiveScanNV = 7,
-    SpvGroupOperationPartitionedExclusiveScanNV = 8,
-    SpvGroupOperationMax = 0x7fffffff,
-} SpvGroupOperation;
+typedef enum SpirvGroupOperation_ {
+    SpirvGroupOperationReduce = 0,
+    SpirvGroupOperationInclusiveScan = 1,
+    SpirvGroupOperationExclusiveScan = 2,
+    SpirvGroupOperationClusteredReduce = 3,
+    SpirvGroupOperationPartitionedReduceNV = 6,
+    SpirvGroupOperationPartitionedInclusiveScanNV = 7,
+    SpirvGroupOperationPartitionedExclusiveScanNV = 8,
+    SpirvGroupOperationMax = 0x7fffffff,
+} SpirvGroupOperation;
 
-typedef enum SpvKernelEnqueueFlags_ {
-    SpvKernelEnqueueFlagsNoWait = 0,
-    SpvKernelEnqueueFlagsWaitKernel = 1,
-    SpvKernelEnqueueFlagsWaitWorkGroup = 2,
-    SpvKernelEnqueueFlagsMax = 0x7fffffff,
-} SpvKernelEnqueueFlags;
+typedef enum SpirvKernelEnqueueFlags_ {
+    SpirvKernelEnqueueFlagsNoWait = 0,
+    SpirvKernelEnqueueFlagsWaitKernel = 1,
+    SpirvKernelEnqueueFlagsWaitWorkGroup = 2,
+    SpirvKernelEnqueueFlagsMax = 0x7fffffff,
+} SpirvKernelEnqueueFlags;
 
-typedef enum SpvKernelProfilingInfoShift_ {
-    SpvKernelProfilingInfoCmdExecTimeShift = 0,
-    SpvKernelProfilingInfoMax = 0x7fffffff,
-} SpvKernelProfilingInfoShift;
+typedef enum SpirvKernelProfilingInfoShift_ {
+    SpirvKernelProfilingInfoCmdExecTimeShift = 0,
+    SpirvKernelProfilingInfoMax = 0x7fffffff,
+} SpirvKernelProfilingInfoShift;
 
-typedef enum SpvKernelProfilingInfoMask_ {
-    SpvKernelProfilingInfoMaskNone = 0,
-    SpvKernelProfilingInfoCmdExecTimeMask = 0x00000001,
-} SpvKernelProfilingInfoMask;
+typedef enum SpirvKernelProfilingInfoMask_ {
+    SpirvKernelProfilingInfoMaskNone = 0,
+    SpirvKernelProfilingInfoCmdExecTimeMask = 0x00000001,
+} SpirvKernelProfilingInfoMask;
 
-typedef enum SpvCapability_ {
-    SpvCapabilityMatrix = 0,
-    SpvCapabilityShader = 1,
-    SpvCapabilityGeometry = 2,
-    SpvCapabilityTessellation = 3,
-    SpvCapabilityAddresses = 4,
-    SpvCapabilityLinkage = 5,
-    SpvCapabilityKernel = 6,
-    SpvCapabilityVector16 = 7,
-    SpvCapabilityFloat16Buffer = 8,
-    SpvCapabilityFloat16 = 9,
-    SpvCapabilityFloat64 = 10,
-    SpvCapabilityInt64 = 11,
-    SpvCapabilityInt64Atomics = 12,
-    SpvCapabilityImageBasic = 13,
-    SpvCapabilityImageReadWrite = 14,
-    SpvCapabilityImageMipmap = 15,
-    SpvCapabilityPipes = 17,
-    SpvCapabilityGroups = 18,
-    SpvCapabilityDeviceEnqueue = 19,
-    SpvCapabilityLiteralSampler = 20,
-    SpvCapabilityAtomicStorage = 21,
-    SpvCapabilityInt16 = 22,
-    SpvCapabilityTessellationPointSize = 23,
-    SpvCapabilityGeometryPointSize = 24,
-    SpvCapabilityImageGatherExtended = 25,
-    SpvCapabilityStorageImageMultisample = 27,
-    SpvCapabilityUniformBufferArrayDynamicIndexing = 28,
-    SpvCapabilitySampledImageArrayDynamicIndexing = 29,
-    SpvCapabilityStorageBufferArrayDynamicIndexing = 30,
-    SpvCapabilityStorageImageArrayDynamicIndexing = 31,
-    SpvCapabilityClipDistance = 32,
-    SpvCapabilityCullDistance = 33,
-    SpvCapabilityImageCubeArray = 34,
-    SpvCapabilitySampleRateShading = 35,
-    SpvCapabilityImageRect = 36,
-    SpvCapabilitySampledRect = 37,
-    SpvCapabilityGenericPointer = 38,
-    SpvCapabilityInt8 = 39,
-    SpvCapabilityInputAttachment = 40,
-    SpvCapabilitySparseResidency = 41,
-    SpvCapabilityMinLod = 42,
-    SpvCapabilitySampled1D = 43,
-    SpvCapabilityImage1D = 44,
-    SpvCapabilitySampledCubeArray = 45,
-    SpvCapabilitySampledBuffer = 46,
-    SpvCapabilityImageBuffer = 47,
-    SpvCapabilityImageMSArray = 48,
-    SpvCapabilityStorageImageExtendedFormats = 49,
-    SpvCapabilityImageQuery = 50,
-    SpvCapabilityDerivativeControl = 51,
-    SpvCapabilityInterpolationFunction = 52,
-    SpvCapabilityTransformFeedback = 53,
-    SpvCapabilityGeometryStreams = 54,
-    SpvCapabilityStorageImageReadWithoutFormat = 55,
-    SpvCapabilityStorageImageWriteWithoutFormat = 56,
-    SpvCapabilityMultiViewport = 57,
-    SpvCapabilitySubgroupDispatch = 58,
-    SpvCapabilityNamedBarrier = 59,
-    SpvCapabilityPipeStorage = 60,
-    SpvCapabilityGroupNonUniform = 61,
-    SpvCapabilityGroupNonUniformVote = 62,
-    SpvCapabilityGroupNonUniformArithmetic = 63,
-    SpvCapabilityGroupNonUniformBallot = 64,
-    SpvCapabilityGroupNonUniformShuffle = 65,
-    SpvCapabilityGroupNonUniformShuffleRelative = 66,
-    SpvCapabilityGroupNonUniformClustered = 67,
-    SpvCapabilityGroupNonUniformQuad = 68,
-    SpvCapabilityShaderLayer = 69,
-    SpvCapabilityShaderViewportIndex = 70,
-    SpvCapabilityUniformDecoration = 71,
-    SpvCapabilityCoreBuiltinsARM = 4165,
-    SpvCapabilityTileImageColorReadAccessEXT = 4166,
-    SpvCapabilityTileImageDepthReadAccessEXT = 4167,
-    SpvCapabilityTileImageStencilReadAccessEXT = 4168,
-    SpvCapabilityFragmentShadingRateKHR = 4422,
-    SpvCapabilitySubgroupBallotKHR = 4423,
-    SpvCapabilityDrawParameters = 4427,
-    SpvCapabilityWorkgroupMemoryExplicitLayoutKHR = 4428,
-    SpvCapabilityWorkgroupMemoryExplicitLayout8BitAccessKHR = 4429,
-    SpvCapabilityWorkgroupMemoryExplicitLayout16BitAccessKHR = 4430,
-    SpvCapabilitySubgroupVoteKHR = 4431,
-    SpvCapabilityStorageBuffer16BitAccess = 4433,
-    SpvCapabilityStorageUniformBufferBlock16 = 4433,
-    SpvCapabilityStorageUniform16 = 4434,
-    SpvCapabilityUniformAndStorageBuffer16BitAccess = 4434,
-    SpvCapabilityStoragePushConstant16 = 4435,
-    SpvCapabilityStorageInputOutput16 = 4436,
-    SpvCapabilityDeviceGroup = 4437,
-    SpvCapabilityMultiView = 4439,
-    SpvCapabilityVariablePointersStorageBuffer = 4441,
-    SpvCapabilityVariablePointers = 4442,
-    SpvCapabilityAtomicStorageOps = 4445,
-    SpvCapabilitySampleMaskPostDepthCoverage = 4447,
-    SpvCapabilityStorageBuffer8BitAccess = 4448,
-    SpvCapabilityUniformAndStorageBuffer8BitAccess = 4449,
-    SpvCapabilityStoragePushConstant8 = 4450,
-    SpvCapabilityDenormPreserve = 4464,
-    SpvCapabilityDenormFlushToZero = 4465,
-    SpvCapabilitySignedZeroInfNanPreserve = 4466,
-    SpvCapabilityRoundingModeRTE = 4467,
-    SpvCapabilityRoundingModeRTZ = 4468,
-    SpvCapabilityRayQueryProvisionalKHR = 4471,
-    SpvCapabilityRayQueryKHR = 4472,
-    SpvCapabilityRayTraversalPrimitiveCullingKHR = 4478,
-    SpvCapabilityRayTracingKHR = 4479,
-    SpvCapabilityTextureSampleWeightedQCOM = 4484,
-    SpvCapabilityTextureBoxFilterQCOM = 4485,
-    SpvCapabilityTextureBlockMatchQCOM = 4486,
-    SpvCapabilityFloat16ImageAMD = 5008,
-    SpvCapabilityImageGatherBiasLodAMD = 5009,
-    SpvCapabilityFragmentMaskAMD = 5010,
-    SpvCapabilityStencilExportEXT = 5013,
-    SpvCapabilityImageReadWriteLodAMD = 5015,
-    SpvCapabilityInt64ImageEXT = 5016,
-    SpvCapabilityShaderClockKHR = 5055,
-    SpvCapabilityShaderEnqueueAMDX = 5067,
-    SpvCapabilitySampleMaskOverrideCoverageNV = 5249,
-    SpvCapabilityGeometryShaderPassthroughNV = 5251,
-    SpvCapabilityShaderViewportIndexLayerEXT = 5254,
-    SpvCapabilityShaderViewportIndexLayerNV = 5254,
-    SpvCapabilityShaderViewportMaskNV = 5255,
-    SpvCapabilityShaderStereoViewNV = 5259,
-    SpvCapabilityPerViewAttributesNV = 5260,
-    SpvCapabilityFragmentFullyCoveredEXT = 5265,
-    SpvCapabilityMeshShadingNV = 5266,
-    SpvCapabilityImageFootprintNV = 5282,
-    SpvCapabilityMeshShadingEXT = 5283,
-    SpvCapabilityFragmentBarycentricKHR = 5284,
-    SpvCapabilityFragmentBarycentricNV = 5284,
-    SpvCapabilityComputeDerivativeGroupQuadsNV = 5288,
-    SpvCapabilityFragmentDensityEXT = 5291,
-    SpvCapabilityShadingRateNV = 5291,
-    SpvCapabilityGroupNonUniformPartitionedNV = 5297,
-    SpvCapabilityShaderNonUniform = 5301,
-    SpvCapabilityShaderNonUniformEXT = 5301,
-    SpvCapabilityRuntimeDescriptorArray = 5302,
-    SpvCapabilityRuntimeDescriptorArrayEXT = 5302,
-    SpvCapabilityInputAttachmentArrayDynamicIndexing = 5303,
-    SpvCapabilityInputAttachmentArrayDynamicIndexingEXT = 5303,
-    SpvCapabilityUniformTexelBufferArrayDynamicIndexing = 5304,
-    SpvCapabilityUniformTexelBufferArrayDynamicIndexingEXT = 5304,
-    SpvCapabilityStorageTexelBufferArrayDynamicIndexing = 5305,
-    SpvCapabilityStorageTexelBufferArrayDynamicIndexingEXT = 5305,
-    SpvCapabilityUniformBufferArrayNonUniformIndexing = 5306,
-    SpvCapabilityUniformBufferArrayNonUniformIndexingEXT = 5306,
-    SpvCapabilitySampledImageArrayNonUniformIndexing = 5307,
-    SpvCapabilitySampledImageArrayNonUniformIndexingEXT = 5307,
-    SpvCapabilityStorageBufferArrayNonUniformIndexing = 5308,
-    SpvCapabilityStorageBufferArrayNonUniformIndexingEXT = 5308,
-    SpvCapabilityStorageImageArrayNonUniformIndexing = 5309,
-    SpvCapabilityStorageImageArrayNonUniformIndexingEXT = 5309,
-    SpvCapabilityInputAttachmentArrayNonUniformIndexing = 5310,
-    SpvCapabilityInputAttachmentArrayNonUniformIndexingEXT = 5310,
-    SpvCapabilityUniformTexelBufferArrayNonUniformIndexing = 5311,
-    SpvCapabilityUniformTexelBufferArrayNonUniformIndexingEXT = 5311,
-    SpvCapabilityStorageTexelBufferArrayNonUniformIndexing = 5312,
-    SpvCapabilityStorageTexelBufferArrayNonUniformIndexingEXT = 5312,
-    SpvCapabilityRayTracingPositionFetchKHR = 5336,
-    SpvCapabilityRayTracingNV = 5340,
-    SpvCapabilityRayTracingMotionBlurNV = 5341,
-    SpvCapabilityVulkanMemoryModel = 5345,
-    SpvCapabilityVulkanMemoryModelKHR = 5345,
-    SpvCapabilityVulkanMemoryModelDeviceScope = 5346,
-    SpvCapabilityVulkanMemoryModelDeviceScopeKHR = 5346,
-    SpvCapabilityPhysicalStorageBufferAddresses = 5347,
-    SpvCapabilityPhysicalStorageBufferAddressesEXT = 5347,
-    SpvCapabilityComputeDerivativeGroupLinearNV = 5350,
-    SpvCapabilityRayTracingProvisionalKHR = 5353,
-    SpvCapabilityCooperativeMatrixNV = 5357,
-    SpvCapabilityFragmentShaderSampleInterlockEXT = 5363,
-    SpvCapabilityFragmentShaderShadingRateInterlockEXT = 5372,
-    SpvCapabilityShaderSMBuiltinsNV = 5373,
-    SpvCapabilityFragmentShaderPixelInterlockEXT = 5378,
-    SpvCapabilityDemoteToHelperInvocation = 5379,
-    SpvCapabilityDemoteToHelperInvocationEXT = 5379,
-    SpvCapabilityDisplacementMicromapNV = 5380,
-    SpvCapabilityRayTracingOpacityMicromapEXT = 5381,
-    SpvCapabilityShaderInvocationReorderNV = 5383,
-    SpvCapabilityBindlessTextureNV = 5390,
-    SpvCapabilityRayQueryPositionFetchKHR = 5391,
-    SpvCapabilityRayTracingDisplacementMicromapNV = 5409,
-    SpvCapabilitySubgroupShuffleINTEL = 5568,
-    SpvCapabilitySubgroupBufferBlockIOINTEL = 5569,
-    SpvCapabilitySubgroupImageBlockIOINTEL = 5570,
-    SpvCapabilitySubgroupImageMediaBlockIOINTEL = 5579,
-    SpvCapabilityRoundToInfinityINTEL = 5582,
-    SpvCapabilityFloatingPointModeINTEL = 5583,
-    SpvCapabilityIntegerFunctions2INTEL = 5584,
-    SpvCapabilityFunctionPointersINTEL = 5603,
-    SpvCapabilityIndirectReferencesINTEL = 5604,
-    SpvCapabilityAsmINTEL = 5606,
-    SpvCapabilityAtomicFloat32MinMaxEXT = 5612,
-    SpvCapabilityAtomicFloat64MinMaxEXT = 5613,
-    SpvCapabilityAtomicFloat16MinMaxEXT = 5616,
-    SpvCapabilityVectorComputeINTEL = 5617,
-    SpvCapabilityVectorAnyINTEL = 5619,
-    SpvCapabilityExpectAssumeKHR = 5629,
-    SpvCapabilitySubgroupAvcMotionEstimationINTEL = 5696,
-    SpvCapabilitySubgroupAvcMotionEstimationIntraINTEL = 5697,
-    SpvCapabilitySubgroupAvcMotionEstimationChromaINTEL = 5698,
-    SpvCapabilityVariableLengthArrayINTEL = 5817,
-    SpvCapabilityFunctionFloatControlINTEL = 5821,
-    SpvCapabilityFPGAMemoryAttributesINTEL = 5824,
-    SpvCapabilityFPFastMathModeINTEL = 5837,
-    SpvCapabilityArbitraryPrecisionIntegersINTEL = 5844,
-    SpvCapabilityArbitraryPrecisionFloatingPointINTEL = 5845,
-    SpvCapabilityUnstructuredLoopControlsINTEL = 5886,
-    SpvCapabilityFPGALoopControlsINTEL = 5888,
-    SpvCapabilityKernelAttributesINTEL = 5892,
-    SpvCapabilityFPGAKernelAttributesINTEL = 5897,
-    SpvCapabilityFPGAMemoryAccessesINTEL = 5898,
-    SpvCapabilityFPGAClusterAttributesINTEL = 5904,
-    SpvCapabilityLoopFuseINTEL = 5906,
-    SpvCapabilityFPGADSPControlINTEL = 5908,
-    SpvCapabilityMemoryAccessAliasingINTEL = 5910,
-    SpvCapabilityFPGAInvocationPipeliningAttributesINTEL = 5916,
-    SpvCapabilityFPGABufferLocationINTEL = 5920,
-    SpvCapabilityArbitraryPrecisionFixedPointINTEL = 5922,
-    SpvCapabilityUSMStorageClassesINTEL = 5935,
-    SpvCapabilityRuntimeAlignedAttributeINTEL = 5939,
-    SpvCapabilityIOPipesINTEL = 5943,
-    SpvCapabilityBlockingPipesINTEL = 5945,
-    SpvCapabilityFPGARegINTEL = 5948,
-    SpvCapabilityDotProductInputAll = 6016,
-    SpvCapabilityDotProductInputAllKHR = 6016,
-    SpvCapabilityDotProductInput4x8Bit = 6017,
-    SpvCapabilityDotProductInput4x8BitKHR = 6017,
-    SpvCapabilityDotProductInput4x8BitPacked = 6018,
-    SpvCapabilityDotProductInput4x8BitPackedKHR = 6018,
-    SpvCapabilityDotProduct = 6019,
-    SpvCapabilityDotProductKHR = 6019,
-    SpvCapabilityRayCullMaskKHR = 6020,
-    SpvCapabilityCooperativeMatrixKHR = 6022,
-    SpvCapabilityBitInstructions = 6025,
-    SpvCapabilityGroupNonUniformRotateKHR = 6026,
-    SpvCapabilityAtomicFloat32AddEXT = 6033,
-    SpvCapabilityAtomicFloat64AddEXT = 6034,
-    SpvCapabilityLongCompositesINTEL = 6089,
-    SpvCapabilityOptNoneINTEL = 6094,
-    SpvCapabilityAtomicFloat16AddEXT = 6095,
-    SpvCapabilityDebugInfoModuleINTEL = 6114,
-    SpvCapabilityBFloat16ConversionINTEL = 6115,
-    SpvCapabilitySplitBarrierINTEL = 6141,
-    SpvCapabilityFPGAClusterAttributesV2INTEL = 6150,
-    SpvCapabilityFPGAKernelAttributesv2INTEL = 6161,
-    SpvCapabilityFPMaxErrorINTEL = 6169,
-    SpvCapabilityFPGALatencyControlINTEL = 6171,
-    SpvCapabilityFPGAArgumentInterfacesINTEL = 6174,
-    SpvCapabilityGlobalVariableHostAccessINTEL = 6187,
-    SpvCapabilityGlobalVariableFPGADecorationsINTEL = 6189,
-    SpvCapabilityGroupUniformArithmeticKHR = 6400,
-    SpvCapabilityCacheControlsINTEL = 6441,
-    SpvCapabilityMax = 0x7fffffff,
-} SpvCapability;
+typedef enum SpirvCapability_ {
+    SpirvCapabilityMatrix = 0,
+    SpirvCapabilityShader = 1,
+    SpirvCapabilityGeometry = 2,
+    SpirvCapabilityTessellation = 3,
+    SpirvCapabilityAddresses = 4,
+    SpirvCapabilityLinkage = 5,
+    SpirvCapabilityKernel = 6,
+    SpirvCapabilityVector16 = 7,
+    SpirvCapabilityFloat16Buffer = 8,
+    SpirvCapabilityFloat16 = 9,
+    SpirvCapabilityFloat64 = 10,
+    SpirvCapabilityInt64 = 11,
+    SpirvCapabilityInt64Atomics = 12,
+    SpirvCapabilityImageBasic = 13,
+    SpirvCapabilityImageReadWrite = 14,
+    SpirvCapabilityImageMipmap = 15,
+    SpirvCapabilityPipes = 17,
+    SpirvCapabilityGroups = 18,
+    SpirvCapabilityDeviceEnqueue = 19,
+    SpirvCapabilityLiteralSampler = 20,
+    SpirvCapabilityAtomicStorage = 21,
+    SpirvCapabilityInt16 = 22,
+    SpirvCapabilityTessellationPointSize = 23,
+    SpirvCapabilityGeometryPointSize = 24,
+    SpirvCapabilityImageGatherExtended = 25,
+    SpirvCapabilityStorageImageMultisample = 27,
+    SpirvCapabilityUniformBufferArrayDynamicIndexing = 28,
+    SpirvCapabilitySampledImageArrayDynamicIndexing = 29,
+    SpirvCapabilityStorageBufferArrayDynamicIndexing = 30,
+    SpirvCapabilityStorageImageArrayDynamicIndexing = 31,
+    SpirvCapabilityClipDistance = 32,
+    SpirvCapabilityCullDistance = 33,
+    SpirvCapabilityImageCubeArray = 34,
+    SpirvCapabilitySampleRateShading = 35,
+    SpirvCapabilityImageRect = 36,
+    SpirvCapabilitySampledRect = 37,
+    SpirvCapabilityGenericPointer = 38,
+    SpirvCapabilityInt8 = 39,
+    SpirvCapabilityInputAttachment = 40,
+    SpirvCapabilitySparseResidency = 41,
+    SpirvCapabilityMinLod = 42,
+    SpirvCapabilitySampled1D = 43,
+    SpirvCapabilityImage1D = 44,
+    SpirvCapabilitySampledCubeArray = 45,
+    SpirvCapabilitySampledBuffer = 46,
+    SpirvCapabilityImageBuffer = 47,
+    SpirvCapabilityImageMSArray = 48,
+    SpirvCapabilityStorageImageExtendedFormats = 49,
+    SpirvCapabilityImageQuery = 50,
+    SpirvCapabilityDerivativeControl = 51,
+    SpirvCapabilityInterpolationFunction = 52,
+    SpirvCapabilityTransformFeedback = 53,
+    SpirvCapabilityGeometryStreams = 54,
+    SpirvCapabilityStorageImageReadWithoutFormat = 55,
+    SpirvCapabilityStorageImageWriteWithoutFormat = 56,
+    SpirvCapabilityMultiViewport = 57,
+    SpirvCapabilitySubgroupDispatch = 58,
+    SpirvCapabilityNamedBarrier = 59,
+    SpirvCapabilityPipeStorage = 60,
+    SpirvCapabilityGroupNonUniform = 61,
+    SpirvCapabilityGroupNonUniformVote = 62,
+    SpirvCapabilityGroupNonUniformArithmetic = 63,
+    SpirvCapabilityGroupNonUniformBallot = 64,
+    SpirvCapabilityGroupNonUniformShuffle = 65,
+    SpirvCapabilityGroupNonUniformShuffleRelative = 66,
+    SpirvCapabilityGroupNonUniformClustered = 67,
+    SpirvCapabilityGroupNonUniformQuad = 68,
+    SpirvCapabilityShaderLayer = 69,
+    SpirvCapabilityShaderViewportIndex = 70,
+    SpirvCapabilityUniformDecoration = 71,
+    SpirvCapabilityCoreBuiltinsARM = 4165,
+    SpirvCapabilityTileImageColorReadAccessEXT = 4166,
+    SpirvCapabilityTileImageDepthReadAccessEXT = 4167,
+    SpirvCapabilityTileImageStencilReadAccessEXT = 4168,
+    SpirvCapabilityFragmentShadingRateKHR = 4422,
+    SpirvCapabilitySubgroupBallotKHR = 4423,
+    SpirvCapabilityDrawParameters = 4427,
+    SpirvCapabilityWorkgroupMemoryExplicitLayoutKHR = 4428,
+    SpirvCapabilityWorkgroupMemoryExplicitLayout8BitAccessKHR = 4429,
+    SpirvCapabilityWorkgroupMemoryExplicitLayout16BitAccessKHR = 4430,
+    SpirvCapabilitySubgroupVoteKHR = 4431,
+    SpirvCapabilityStorageBuffer16BitAccess = 4433,
+    SpirvCapabilityStorageUniformBufferBlock16 = 4433,
+    SpirvCapabilityStorageUniform16 = 4434,
+    SpirvCapabilityUniformAndStorageBuffer16BitAccess = 4434,
+    SpirvCapabilityStoragePushConstant16 = 4435,
+    SpirvCapabilityStorageInputOutput16 = 4436,
+    SpirvCapabilityDeviceGroup = 4437,
+    SpirvCapabilityMultiView = 4439,
+    SpirvCapabilityVariablePointersStorageBuffer = 4441,
+    SpirvCapabilityVariablePointers = 4442,
+    SpirvCapabilityAtomicStorageOps = 4445,
+    SpirvCapabilitySampleMaskPostDepthCoverage = 4447,
+    SpirvCapabilityStorageBuffer8BitAccess = 4448,
+    SpirvCapabilityUniformAndStorageBuffer8BitAccess = 4449,
+    SpirvCapabilityStoragePushConstant8 = 4450,
+    SpirvCapabilityDenormPreserve = 4464,
+    SpirvCapabilityDenormFlushToZero = 4465,
+    SpirvCapabilitySignedZeroInfNanPreserve = 4466,
+    SpirvCapabilityRoundingModeRTE = 4467,
+    SpirvCapabilityRoundingModeRTZ = 4468,
+    SpirvCapabilityRayQueryProvisionalKHR = 4471,
+    SpirvCapabilityRayQueryKHR = 4472,
+    SpirvCapabilityRayTraversalPrimitiveCullingKHR = 4478,
+    SpirvCapabilityRayTracingKHR = 4479,
+    SpirvCapabilityTextureSampleWeightedQCOM = 4484,
+    SpirvCapabilityTextureBoxFilterQCOM = 4485,
+    SpirvCapabilityTextureBlockMatchQCOM = 4486,
+    SpirvCapabilityFloat16ImageAMD = 5008,
+    SpirvCapabilityImageGatherBiasLodAMD = 5009,
+    SpirvCapabilityFragmentMaskAMD = 5010,
+    SpirvCapabilityStencilExportEXT = 5013,
+    SpirvCapabilityImageReadWriteLodAMD = 5015,
+    SpirvCapabilityInt64ImageEXT = 5016,
+    SpirvCapabilityShaderClockKHR = 5055,
+    SpirvCapabilityShaderEnqueueAMDX = 5067,
+    SpirvCapabilitySampleMaskOverrideCoverageNV = 5249,
+    SpirvCapabilityGeometryShaderPassthroughNV = 5251,
+    SpirvCapabilityShaderViewportIndexLayerEXT = 5254,
+    SpirvCapabilityShaderViewportIndexLayerNV = 5254,
+    SpirvCapabilityShaderViewportMaskNV = 5255,
+    SpirvCapabilityShaderStereoViewNV = 5259,
+    SpirvCapabilityPerViewAttributesNV = 5260,
+    SpirvCapabilityFragmentFullyCoveredEXT = 5265,
+    SpirvCapabilityMeshShadingNV = 5266,
+    SpirvCapabilityImageFootprintNV = 5282,
+    SpirvCapabilityMeshShadingEXT = 5283,
+    SpirvCapabilityFragmentBarycentricKHR = 5284,
+    SpirvCapabilityFragmentBarycentricNV = 5284,
+    SpirvCapabilityComputeDerivativeGroupQuadsNV = 5288,
+    SpirvCapabilityFragmentDensityEXT = 5291,
+    SpirvCapabilityShadingRateNV = 5291,
+    SpirvCapabilityGroupNonUniformPartitionedNV = 5297,
+    SpirvCapabilityShaderNonUniform = 5301,
+    SpirvCapabilityShaderNonUniformEXT = 5301,
+    SpirvCapabilityRuntimeDescriptorArray = 5302,
+    SpirvCapabilityRuntimeDescriptorArrayEXT = 5302,
+    SpirvCapabilityInputAttachmentArrayDynamicIndexing = 5303,
+    SpirvCapabilityInputAttachmentArrayDynamicIndexingEXT = 5303,
+    SpirvCapabilityUniformTexelBufferArrayDynamicIndexing = 5304,
+    SpirvCapabilityUniformTexelBufferArrayDynamicIndexingEXT = 5304,
+    SpirvCapabilityStorageTexelBufferArrayDynamicIndexing = 5305,
+    SpirvCapabilityStorageTexelBufferArrayDynamicIndexingEXT = 5305,
+    SpirvCapabilityUniformBufferArrayNonUniformIndexing = 5306,
+    SpirvCapabilityUniformBufferArrayNonUniformIndexingEXT = 5306,
+    SpirvCapabilitySampledImageArrayNonUniformIndexing = 5307,
+    SpirvCapabilitySampledImageArrayNonUniformIndexingEXT = 5307,
+    SpirvCapabilityStorageBufferArrayNonUniformIndexing = 5308,
+    SpirvCapabilityStorageBufferArrayNonUniformIndexingEXT = 5308,
+    SpirvCapabilityStorageImageArrayNonUniformIndexing = 5309,
+    SpirvCapabilityStorageImageArrayNonUniformIndexingEXT = 5309,
+    SpirvCapabilityInputAttachmentArrayNonUniformIndexing = 5310,
+    SpirvCapabilityInputAttachmentArrayNonUniformIndexingEXT = 5310,
+    SpirvCapabilityUniformTexelBufferArrayNonUniformIndexing = 5311,
+    SpirvCapabilityUniformTexelBufferArrayNonUniformIndexingEXT = 5311,
+    SpirvCapabilityStorageTexelBufferArrayNonUniformIndexing = 5312,
+    SpirvCapabilityStorageTexelBufferArrayNonUniformIndexingEXT = 5312,
+    SpirvCapabilityRayTracingPositionFetchKHR = 5336,
+    SpirvCapabilityRayTracingNV = 5340,
+    SpirvCapabilityRayTracingMotionBlurNV = 5341,
+    SpirvCapabilityVulkanMemoryModel = 5345,
+    SpirvCapabilityVulkanMemoryModelKHR = 5345,
+    SpirvCapabilityVulkanMemoryModelDeviceScope = 5346,
+    SpirvCapabilityVulkanMemoryModelDeviceScopeKHR = 5346,
+    SpirvCapabilityPhysicalStorageBufferAddresses = 5347,
+    SpirvCapabilityPhysicalStorageBufferAddressesEXT = 5347,
+    SpirvCapabilityComputeDerivativeGroupLinearNV = 5350,
+    SpirvCapabilityRayTracingProvisionalKHR = 5353,
+    SpirvCapabilityCooperativeMatrixNV = 5357,
+    SpirvCapabilityFragmentShaderSampleInterlockEXT = 5363,
+    SpirvCapabilityFragmentShaderShadingRateInterlockEXT = 5372,
+    SpirvCapabilityShaderSMBuiltinsNV = 5373,
+    SpirvCapabilityFragmentShaderPixelInterlockEXT = 5378,
+    SpirvCapabilityDemoteToHelperInvocation = 5379,
+    SpirvCapabilityDemoteToHelperInvocationEXT = 5379,
+    SpirvCapabilityDisplacementMicromapNV = 5380,
+    SpirvCapabilityRayTracingOpacityMicromapEXT = 5381,
+    SpirvCapabilityShaderInvocationReorderNV = 5383,
+    SpirvCapabilityBindlessTextureNV = 5390,
+    SpirvCapabilityRayQueryPositionFetchKHR = 5391,
+    SpirvCapabilityRayTracingDisplacementMicromapNV = 5409,
+    SpirvCapabilitySubgroupShuffleINTEL = 5568,
+    SpirvCapabilitySubgroupBufferBlockIOINTEL = 5569,
+    SpirvCapabilitySubgroupImageBlockIOINTEL = 5570,
+    SpirvCapabilitySubgroupImageMediaBlockIOINTEL = 5579,
+    SpirvCapabilityRoundToInfinityINTEL = 5582,
+    SpirvCapabilityFloatingPointModeINTEL = 5583,
+    SpirvCapabilityIntegerFunctions2INTEL = 5584,
+    SpirvCapabilityFunctionPointersINTEL = 5603,
+    SpirvCapabilityIndirectReferencesINTEL = 5604,
+    SpirvCapabilityAsmINTEL = 5606,
+    SpirvCapabilityAtomicFloat32MinMaxEXT = 5612,
+    SpirvCapabilityAtomicFloat64MinMaxEXT = 5613,
+    SpirvCapabilityAtomicFloat16MinMaxEXT = 5616,
+    SpirvCapabilityVectorComputeINTEL = 5617,
+    SpirvCapabilityVectorAnyINTEL = 5619,
+    SpirvCapabilityExpectAssumeKHR = 5629,
+    SpirvCapabilitySubgroupAvcMotionEstimationINTEL = 5696,
+    SpirvCapabilitySubgroupAvcMotionEstimationIntraINTEL = 5697,
+    SpirvCapabilitySubgroupAvcMotionEstimationChromaINTEL = 5698,
+    SpirvCapabilityVariableLengthArrayINTEL = 5817,
+    SpirvCapabilityFunctionFloatControlINTEL = 5821,
+    SpirvCapabilityFPGAMemoryAttributesINTEL = 5824,
+    SpirvCapabilityFPFastMathModeINTEL = 5837,
+    SpirvCapabilityArbitraryPrecisionIntegersINTEL = 5844,
+    SpirvCapabilityArbitraryPrecisionFloatingPointINTEL = 5845,
+    SpirvCapabilityUnstructuredLoopControlsINTEL = 5886,
+    SpirvCapabilityFPGALoopControlsINTEL = 5888,
+    SpirvCapabilityKernelAttributesINTEL = 5892,
+    SpirvCapabilityFPGAKernelAttributesINTEL = 5897,
+    SpirvCapabilityFPGAMemoryAccessesINTEL = 5898,
+    SpirvCapabilityFPGAClusterAttributesINTEL = 5904,
+    SpirvCapabilityLoopFuseINTEL = 5906,
+    SpirvCapabilityFPGADSPControlINTEL = 5908,
+    SpirvCapabilityMemoryAccessAliasingINTEL = 5910,
+    SpirvCapabilityFPGAInvocationPipeliningAttributesINTEL = 5916,
+    SpirvCapabilityFPGABufferLocationINTEL = 5920,
+    SpirvCapabilityArbitraryPrecisionFixedPointINTEL = 5922,
+    SpirvCapabilityUSMStorageClassesINTEL = 5935,
+    SpirvCapabilityRuntimeAlignedAttributeINTEL = 5939,
+    SpirvCapabilityIOPipesINTEL = 5943,
+    SpirvCapabilityBlockingPipesINTEL = 5945,
+    SpirvCapabilityFPGARegINTEL = 5948,
+    SpirvCapabilityDotProductInputAll = 6016,
+    SpirvCapabilityDotProductInputAllKHR = 6016,
+    SpirvCapabilityDotProductInput4x8Bit = 6017,
+    SpirvCapabilityDotProductInput4x8BitKHR = 6017,
+    SpirvCapabilityDotProductInput4x8BitPacked = 6018,
+    SpirvCapabilityDotProductInput4x8BitPackedKHR = 6018,
+    SpirvCapabilityDotProduct = 6019,
+    SpirvCapabilityDotProductKHR = 6019,
+    SpirvCapabilityRayCullMaskKHR = 6020,
+    SpirvCapabilityCooperativeMatrixKHR = 6022,
+    SpirvCapabilityBitInstructions = 6025,
+    SpirvCapabilityGroupNonUniformRotateKHR = 6026,
+    SpirvCapabilityAtomicFloat32AddEXT = 6033,
+    SpirvCapabilityAtomicFloat64AddEXT = 6034,
+    SpirvCapabilityLongCompositesINTEL = 6089,
+    SpirvCapabilityOptNoneINTEL = 6094,
+    SpirvCapabilityAtomicFloat16AddEXT = 6095,
+    SpirvCapabilityDebugInfoModuleINTEL = 6114,
+    SpirvCapabilityBFloat16ConversionINTEL = 6115,
+    SpirvCapabilitySplitBarrierINTEL = 6141,
+    SpirvCapabilityFPGAClusterAttributesV2INTEL = 6150,
+    SpirvCapabilityFPGAKernelAttributesv2INTEL = 6161,
+    SpirvCapabilityFPMaxErrorINTEL = 6169,
+    SpirvCapabilityFPGALatencyControlINTEL = 6171,
+    SpirvCapabilityFPGAArgumentInterfacesINTEL = 6174,
+    SpirvCapabilityGlobalVariableHostAccessINTEL = 6187,
+    SpirvCapabilityGlobalVariableFPGADecorationsINTEL = 6189,
+    SpirvCapabilityGroupUniformArithmeticKHR = 6400,
+    SpirvCapabilityCacheControlsINTEL = 6441,
+    SpirvCapabilityMax = 0x7fffffff,
+} SpirvCapability;
 
-typedef enum SpvRayFlagsShift_ {
-    SpvRayFlagsOpaqueKHRShift = 0,
-    SpvRayFlagsNoOpaqueKHRShift = 1,
-    SpvRayFlagsTerminateOnFirstHitKHRShift = 2,
-    SpvRayFlagsSkipClosestHitShaderKHRShift = 3,
-    SpvRayFlagsCullBackFacingTrianglesKHRShift = 4,
-    SpvRayFlagsCullFrontFacingTrianglesKHRShift = 5,
-    SpvRayFlagsCullOpaqueKHRShift = 6,
-    SpvRayFlagsCullNoOpaqueKHRShift = 7,
-    SpvRayFlagsSkipTrianglesKHRShift = 8,
-    SpvRayFlagsSkipAABBsKHRShift = 9,
-    SpvRayFlagsForceOpacityMicromap2StateEXTShift = 10,
-    SpvRayFlagsMax = 0x7fffffff,
-} SpvRayFlagsShift;
+typedef enum SpirvRayFlagsShift_ {
+    SpirvRayFlagsOpaqueKHRShift = 0,
+    SpirvRayFlagsNoOpaqueKHRShift = 1,
+    SpirvRayFlagsTerminateOnFirstHitKHRShift = 2,
+    SpirvRayFlagsSkipClosestHitShaderKHRShift = 3,
+    SpirvRayFlagsCullBackFacingTrianglesKHRShift = 4,
+    SpirvRayFlagsCullFrontFacingTrianglesKHRShift = 5,
+    SpirvRayFlagsCullOpaqueKHRShift = 6,
+    SpirvRayFlagsCullNoOpaqueKHRShift = 7,
+    SpirvRayFlagsSkipTrianglesKHRShift = 8,
+    SpirvRayFlagsSkipAABBsKHRShift = 9,
+    SpirvRayFlagsForceOpacityMicromap2StateEXTShift = 10,
+    SpirvRayFlagsMax = 0x7fffffff,
+} SpirvRayFlagsShift;
 
-typedef enum SpvRayFlagsMask_ {
-    SpvRayFlagsMaskNone = 0,
-    SpvRayFlagsOpaqueKHRMask = 0x00000001,
-    SpvRayFlagsNoOpaqueKHRMask = 0x00000002,
-    SpvRayFlagsTerminateOnFirstHitKHRMask = 0x00000004,
-    SpvRayFlagsSkipClosestHitShaderKHRMask = 0x00000008,
-    SpvRayFlagsCullBackFacingTrianglesKHRMask = 0x00000010,
-    SpvRayFlagsCullFrontFacingTrianglesKHRMask = 0x00000020,
-    SpvRayFlagsCullOpaqueKHRMask = 0x00000040,
-    SpvRayFlagsCullNoOpaqueKHRMask = 0x00000080,
-    SpvRayFlagsSkipTrianglesKHRMask = 0x00000100,
-    SpvRayFlagsSkipAABBsKHRMask = 0x00000200,
-    SpvRayFlagsForceOpacityMicromap2StateEXTMask = 0x00000400,
-} SpvRayFlagsMask;
+typedef enum SpirvRayFlagsMask_ {
+    SpirvRayFlagsMaskNone = 0,
+    SpirvRayFlagsOpaqueKHRMask = 0x00000001,
+    SpirvRayFlagsNoOpaqueKHRMask = 0x00000002,
+    SpirvRayFlagsTerminateOnFirstHitKHRMask = 0x00000004,
+    SpirvRayFlagsSkipClosestHitShaderKHRMask = 0x00000008,
+    SpirvRayFlagsCullBackFacingTrianglesKHRMask = 0x00000010,
+    SpirvRayFlagsCullFrontFacingTrianglesKHRMask = 0x00000020,
+    SpirvRayFlagsCullOpaqueKHRMask = 0x00000040,
+    SpirvRayFlagsCullNoOpaqueKHRMask = 0x00000080,
+    SpirvRayFlagsSkipTrianglesKHRMask = 0x00000100,
+    SpirvRayFlagsSkipAABBsKHRMask = 0x00000200,
+    SpirvRayFlagsForceOpacityMicromap2StateEXTMask = 0x00000400,
+} SpirvRayFlagsMask;
 
-typedef enum SpvRayQueryIntersection_ {
-    SpvRayQueryIntersectionRayQueryCandidateIntersectionKHR = 0,
-    SpvRayQueryIntersectionRayQueryCommittedIntersectionKHR = 1,
-    SpvRayQueryIntersectionMax = 0x7fffffff,
-} SpvRayQueryIntersection;
+typedef enum SpirvRayQueryIntersection_ {
+    SpirvRayQueryIntersectionRayQueryCandidateIntersectionKHR = 0,
+    SpirvRayQueryIntersectionRayQueryCommittedIntersectionKHR = 1,
+    SpirvRayQueryIntersectionMax = 0x7fffffff,
+} SpirvRayQueryIntersection;
 
-typedef enum SpvRayQueryCommittedIntersectionType_ {
-    SpvRayQueryCommittedIntersectionTypeRayQueryCommittedIntersectionNoneKHR = 0,
-    SpvRayQueryCommittedIntersectionTypeRayQueryCommittedIntersectionTriangleKHR = 1,
-    SpvRayQueryCommittedIntersectionTypeRayQueryCommittedIntersectionGeneratedKHR = 2,
-    SpvRayQueryCommittedIntersectionTypeMax = 0x7fffffff,
-} SpvRayQueryCommittedIntersectionType;
+typedef enum SpirvRayQueryCommittedIntersectionType_ {
+    SpirvRayQueryCommittedIntersectionTypeRayQueryCommittedIntersectionNoneKHR = 0,
+    SpirvRayQueryCommittedIntersectionTypeRayQueryCommittedIntersectionTriangleKHR = 1,
+    SpirvRayQueryCommittedIntersectionTypeRayQueryCommittedIntersectionGeneratedKHR = 2,
+    SpirvRayQueryCommittedIntersectionTypeMax = 0x7fffffff,
+} SpirvRayQueryCommittedIntersectionType;
 
-typedef enum SpvRayQueryCandidateIntersectionType_ {
-    SpvRayQueryCandidateIntersectionTypeRayQueryCandidateIntersectionTriangleKHR = 0,
-    SpvRayQueryCandidateIntersectionTypeRayQueryCandidateIntersectionAABBKHR = 1,
-    SpvRayQueryCandidateIntersectionTypeMax = 0x7fffffff,
-} SpvRayQueryCandidateIntersectionType;
+typedef enum SpirvRayQueryCandidateIntersectionType_ {
+    SpirvRayQueryCandidateIntersectionTypeRayQueryCandidateIntersectionTriangleKHR = 0,
+    SpirvRayQueryCandidateIntersectionTypeRayQueryCandidateIntersectionAABBKHR = 1,
+    SpirvRayQueryCandidateIntersectionTypeMax = 0x7fffffff,
+} SpirvRayQueryCandidateIntersectionType;
 
-typedef enum SpvFragmentShadingRateShift_ {
-    SpvFragmentShadingRateVertical2PixelsShift = 0,
-    SpvFragmentShadingRateVertical4PixelsShift = 1,
-    SpvFragmentShadingRateHorizontal2PixelsShift = 2,
-    SpvFragmentShadingRateHorizontal4PixelsShift = 3,
-    SpvFragmentShadingRateMax = 0x7fffffff,
-} SpvFragmentShadingRateShift;
+typedef enum SpirvFragmentShadingRateShift_ {
+    SpirvFragmentShadingRateVertical2PixelsShift = 0,
+    SpirvFragmentShadingRateVertical4PixelsShift = 1,
+    SpirvFragmentShadingRateHorizontal2PixelsShift = 2,
+    SpirvFragmentShadingRateHorizontal4PixelsShift = 3,
+    SpirvFragmentShadingRateMax = 0x7fffffff,
+} SpirvFragmentShadingRateShift;
 
-typedef enum SpvFragmentShadingRateMask_ {
-    SpvFragmentShadingRateMaskNone = 0,
-    SpvFragmentShadingRateVertical2PixelsMask = 0x00000001,
-    SpvFragmentShadingRateVertical4PixelsMask = 0x00000002,
-    SpvFragmentShadingRateHorizontal2PixelsMask = 0x00000004,
-    SpvFragmentShadingRateHorizontal4PixelsMask = 0x00000008,
-} SpvFragmentShadingRateMask;
+typedef enum SpirvFragmentShadingRateMask_ {
+    SpirvFragmentShadingRateMaskNone = 0,
+    SpirvFragmentShadingRateVertical2PixelsMask = 0x00000001,
+    SpirvFragmentShadingRateVertical4PixelsMask = 0x00000002,
+    SpirvFragmentShadingRateHorizontal2PixelsMask = 0x00000004,
+    SpirvFragmentShadingRateHorizontal4PixelsMask = 0x00000008,
+} SpirvFragmentShadingRateMask;
 
-typedef enum SpvFPDenormMode_ {
-    SpvFPDenormModePreserve = 0,
-    SpvFPDenormModeFlushToZero = 1,
-    SpvFPDenormModeMax = 0x7fffffff,
-} SpvFPDenormMode;
+typedef enum SpirvFPDenormMode_ {
+    SpirvFPDenormModePreserve = 0,
+    SpirvFPDenormModeFlushToZero = 1,
+    SpirvFPDenormModeMax = 0x7fffffff,
+} SpirvFPDenormMode;
 
-typedef enum SpvFPOperationMode_ {
-    SpvFPOperationModeIEEE = 0,
-    SpvFPOperationModeALT = 1,
-    SpvFPOperationModeMax = 0x7fffffff,
-} SpvFPOperationMode;
+typedef enum SpirvFPOperationMode_ {
+    SpirvFPOperationModeIEEE = 0,
+    SpirvFPOperationModeALT = 1,
+    SpirvFPOperationModeMax = 0x7fffffff,
+} SpirvFPOperationMode;
 
-typedef enum SpvQuantizationModes_ {
-    SpvQuantizationModesTRN = 0,
-    SpvQuantizationModesTRN_ZERO = 1,
-    SpvQuantizationModesRND = 2,
-    SpvQuantizationModesRND_ZERO = 3,
-    SpvQuantizationModesRND_INF = 4,
-    SpvQuantizationModesRND_MIN_INF = 5,
-    SpvQuantizationModesRND_CONV = 6,
-    SpvQuantizationModesRND_CONV_ODD = 7,
-    SpvQuantizationModesMax = 0x7fffffff,
-} SpvQuantizationModes;
+typedef enum SpirvQuantizationModes_ {
+    SpirvQuantizationModesTRN = 0,
+    SpirvQuantizationModesTRN_ZERO = 1,
+    SpirvQuantizationModesRND = 2,
+    SpirvQuantizationModesRND_ZERO = 3,
+    SpirvQuantizationModesRND_INF = 4,
+    SpirvQuantizationModesRND_MIN_INF = 5,
+    SpirvQuantizationModesRND_CONV = 6,
+    SpirvQuantizationModesRND_CONV_ODD = 7,
+    SpirvQuantizationModesMax = 0x7fffffff,
+} SpirvQuantizationModes;
 
-typedef enum SpvOverflowModes_ {
-    SpvOverflowModesWRAP = 0,
-    SpvOverflowModesSAT = 1,
-    SpvOverflowModesSAT_ZERO = 2,
-    SpvOverflowModesSAT_SYM = 3,
-    SpvOverflowModesMax = 0x7fffffff,
-} SpvOverflowModes;
+typedef enum SpirvOverflowModes_ {
+    SpirvOverflowModesWRAP = 0,
+    SpirvOverflowModesSAT = 1,
+    SpirvOverflowModesSAT_ZERO = 2,
+    SpirvOverflowModesSAT_SYM = 3,
+    SpirvOverflowModesMax = 0x7fffffff,
+} SpirvOverflowModes;
 
-typedef enum SpvPackedVectorFormat_ {
-    SpvPackedVectorFormatPackedVectorFormat4x8Bit = 0,
-    SpvPackedVectorFormatPackedVectorFormat4x8BitKHR = 0,
-    SpvPackedVectorFormatMax = 0x7fffffff,
-} SpvPackedVectorFormat;
+typedef enum SpirvPackedVectorFormat_ {
+    SpirvPackedVectorFormatPackedVectorFormat4x8Bit = 0,
+    SpirvPackedVectorFormatPackedVectorFormat4x8BitKHR = 0,
+    SpirvPackedVectorFormatMax = 0x7fffffff,
+} SpirvPackedVectorFormat;
 
-typedef enum SpvCooperativeMatrixOperandsShift_ {
-    SpvCooperativeMatrixOperandsMatrixASignedComponentsKHRShift = 0,
-    SpvCooperativeMatrixOperandsMatrixBSignedComponentsKHRShift = 1,
-    SpvCooperativeMatrixOperandsMatrixCSignedComponentsKHRShift = 2,
-    SpvCooperativeMatrixOperandsMatrixResultSignedComponentsKHRShift = 3,
-    SpvCooperativeMatrixOperandsSaturatingAccumulationKHRShift = 4,
-    SpvCooperativeMatrixOperandsMax = 0x7fffffff,
-} SpvCooperativeMatrixOperandsShift;
+typedef enum SpirvCooperativeMatrixOperandsShift_ {
+    SpirvCooperativeMatrixOperandsMatrixASignedComponentsKHRShift = 0,
+    SpirvCooperativeMatrixOperandsMatrixBSignedComponentsKHRShift = 1,
+    SpirvCooperativeMatrixOperandsMatrixCSignedComponentsKHRShift = 2,
+    SpirvCooperativeMatrixOperandsMatrixResultSignedComponentsKHRShift = 3,
+    SpirvCooperativeMatrixOperandsSaturatingAccumulationKHRShift = 4,
+    SpirvCooperativeMatrixOperandsMax = 0x7fffffff,
+} SpirvCooperativeMatrixOperandsShift;
 
-typedef enum SpvCooperativeMatrixOperandsMask_ {
-    SpvCooperativeMatrixOperandsMaskNone = 0,
-    SpvCooperativeMatrixOperandsMatrixASignedComponentsKHRMask = 0x00000001,
-    SpvCooperativeMatrixOperandsMatrixBSignedComponentsKHRMask = 0x00000002,
-    SpvCooperativeMatrixOperandsMatrixCSignedComponentsKHRMask = 0x00000004,
-    SpvCooperativeMatrixOperandsMatrixResultSignedComponentsKHRMask = 0x00000008,
-    SpvCooperativeMatrixOperandsSaturatingAccumulationKHRMask = 0x00000010,
-} SpvCooperativeMatrixOperandsMask;
+typedef enum SpirvCooperativeMatrixOperandsMask_ {
+    SpirvCooperativeMatrixOperandsMaskNone = 0,
+    SpirvCooperativeMatrixOperandsMatrixASignedComponentsKHRMask = 0x00000001,
+    SpirvCooperativeMatrixOperandsMatrixBSignedComponentsKHRMask = 0x00000002,
+    SpirvCooperativeMatrixOperandsMatrixCSignedComponentsKHRMask = 0x00000004,
+    SpirvCooperativeMatrixOperandsMatrixResultSignedComponentsKHRMask = 0x00000008,
+    SpirvCooperativeMatrixOperandsSaturatingAccumulationKHRMask = 0x00000010,
+} SpirvCooperativeMatrixOperandsMask;
 
-typedef enum SpvCooperativeMatrixLayout_ {
-    SpvCooperativeMatrixLayoutRowMajorKHR = 0,
-    SpvCooperativeMatrixLayoutColumnMajorKHR = 1,
-    SpvCooperativeMatrixLayoutMax = 0x7fffffff,
-} SpvCooperativeMatrixLayout;
+typedef enum SpirvCooperativeMatrixLayout_ {
+    SpirvCooperativeMatrixLayoutRowMajorKHR = 0,
+    SpirvCooperativeMatrixLayoutColumnMajorKHR = 1,
+    SpirvCooperativeMatrixLayoutMax = 0x7fffffff,
+} SpirvCooperativeMatrixLayout;
 
-typedef enum SpvCooperativeMatrixUse_ {
-    SpvCooperativeMatrixUseMatrixAKHR = 0,
-    SpvCooperativeMatrixUseMatrixBKHR = 1,
-    SpvCooperativeMatrixUseMatrixAccumulatorKHR = 2,
-    SpvCooperativeMatrixUseMax = 0x7fffffff,
-} SpvCooperativeMatrixUse;
+typedef enum SpirvCooperativeMatrixUse_ {
+    SpirvCooperativeMatrixUseMatrixAKHR = 0,
+    SpirvCooperativeMatrixUseMatrixBKHR = 1,
+    SpirvCooperativeMatrixUseMatrixAccumulatorKHR = 2,
+    SpirvCooperativeMatrixUseMax = 0x7fffffff,
+} SpirvCooperativeMatrixUse;
 
-typedef enum SpvInitializationModeQualifier_ {
-    SpvInitializationModeQualifierInitOnDeviceReprogramINTEL = 0,
-    SpvInitializationModeQualifierInitOnDeviceResetINTEL = 1,
-    SpvInitializationModeQualifierMax = 0x7fffffff,
-} SpvInitializationModeQualifier;
+typedef enum SpirvInitializationModeQualifier_ {
+    SpirvInitializationModeQualifierInitOnDeviceReprogramINTEL = 0,
+    SpirvInitializationModeQualifierInitOnDeviceResetINTEL = 1,
+    SpirvInitializationModeQualifierMax = 0x7fffffff,
+} SpirvInitializationModeQualifier;
 
-typedef enum SpvHostAccessQualifier_ {
-    SpvHostAccessQualifierNoneINTEL = 0,
-    SpvHostAccessQualifierReadINTEL = 1,
-    SpvHostAccessQualifierWriteINTEL = 2,
-    SpvHostAccessQualifierReadWriteINTEL = 3,
-    SpvHostAccessQualifierMax = 0x7fffffff,
-} SpvHostAccessQualifier;
+typedef enum SpirvHostAccessQualifier_ {
+    SpirvHostAccessQualifierNoneINTEL = 0,
+    SpirvHostAccessQualifierReadINTEL = 1,
+    SpirvHostAccessQualifierWriteINTEL = 2,
+    SpirvHostAccessQualifierReadWriteINTEL = 3,
+    SpirvHostAccessQualifierMax = 0x7fffffff,
+} SpirvHostAccessQualifier;
 
-typedef enum SpvLoadCacheControl_ {
-    SpvLoadCacheControlUncachedINTEL = 0,
-    SpvLoadCacheControlCachedINTEL = 1,
-    SpvLoadCacheControlStreamingINTEL = 2,
-    SpvLoadCacheControlInvalidateAfterReadINTEL = 3,
-    SpvLoadCacheControlConstCachedINTEL = 4,
-    SpvLoadCacheControlMax = 0x7fffffff,
-} SpvLoadCacheControl;
+typedef enum SpirvLoadCacheControl_ {
+    SpirvLoadCacheControlUncachedINTEL = 0,
+    SpirvLoadCacheControlCachedINTEL = 1,
+    SpirvLoadCacheControlStreamingINTEL = 2,
+    SpirvLoadCacheControlInvalidateAfterReadINTEL = 3,
+    SpirvLoadCacheControlConstCachedINTEL = 4,
+    SpirvLoadCacheControlMax = 0x7fffffff,
+} SpirvLoadCacheControl;
 
-typedef enum SpvStoreCacheControl_ {
-    SpvStoreCacheControlUncachedINTEL = 0,
-    SpvStoreCacheControlWriteThroughINTEL = 1,
-    SpvStoreCacheControlWriteBackINTEL = 2,
-    SpvStoreCacheControlStreamingINTEL = 3,
-    SpvStoreCacheControlMax = 0x7fffffff,
-} SpvStoreCacheControl;
+typedef enum SpirvStoreCacheControl_ {
+    SpirvStoreCacheControlUncachedINTEL = 0,
+    SpirvStoreCacheControlWriteThroughINTEL = 1,
+    SpirvStoreCacheControlWriteBackINTEL = 2,
+    SpirvStoreCacheControlStreamingINTEL = 3,
+    SpirvStoreCacheControlMax = 0x7fffffff,
+} SpirvStoreCacheControl;
 
-typedef enum SpvOp_ {
-    SpvOpNop = 0,
-    SpvOpUndef = 1,
-    SpvOpSourceContinued = 2,
-    SpvOpSource = 3,
-    SpvOpSourceExtension = 4,
-    SpvOpName = 5,
-    SpvOpMemberName = 6,
-    SpvOpString = 7,
-    SpvOpLine = 8,
-    SpvOpExtension = 10,
-    SpvOpExtInstImport = 11,
-    SpvOpExtInst = 12,
-    SpvOpMemoryModel = 14,
-    SpvOpEntryPoint = 15,
-    SpvOpExecutionMode = 16,
-    SpvOpCapability = 17,
-    SpvOpTypeVoid = 19,
-    SpvOpTypeBool = 20,
-    SpvOpTypeInt = 21,
-    SpvOpTypeFloat = 22,
-    SpvOpTypeVector = 23,
-    SpvOpTypeMatrix = 24,
-    SpvOpTypeImage = 25,
-    SpvOpTypeSampler = 26,
-    SpvOpTypeSampledImage = 27,
-    SpvOpTypeArray = 28,
-    SpvOpTypeRuntimeArray = 29,
-    SpvOpTypeStruct = 30,
-    SpvOpTypeOpaque = 31,
-    SpvOpTypePointer = 32,
-    SpvOpTypeFunction = 33,
-    SpvOpTypeEvent = 34,
-    SpvOpTypeDeviceEvent = 35,
-    SpvOpTypeReserveId = 36,
-    SpvOpTypeQueue = 37,
-    SpvOpTypePipe = 38,
-    SpvOpTypeForwardPointer = 39,
-    SpvOpConstantTrue = 41,
-    SpvOpConstantFalse = 42,
-    SpvOpConstant = 43,
-    SpvOpConstantComposite = 44,
-    SpvOpConstantSampler = 45,
-    SpvOpConstantNull = 46,
-    SpvOpSpecConstantTrue = 48,
-    SpvOpSpecConstantFalse = 49,
-    SpvOpSpecConstant = 50,
-    SpvOpSpecConstantComposite = 51,
-    SpvOpSpecConstantOp = 52,
-    SpvOpFunction = 54,
-    SpvOpFunctionParameter = 55,
-    SpvOpFunctionEnd = 56,
-    SpvOpFunctionCall = 57,
-    SpvOpVariable = 59,
-    SpvOpImageTexelPointer = 60,
-    SpvOpLoad = 61,
-    SpvOpStore = 62,
-    SpvOpCopyMemory = 63,
-    SpvOpCopyMemorySized = 64,
-    SpvOpAccessChain = 65,
-    SpvOpInBoundsAccessChain = 66,
-    SpvOpPtrAccessChain = 67,
-    SpvOpArrayLength = 68,
-    SpvOpGenericPtrMemSemantics = 69,
-    SpvOpInBoundsPtrAccessChain = 70,
-    SpvOpDecorate = 71,
-    SpvOpMemberDecorate = 72,
-    SpvOpDecorationGroup = 73,
-    SpvOpGroupDecorate = 74,
-    SpvOpGroupMemberDecorate = 75,
-    SpvOpVectorExtractDynamic = 77,
-    SpvOpVectorInsertDynamic = 78,
-    SpvOpVectorShuffle = 79,
-    SpvOpCompositeConstruct = 80,
-    SpvOpCompositeExtract = 81,
-    SpvOpCompositeInsert = 82,
-    SpvOpCopyObject = 83,
-    SpvOpTranspose = 84,
-    SpvOpSampledImage = 86,
-    SpvOpImageSampleImplicitLod = 87,
-    SpvOpImageSampleExplicitLod = 88,
-    SpvOpImageSampleDrefImplicitLod = 89,
-    SpvOpImageSampleDrefExplicitLod = 90,
-    SpvOpImageSampleProjImplicitLod = 91,
-    SpvOpImageSampleProjExplicitLod = 92,
-    SpvOpImageSampleProjDrefImplicitLod = 93,
-    SpvOpImageSampleProjDrefExplicitLod = 94,
-    SpvOpImageFetch = 95,
-    SpvOpImageGather = 96,
-    SpvOpImageDrefGather = 97,
-    SpvOpImageRead = 98,
-    SpvOpImageWrite = 99,
-    SpvOpImage = 100,
-    SpvOpImageQueryFormat = 101,
-    SpvOpImageQueryOrder = 102,
-    SpvOpImageQuerySizeLod = 103,
-    SpvOpImageQuerySize = 104,
-    SpvOpImageQueryLod = 105,
-    SpvOpImageQueryLevels = 106,
-    SpvOpImageQuerySamples = 107,
-    SpvOpConvertFToU = 109,
-    SpvOpConvertFToS = 110,
-    SpvOpConvertSToF = 111,
-    SpvOpConvertUToF = 112,
-    SpvOpUConvert = 113,
-    SpvOpSConvert = 114,
-    SpvOpFConvert = 115,
-    SpvOpQuantizeToF16 = 116,
-    SpvOpConvertPtrToU = 117,
-    SpvOpSatConvertSToU = 118,
-    SpvOpSatConvertUToS = 119,
-    SpvOpConvertUToPtr = 120,
-    SpvOpPtrCastToGeneric = 121,
-    SpvOpGenericCastToPtr = 122,
-    SpvOpGenericCastToPtrExplicit = 123,
-    SpvOpBitcast = 124,
-    SpvOpSNegate = 126,
-    SpvOpFNegate = 127,
-    SpvOpIAdd = 128,
-    SpvOpFAdd = 129,
-    SpvOpISub = 130,
-    SpvOpFSub = 131,
-    SpvOpIMul = 132,
-    SpvOpFMul = 133,
-    SpvOpUDiv = 134,
-    SpvOpSDiv = 135,
-    SpvOpFDiv = 136,
-    SpvOpUMod = 137,
-    SpvOpSRem = 138,
-    SpvOpSMod = 139,
-    SpvOpFRem = 140,
-    SpvOpFMod = 141,
-    SpvOpVectorTimesScalar = 142,
-    SpvOpMatrixTimesScalar = 143,
-    SpvOpVectorTimesMatrix = 144,
-    SpvOpMatrixTimesVector = 145,
-    SpvOpMatrixTimesMatrix = 146,
-    SpvOpOuterProduct = 147,
-    SpvOpDot = 148,
-    SpvOpIAddCarry = 149,
-    SpvOpISubBorrow = 150,
-    SpvOpUMulExtended = 151,
-    SpvOpSMulExtended = 152,
-    SpvOpAny = 154,
-    SpvOpAll = 155,
-    SpvOpIsNan = 156,
-    SpvOpIsInf = 157,
-    SpvOpIsFinite = 158,
-    SpvOpIsNormal = 159,
-    SpvOpSignBitSet = 160,
-    SpvOpLessOrGreater = 161,
-    SpvOpOrdered = 162,
-    SpvOpUnordered = 163,
-    SpvOpLogicalEqual = 164,
-    SpvOpLogicalNotEqual = 165,
-    SpvOpLogicalOr = 166,
-    SpvOpLogicalAnd = 167,
-    SpvOpLogicalNot = 168,
-    SpvOpSelect = 169,
-    SpvOpIEqual = 170,
-    SpvOpINotEqual = 171,
-    SpvOpUGreaterThan = 172,
-    SpvOpSGreaterThan = 173,
-    SpvOpUGreaterThanEqual = 174,
-    SpvOpSGreaterThanEqual = 175,
-    SpvOpULessThan = 176,
-    SpvOpSLessThan = 177,
-    SpvOpULessThanEqual = 178,
-    SpvOpSLessThanEqual = 179,
-    SpvOpFOrdEqual = 180,
-    SpvOpFUnordEqual = 181,
-    SpvOpFOrdNotEqual = 182,
-    SpvOpFUnordNotEqual = 183,
-    SpvOpFOrdLessThan = 184,
-    SpvOpFUnordLessThan = 185,
-    SpvOpFOrdGreaterThan = 186,
-    SpvOpFUnordGreaterThan = 187,
-    SpvOpFOrdLessThanEqual = 188,
-    SpvOpFUnordLessThanEqual = 189,
-    SpvOpFOrdGreaterThanEqual = 190,
-    SpvOpFUnordGreaterThanEqual = 191,
-    SpvOpShiftRightLogical = 194,
-    SpvOpShiftRightArithmetic = 195,
-    SpvOpShiftLeftLogical = 196,
-    SpvOpBitwiseOr = 197,
-    SpvOpBitwiseXor = 198,
-    SpvOpBitwiseAnd = 199,
-    SpvOpNot = 200,
-    SpvOpBitFieldInsert = 201,
-    SpvOpBitFieldSExtract = 202,
-    SpvOpBitFieldUExtract = 203,
-    SpvOpBitReverse = 204,
-    SpvOpBitCount = 205,
-    SpvOpDPdx = 207,
-    SpvOpDPdy = 208,
-    SpvOpFwidth = 209,
-    SpvOpDPdxFine = 210,
-    SpvOpDPdyFine = 211,
-    SpvOpFwidthFine = 212,
-    SpvOpDPdxCoarse = 213,
-    SpvOpDPdyCoarse = 214,
-    SpvOpFwidthCoarse = 215,
-    SpvOpEmitVertex = 218,
-    SpvOpEndPrimitive = 219,
-    SpvOpEmitStreamVertex = 220,
-    SpvOpEndStreamPrimitive = 221,
-    SpvOpControlBarrier = 224,
-    SpvOpMemoryBarrier = 225,
-    SpvOpAtomicLoad = 227,
-    SpvOpAtomicStore = 228,
-    SpvOpAtomicExchange = 229,
-    SpvOpAtomicCompareExchange = 230,
-    SpvOpAtomicCompareExchangeWeak = 231,
-    SpvOpAtomicIIncrement = 232,
-    SpvOpAtomicIDecrement = 233,
-    SpvOpAtomicIAdd = 234,
-    SpvOpAtomicISub = 235,
-    SpvOpAtomicSMin = 236,
-    SpvOpAtomicUMin = 237,
-    SpvOpAtomicSMax = 238,
-    SpvOpAtomicUMax = 239,
-    SpvOpAtomicAnd = 240,
-    SpvOpAtomicOr = 241,
-    SpvOpAtomicXor = 242,
-    SpvOpPhi = 245,
-    SpvOpLoopMerge = 246,
-    SpvOpSelectionMerge = 247,
-    SpvOpLabel = 248,
-    SpvOpBranch = 249,
-    SpvOpBranchConditional = 250,
-    SpvOpSwitch = 251,
-    SpvOpKill = 252,
-    SpvOpReturn = 253,
-    SpvOpReturnValue = 254,
-    SpvOpUnreachable = 255,
-    SpvOpLifetimeStart = 256,
-    SpvOpLifetimeStop = 257,
-    SpvOpGroupAsyncCopy = 259,
-    SpvOpGroupWaitEvents = 260,
-    SpvOpGroupAll = 261,
-    SpvOpGroupAny = 262,
-    SpvOpGroupBroadcast = 263,
-    SpvOpGroupIAdd = 264,
-    SpvOpGroupFAdd = 265,
-    SpvOpGroupFMin = 266,
-    SpvOpGroupUMin = 267,
-    SpvOpGroupSMin = 268,
-    SpvOpGroupFMax = 269,
-    SpvOpGroupUMax = 270,
-    SpvOpGroupSMax = 271,
-    SpvOpReadPipe = 274,
-    SpvOpWritePipe = 275,
-    SpvOpReservedReadPipe = 276,
-    SpvOpReservedWritePipe = 277,
-    SpvOpReserveReadPipePackets = 278,
-    SpvOpReserveWritePipePackets = 279,
-    SpvOpCommitReadPipe = 280,
-    SpvOpCommitWritePipe = 281,
-    SpvOpIsValidReserveId = 282,
-    SpvOpGetNumPipePackets = 283,
-    SpvOpGetMaxPipePackets = 284,
-    SpvOpGroupReserveReadPipePackets = 285,
-    SpvOpGroupReserveWritePipePackets = 286,
-    SpvOpGroupCommitReadPipe = 287,
-    SpvOpGroupCommitWritePipe = 288,
-    SpvOpEnqueueMarker = 291,
-    SpvOpEnqueueKernel = 292,
-    SpvOpGetKernelNDrangeSubGroupCount = 293,
-    SpvOpGetKernelNDrangeMaxSubGroupSize = 294,
-    SpvOpGetKernelWorkGroupSize = 295,
-    SpvOpGetKernelPreferredWorkGroupSizeMultiple = 296,
-    SpvOpRetainEvent = 297,
-    SpvOpReleaseEvent = 298,
-    SpvOpCreateUserEvent = 299,
-    SpvOpIsValidEvent = 300,
-    SpvOpSetUserEventStatus = 301,
-    SpvOpCaptureEventProfilingInfo = 302,
-    SpvOpGetDefaultQueue = 303,
-    SpvOpBuildNDRange = 304,
-    SpvOpImageSparseSampleImplicitLod = 305,
-    SpvOpImageSparseSampleExplicitLod = 306,
-    SpvOpImageSparseSampleDrefImplicitLod = 307,
-    SpvOpImageSparseSampleDrefExplicitLod = 308,
-    SpvOpImageSparseSampleProjImplicitLod = 309,
-    SpvOpImageSparseSampleProjExplicitLod = 310,
-    SpvOpImageSparseSampleProjDrefImplicitLod = 311,
-    SpvOpImageSparseSampleProjDrefExplicitLod = 312,
-    SpvOpImageSparseFetch = 313,
-    SpvOpImageSparseGather = 314,
-    SpvOpImageSparseDrefGather = 315,
-    SpvOpImageSparseTexelsResident = 316,
-    SpvOpNoLine = 317,
-    SpvOpAtomicFlagTestAndSet = 318,
-    SpvOpAtomicFlagClear = 319,
-    SpvOpImageSparseRead = 320,
-    SpvOpSizeOf = 321,
-    SpvOpTypePipeStorage = 322,
-    SpvOpConstantPipeStorage = 323,
-    SpvOpCreatePipeFromPipeStorage = 324,
-    SpvOpGetKernelLocalSizeForSubgroupCount = 325,
-    SpvOpGetKernelMaxNumSubgroups = 326,
-    SpvOpTypeNamedBarrier = 327,
-    SpvOpNamedBarrierInitialize = 328,
-    SpvOpMemoryNamedBarrier = 329,
-    SpvOpModuleProcessed = 330,
-    SpvOpExecutionModeId = 331,
-    SpvOpDecorateId = 332,
-    SpvOpGroupNonUniformElect = 333,
-    SpvOpGroupNonUniformAll = 334,
-    SpvOpGroupNonUniformAny = 335,
-    SpvOpGroupNonUniformAllEqual = 336,
-    SpvOpGroupNonUniformBroadcast = 337,
-    SpvOpGroupNonUniformBroadcastFirst = 338,
-    SpvOpGroupNonUniformBallot = 339,
-    SpvOpGroupNonUniformInverseBallot = 340,
-    SpvOpGroupNonUniformBallotBitExtract = 341,
-    SpvOpGroupNonUniformBallotBitCount = 342,
-    SpvOpGroupNonUniformBallotFindLSB = 343,
-    SpvOpGroupNonUniformBallotFindMSB = 344,
-    SpvOpGroupNonUniformShuffle = 345,
-    SpvOpGroupNonUniformShuffleXor = 346,
-    SpvOpGroupNonUniformShuffleUp = 347,
-    SpvOpGroupNonUniformShuffleDown = 348,
-    SpvOpGroupNonUniformIAdd = 349,
-    SpvOpGroupNonUniformFAdd = 350,
-    SpvOpGroupNonUniformIMul = 351,
-    SpvOpGroupNonUniformFMul = 352,
-    SpvOpGroupNonUniformSMin = 353,
-    SpvOpGroupNonUniformUMin = 354,
-    SpvOpGroupNonUniformFMin = 355,
-    SpvOpGroupNonUniformSMax = 356,
-    SpvOpGroupNonUniformUMax = 357,
-    SpvOpGroupNonUniformFMax = 358,
-    SpvOpGroupNonUniformBitwiseAnd = 359,
-    SpvOpGroupNonUniformBitwiseOr = 360,
-    SpvOpGroupNonUniformBitwiseXor = 361,
-    SpvOpGroupNonUniformLogicalAnd = 362,
-    SpvOpGroupNonUniformLogicalOr = 363,
-    SpvOpGroupNonUniformLogicalXor = 364,
-    SpvOpGroupNonUniformQuadBroadcast = 365,
-    SpvOpGroupNonUniformQuadSwap = 366,
-    SpvOpCopyLogical = 400,
-    SpvOpPtrEqual = 401,
-    SpvOpPtrNotEqual = 402,
-    SpvOpPtrDiff = 403,
-    SpvOpColorAttachmentReadEXT = 4160,
-    SpvOpDepthAttachmentReadEXT = 4161,
-    SpvOpStencilAttachmentReadEXT = 4162,
-    SpvOpTerminateInvocation = 4416,
-    SpvOpSubgroupBallotKHR = 4421,
-    SpvOpSubgroupFirstInvocationKHR = 4422,
-    SpvOpSubgroupAllKHR = 4428,
-    SpvOpSubgroupAnyKHR = 4429,
-    SpvOpSubgroupAllEqualKHR = 4430,
-    SpvOpGroupNonUniformRotateKHR = 4431,
-    SpvOpSubgroupReadInvocationKHR = 4432,
-    SpvOpTraceRayKHR = 4445,
-    SpvOpExecuteCallableKHR = 4446,
-    SpvOpConvertUToAccelerationStructureKHR = 4447,
-    SpvOpIgnoreIntersectionKHR = 4448,
-    SpvOpTerminateRayKHR = 4449,
-    SpvOpSDot = 4450,
-    SpvOpSDotKHR = 4450,
-    SpvOpUDot = 4451,
-    SpvOpUDotKHR = 4451,
-    SpvOpSUDot = 4452,
-    SpvOpSUDotKHR = 4452,
-    SpvOpSDotAccSat = 4453,
-    SpvOpSDotAccSatKHR = 4453,
-    SpvOpUDotAccSat = 4454,
-    SpvOpUDotAccSatKHR = 4454,
-    SpvOpSUDotAccSat = 4455,
-    SpvOpSUDotAccSatKHR = 4455,
-    SpvOpTypeCooperativeMatrixKHR = 4456,
-    SpvOpCooperativeMatrixLoadKHR = 4457,
-    SpvOpCooperativeMatrixStoreKHR = 4458,
-    SpvOpCooperativeMatrixMulAddKHR = 4459,
-    SpvOpCooperativeMatrixLengthKHR = 4460,
-    SpvOpTypeRayQueryKHR = 4472,
-    SpvOpRayQueryInitializeKHR = 4473,
-    SpvOpRayQueryTerminateKHR = 4474,
-    SpvOpRayQueryGenerateIntersectionKHR = 4475,
-    SpvOpRayQueryConfirmIntersectionKHR = 4476,
-    SpvOpRayQueryProceedKHR = 4477,
-    SpvOpRayQueryGetIntersectionTypeKHR = 4479,
-    SpvOpImageSampleWeightedQCOM = 4480,
-    SpvOpImageBoxFilterQCOM = 4481,
-    SpvOpImageBlockMatchSSDQCOM = 4482,
-    SpvOpImageBlockMatchSADQCOM = 4483,
-    SpvOpGroupIAddNonUniformAMD = 5000,
-    SpvOpGroupFAddNonUniformAMD = 5001,
-    SpvOpGroupFMinNonUniformAMD = 5002,
-    SpvOpGroupUMinNonUniformAMD = 5003,
-    SpvOpGroupSMinNonUniformAMD = 5004,
-    SpvOpGroupFMaxNonUniformAMD = 5005,
-    SpvOpGroupUMaxNonUniformAMD = 5006,
-    SpvOpGroupSMaxNonUniformAMD = 5007,
-    SpvOpFragmentMaskFetchAMD = 5011,
-    SpvOpFragmentFetchAMD = 5012,
-    SpvOpReadClockKHR = 5056,
-    SpvOpFinalizeNodePayloadsAMDX = 5075,
-    SpvOpFinishWritingNodePayloadAMDX = 5078,
-    SpvOpInitializeNodePayloadsAMDX = 5090,
-    SpvOpHitObjectRecordHitMotionNV = 5249,
-    SpvOpHitObjectRecordHitWithIndexMotionNV = 5250,
-    SpvOpHitObjectRecordMissMotionNV = 5251,
-    SpvOpHitObjectGetWorldToObjectNV = 5252,
-    SpvOpHitObjectGetObjectToWorldNV = 5253,
-    SpvOpHitObjectGetObjectRayDirectionNV = 5254,
-    SpvOpHitObjectGetObjectRayOriginNV = 5255,
-    SpvOpHitObjectTraceRayMotionNV = 5256,
-    SpvOpHitObjectGetShaderRecordBufferHandleNV = 5257,
-    SpvOpHitObjectGetShaderBindingTableRecordIndexNV = 5258,
-    SpvOpHitObjectRecordEmptyNV = 5259,
-    SpvOpHitObjectTraceRayNV = 5260,
-    SpvOpHitObjectRecordHitNV = 5261,
-    SpvOpHitObjectRecordHitWithIndexNV = 5262,
-    SpvOpHitObjectRecordMissNV = 5263,
-    SpvOpHitObjectExecuteShaderNV = 5264,
-    SpvOpHitObjectGetCurrentTimeNV = 5265,
-    SpvOpHitObjectGetAttributesNV = 5266,
-    SpvOpHitObjectGetHitKindNV = 5267,
-    SpvOpHitObjectGetPrimitiveIndexNV = 5268,
-    SpvOpHitObjectGetGeometryIndexNV = 5269,
-    SpvOpHitObjectGetInstanceIdNV = 5270,
-    SpvOpHitObjectGetInstanceCustomIndexNV = 5271,
-    SpvOpHitObjectGetWorldRayDirectionNV = 5272,
-    SpvOpHitObjectGetWorldRayOriginNV = 5273,
-    SpvOpHitObjectGetRayTMaxNV = 5274,
-    SpvOpHitObjectGetRayTMinNV = 5275,
-    SpvOpHitObjectIsEmptyNV = 5276,
-    SpvOpHitObjectIsHitNV = 5277,
-    SpvOpHitObjectIsMissNV = 5278,
-    SpvOpReorderThreadWithHitObjectNV = 5279,
-    SpvOpReorderThreadWithHintNV = 5280,
-    SpvOpTypeHitObjectNV = 5281,
-    SpvOpImageSampleFootprintNV = 5283,
-    SpvOpEmitMeshTasksEXT = 5294,
-    SpvOpSetMeshOutputsEXT = 5295,
-    SpvOpGroupNonUniformPartitionNV = 5296,
-    SpvOpWritePackedPrimitiveIndices4x8NV = 5299,
-    SpvOpFetchMicroTriangleVertexPositionNV = 5300,
-    SpvOpFetchMicroTriangleVertexBarycentricNV = 5301,
-    SpvOpReportIntersectionKHR = 5334,
-    SpvOpReportIntersectionNV = 5334,
-    SpvOpIgnoreIntersectionNV = 5335,
-    SpvOpTerminateRayNV = 5336,
-    SpvOpTraceNV = 5337,
-    SpvOpTraceMotionNV = 5338,
-    SpvOpTraceRayMotionNV = 5339,
-    SpvOpRayQueryGetIntersectionTriangleVertexPositionsKHR = 5340,
-    SpvOpTypeAccelerationStructureKHR = 5341,
-    SpvOpTypeAccelerationStructureNV = 5341,
-    SpvOpExecuteCallableNV = 5344,
-    SpvOpTypeCooperativeMatrixNV = 5358,
-    SpvOpCooperativeMatrixLoadNV = 5359,
-    SpvOpCooperativeMatrixStoreNV = 5360,
-    SpvOpCooperativeMatrixMulAddNV = 5361,
-    SpvOpCooperativeMatrixLengthNV = 5362,
-    SpvOpBeginInvocationInterlockEXT = 5364,
-    SpvOpEndInvocationInterlockEXT = 5365,
-    SpvOpDemoteToHelperInvocation = 5380,
-    SpvOpDemoteToHelperInvocationEXT = 5380,
-    SpvOpIsHelperInvocationEXT = 5381,
-    SpvOpConvertUToImageNV = 5391,
-    SpvOpConvertUToSamplerNV = 5392,
-    SpvOpConvertImageToUNV = 5393,
-    SpvOpConvertSamplerToUNV = 5394,
-    SpvOpConvertUToSampledImageNV = 5395,
-    SpvOpConvertSampledImageToUNV = 5396,
-    SpvOpSamplerImageAddressingModeNV = 5397,
-    SpvOpSubgroupShuffleINTEL = 5571,
-    SpvOpSubgroupShuffleDownINTEL = 5572,
-    SpvOpSubgroupShuffleUpINTEL = 5573,
-    SpvOpSubgroupShuffleXorINTEL = 5574,
-    SpvOpSubgroupBlockReadINTEL = 5575,
-    SpvOpSubgroupBlockWriteINTEL = 5576,
-    SpvOpSubgroupImageBlockReadINTEL = 5577,
-    SpvOpSubgroupImageBlockWriteINTEL = 5578,
-    SpvOpSubgroupImageMediaBlockReadINTEL = 5580,
-    SpvOpSubgroupImageMediaBlockWriteINTEL = 5581,
-    SpvOpUCountLeadingZerosINTEL = 5585,
-    SpvOpUCountTrailingZerosINTEL = 5586,
-    SpvOpAbsISubINTEL = 5587,
-    SpvOpAbsUSubINTEL = 5588,
-    SpvOpIAddSatINTEL = 5589,
-    SpvOpUAddSatINTEL = 5590,
-    SpvOpIAverageINTEL = 5591,
-    SpvOpUAverageINTEL = 5592,
-    SpvOpIAverageRoundedINTEL = 5593,
-    SpvOpUAverageRoundedINTEL = 5594,
-    SpvOpISubSatINTEL = 5595,
-    SpvOpUSubSatINTEL = 5596,
-    SpvOpIMul32x16INTEL = 5597,
-    SpvOpUMul32x16INTEL = 5598,
-    SpvOpConstantFunctionPointerINTEL = 5600,
-    SpvOpFunctionPointerCallINTEL = 5601,
-    SpvOpAsmTargetINTEL = 5609,
-    SpvOpAsmINTEL = 5610,
-    SpvOpAsmCallINTEL = 5611,
-    SpvOpAtomicFMinEXT = 5614,
-    SpvOpAtomicFMaxEXT = 5615,
-    SpvOpAssumeTrueKHR = 5630,
-    SpvOpExpectKHR = 5631,
-    SpvOpDecorateString = 5632,
-    SpvOpDecorateStringGOOGLE = 5632,
-    SpvOpMemberDecorateString = 5633,
-    SpvOpMemberDecorateStringGOOGLE = 5633,
-    SpvOpVmeImageINTEL = 5699,
-    SpvOpTypeVmeImageINTEL = 5700,
-    SpvOpTypeAvcImePayloadINTEL = 5701,
-    SpvOpTypeAvcRefPayloadINTEL = 5702,
-    SpvOpTypeAvcSicPayloadINTEL = 5703,
-    SpvOpTypeAvcMcePayloadINTEL = 5704,
-    SpvOpTypeAvcMceResultINTEL = 5705,
-    SpvOpTypeAvcImeResultINTEL = 5706,
-    SpvOpTypeAvcImeResultSingleReferenceStreamoutINTEL = 5707,
-    SpvOpTypeAvcImeResultDualReferenceStreamoutINTEL = 5708,
-    SpvOpTypeAvcImeSingleReferenceStreaminINTEL = 5709,
-    SpvOpTypeAvcImeDualReferenceStreaminINTEL = 5710,
-    SpvOpTypeAvcRefResultINTEL = 5711,
-    SpvOpTypeAvcSicResultINTEL = 5712,
-    SpvOpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL = 5713,
-    SpvOpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL = 5714,
-    SpvOpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL = 5715,
-    SpvOpSubgroupAvcMceSetInterShapePenaltyINTEL = 5716,
-    SpvOpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL = 5717,
-    SpvOpSubgroupAvcMceSetInterDirectionPenaltyINTEL = 5718,
-    SpvOpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL = 5719,
-    SpvOpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL = 5720,
-    SpvOpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL = 5721,
-    SpvOpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL = 5722,
-    SpvOpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL = 5723,
-    SpvOpSubgroupAvcMceSetMotionVectorCostFunctionINTEL = 5724,
-    SpvOpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL = 5725,
-    SpvOpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL = 5726,
-    SpvOpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL = 5727,
-    SpvOpSubgroupAvcMceSetAcOnlyHaarINTEL = 5728,
-    SpvOpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL = 5729,
-    SpvOpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL = 5730,
-    SpvOpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL = 5731,
-    SpvOpSubgroupAvcMceConvertToImePayloadINTEL = 5732,
-    SpvOpSubgroupAvcMceConvertToImeResultINTEL = 5733,
-    SpvOpSubgroupAvcMceConvertToRefPayloadINTEL = 5734,
-    SpvOpSubgroupAvcMceConvertToRefResultINTEL = 5735,
-    SpvOpSubgroupAvcMceConvertToSicPayloadINTEL = 5736,
-    SpvOpSubgroupAvcMceConvertToSicResultINTEL = 5737,
-    SpvOpSubgroupAvcMceGetMotionVectorsINTEL = 5738,
-    SpvOpSubgroupAvcMceGetInterDistortionsINTEL = 5739,
-    SpvOpSubgroupAvcMceGetBestInterDistortionsINTEL = 5740,
-    SpvOpSubgroupAvcMceGetInterMajorShapeINTEL = 5741,
-    SpvOpSubgroupAvcMceGetInterMinorShapeINTEL = 5742,
-    SpvOpSubgroupAvcMceGetInterDirectionsINTEL = 5743,
-    SpvOpSubgroupAvcMceGetInterMotionVectorCountINTEL = 5744,
-    SpvOpSubgroupAvcMceGetInterReferenceIdsINTEL = 5745,
-    SpvOpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL = 5746,
-    SpvOpSubgroupAvcImeInitializeINTEL = 5747,
-    SpvOpSubgroupAvcImeSetSingleReferenceINTEL = 5748,
-    SpvOpSubgroupAvcImeSetDualReferenceINTEL = 5749,
-    SpvOpSubgroupAvcImeRefWindowSizeINTEL = 5750,
-    SpvOpSubgroupAvcImeAdjustRefOffsetINTEL = 5751,
-    SpvOpSubgroupAvcImeConvertToMcePayloadINTEL = 5752,
-    SpvOpSubgroupAvcImeSetMaxMotionVectorCountINTEL = 5753,
-    SpvOpSubgroupAvcImeSetUnidirectionalMixDisableINTEL = 5754,
-    SpvOpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL = 5755,
-    SpvOpSubgroupAvcImeSetWeightedSadINTEL = 5756,
-    SpvOpSubgroupAvcImeEvaluateWithSingleReferenceINTEL = 5757,
-    SpvOpSubgroupAvcImeEvaluateWithDualReferenceINTEL = 5758,
-    SpvOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL = 5759,
-    SpvOpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL = 5760,
-    SpvOpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL = 5761,
-    SpvOpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL = 5762,
-    SpvOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL = 5763,
-    SpvOpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL = 5764,
-    SpvOpSubgroupAvcImeConvertToMceResultINTEL = 5765,
-    SpvOpSubgroupAvcImeGetSingleReferenceStreaminINTEL = 5766,
-    SpvOpSubgroupAvcImeGetDualReferenceStreaminINTEL = 5767,
-    SpvOpSubgroupAvcImeStripSingleReferenceStreamoutINTEL = 5768,
-    SpvOpSubgroupAvcImeStripDualReferenceStreamoutINTEL = 5769,
-    SpvOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectorsINTEL = 5770,
-    SpvOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsINTEL = 5771,
-    SpvOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsINTEL = 5772,
-    SpvOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsINTEL = 5773,
-    SpvOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTEL = 5774,
-    SpvOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINTEL = 5775,
-    SpvOpSubgroupAvcImeGetBorderReachedINTEL = 5776,
-    SpvOpSubgroupAvcImeGetTruncatedSearchIndicationINTEL = 5777,
-    SpvOpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL = 5778,
-    SpvOpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL = 5779,
-    SpvOpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL = 5780,
-    SpvOpSubgroupAvcFmeInitializeINTEL = 5781,
-    SpvOpSubgroupAvcBmeInitializeINTEL = 5782,
-    SpvOpSubgroupAvcRefConvertToMcePayloadINTEL = 5783,
-    SpvOpSubgroupAvcRefSetBidirectionalMixDisableINTEL = 5784,
-    SpvOpSubgroupAvcRefSetBilinearFilterEnableINTEL = 5785,
-    SpvOpSubgroupAvcRefEvaluateWithSingleReferenceINTEL = 5786,
-    SpvOpSubgroupAvcRefEvaluateWithDualReferenceINTEL = 5787,
-    SpvOpSubgroupAvcRefEvaluateWithMultiReferenceINTEL = 5788,
-    SpvOpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL = 5789,
-    SpvOpSubgroupAvcRefConvertToMceResultINTEL = 5790,
-    SpvOpSubgroupAvcSicInitializeINTEL = 5791,
-    SpvOpSubgroupAvcSicConfigureSkcINTEL = 5792,
-    SpvOpSubgroupAvcSicConfigureIpeLumaINTEL = 5793,
-    SpvOpSubgroupAvcSicConfigureIpeLumaChromaINTEL = 5794,
-    SpvOpSubgroupAvcSicGetMotionVectorMaskINTEL = 5795,
-    SpvOpSubgroupAvcSicConvertToMcePayloadINTEL = 5796,
-    SpvOpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL = 5797,
-    SpvOpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL = 5798,
-    SpvOpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL = 5799,
-    SpvOpSubgroupAvcSicSetBilinearFilterEnableINTEL = 5800,
-    SpvOpSubgroupAvcSicSetSkcForwardTransformEnableINTEL = 5801,
-    SpvOpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL = 5802,
-    SpvOpSubgroupAvcSicEvaluateIpeINTEL = 5803,
-    SpvOpSubgroupAvcSicEvaluateWithSingleReferenceINTEL = 5804,
-    SpvOpSubgroupAvcSicEvaluateWithDualReferenceINTEL = 5805,
-    SpvOpSubgroupAvcSicEvaluateWithMultiReferenceINTEL = 5806,
-    SpvOpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL = 5807,
-    SpvOpSubgroupAvcSicConvertToMceResultINTEL = 5808,
-    SpvOpSubgroupAvcSicGetIpeLumaShapeINTEL = 5809,
-    SpvOpSubgroupAvcSicGetBestIpeLumaDistortionINTEL = 5810,
-    SpvOpSubgroupAvcSicGetBestIpeChromaDistortionINTEL = 5811,
-    SpvOpSubgroupAvcSicGetPackedIpeLumaModesINTEL = 5812,
-    SpvOpSubgroupAvcSicGetIpeChromaModeINTEL = 5813,
-    SpvOpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL = 5814,
-    SpvOpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL = 5815,
-    SpvOpSubgroupAvcSicGetInterRawSadsINTEL = 5816,
-    SpvOpVariableLengthArrayINTEL = 5818,
-    SpvOpSaveMemoryINTEL = 5819,
-    SpvOpRestoreMemoryINTEL = 5820,
-    SpvOpArbitraryFloatSinCosPiINTEL = 5840,
-    SpvOpArbitraryFloatCastINTEL = 5841,
-    SpvOpArbitraryFloatCastFromIntINTEL = 5842,
-    SpvOpArbitraryFloatCastToIntINTEL = 5843,
-    SpvOpArbitraryFloatAddINTEL = 5846,
-    SpvOpArbitraryFloatSubINTEL = 5847,
-    SpvOpArbitraryFloatMulINTEL = 5848,
-    SpvOpArbitraryFloatDivINTEL = 5849,
-    SpvOpArbitraryFloatGTINTEL = 5850,
-    SpvOpArbitraryFloatGEINTEL = 5851,
-    SpvOpArbitraryFloatLTINTEL = 5852,
-    SpvOpArbitraryFloatLEINTEL = 5853,
-    SpvOpArbitraryFloatEQINTEL = 5854,
-    SpvOpArbitraryFloatRecipINTEL = 5855,
-    SpvOpArbitraryFloatRSqrtINTEL = 5856,
-    SpvOpArbitraryFloatCbrtINTEL = 5857,
-    SpvOpArbitraryFloatHypotINTEL = 5858,
-    SpvOpArbitraryFloatSqrtINTEL = 5859,
-    SpvOpArbitraryFloatLogINTEL = 5860,
-    SpvOpArbitraryFloatLog2INTEL = 5861,
-    SpvOpArbitraryFloatLog10INTEL = 5862,
-    SpvOpArbitraryFloatLog1pINTEL = 5863,
-    SpvOpArbitraryFloatExpINTEL = 5864,
-    SpvOpArbitraryFloatExp2INTEL = 5865,
-    SpvOpArbitraryFloatExp10INTEL = 5866,
-    SpvOpArbitraryFloatExpm1INTEL = 5867,
-    SpvOpArbitraryFloatSinINTEL = 5868,
-    SpvOpArbitraryFloatCosINTEL = 5869,
-    SpvOpArbitraryFloatSinCosINTEL = 5870,
-    SpvOpArbitraryFloatSinPiINTEL = 5871,
-    SpvOpArbitraryFloatCosPiINTEL = 5872,
-    SpvOpArbitraryFloatASinINTEL = 5873,
-    SpvOpArbitraryFloatASinPiINTEL = 5874,
-    SpvOpArbitraryFloatACosINTEL = 5875,
-    SpvOpArbitraryFloatACosPiINTEL = 5876,
-    SpvOpArbitraryFloatATanINTEL = 5877,
-    SpvOpArbitraryFloatATanPiINTEL = 5878,
-    SpvOpArbitraryFloatATan2INTEL = 5879,
-    SpvOpArbitraryFloatPowINTEL = 5880,
-    SpvOpArbitraryFloatPowRINTEL = 5881,
-    SpvOpArbitraryFloatPowNINTEL = 5882,
-    SpvOpLoopControlINTEL = 5887,
-    SpvOpAliasDomainDeclINTEL = 5911,
-    SpvOpAliasScopeDeclINTEL = 5912,
-    SpvOpAliasScopeListDeclINTEL = 5913,
-    SpvOpFixedSqrtINTEL = 5923,
-    SpvOpFixedRecipINTEL = 5924,
-    SpvOpFixedRsqrtINTEL = 5925,
-    SpvOpFixedSinINTEL = 5926,
-    SpvOpFixedCosINTEL = 5927,
-    SpvOpFixedSinCosINTEL = 5928,
-    SpvOpFixedSinPiINTEL = 5929,
-    SpvOpFixedCosPiINTEL = 5930,
-    SpvOpFixedSinCosPiINTEL = 5931,
-    SpvOpFixedLogINTEL = 5932,
-    SpvOpFixedExpINTEL = 5933,
-    SpvOpPtrCastToCrossWorkgroupINTEL = 5934,
-    SpvOpCrossWorkgroupCastToPtrINTEL = 5938,
-    SpvOpReadPipeBlockingINTEL = 5946,
-    SpvOpWritePipeBlockingINTEL = 5947,
-    SpvOpFPGARegINTEL = 5949,
-    SpvOpRayQueryGetRayTMinKHR = 6016,
-    SpvOpRayQueryGetRayFlagsKHR = 6017,
-    SpvOpRayQueryGetIntersectionTKHR = 6018,
-    SpvOpRayQueryGetIntersectionInstanceCustomIndexKHR = 6019,
-    SpvOpRayQueryGetIntersectionInstanceIdKHR = 6020,
-    SpvOpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR = 6021,
-    SpvOpRayQueryGetIntersectionGeometryIndexKHR = 6022,
-    SpvOpRayQueryGetIntersectionPrimitiveIndexKHR = 6023,
-    SpvOpRayQueryGetIntersectionBarycentricsKHR = 6024,
-    SpvOpRayQueryGetIntersectionFrontFaceKHR = 6025,
-    SpvOpRayQueryGetIntersectionCandidateAABBOpaqueKHR = 6026,
-    SpvOpRayQueryGetIntersectionObjectRayDirectionKHR = 6027,
-    SpvOpRayQueryGetIntersectionObjectRayOriginKHR = 6028,
-    SpvOpRayQueryGetWorldRayDirectionKHR = 6029,
-    SpvOpRayQueryGetWorldRayOriginKHR = 6030,
-    SpvOpRayQueryGetIntersectionObjectToWorldKHR = 6031,
-    SpvOpRayQueryGetIntersectionWorldToObjectKHR = 6032,
-    SpvOpAtomicFAddEXT = 6035,
-    SpvOpTypeBufferSurfaceINTEL = 6086,
-    SpvOpTypeStructContinuedINTEL = 6090,
-    SpvOpConstantCompositeContinuedINTEL = 6091,
-    SpvOpSpecConstantCompositeContinuedINTEL = 6092,
-    SpvOpCompositeConstructContinuedINTEL = 6096,
-    SpvOpConvertFToBF16INTEL = 6116,
-    SpvOpConvertBF16ToFINTEL = 6117,
-    SpvOpControlBarrierArriveINTEL = 6142,
-    SpvOpControlBarrierWaitINTEL = 6143,
-    SpvOpGroupIMulKHR = 6401,
-    SpvOpGroupFMulKHR = 6402,
-    SpvOpGroupBitwiseAndKHR = 6403,
-    SpvOpGroupBitwiseOrKHR = 6404,
-    SpvOpGroupBitwiseXorKHR = 6405,
-    SpvOpGroupLogicalAndKHR = 6406,
-    SpvOpGroupLogicalOrKHR = 6407,
-    SpvOpGroupLogicalXorKHR = 6408,
-    SpvOpMax = 0x7fffffff,
-} SpvOp;
+typedef enum SpirvOp_ {
+    SpirvOpNop = 0,
+    SpirvOpUndef = 1,
+    SpirvOpSourceContinued = 2,
+    SpirvOpSource = 3,
+    SpirvOpSourceExtension = 4,
+    SpirvOpName = 5,
+    SpirvOpMemberName = 6,
+    SpirvOpString = 7,
+    SpirvOpLine = 8,
+    SpirvOpExtension = 10,
+    SpirvOpExtInstImport = 11,
+    SpirvOpExtInst = 12,
+    SpirvOpMemoryModel = 14,
+    SpirvOpEntryPoint = 15,
+    SpirvOpExecutionMode = 16,
+    SpirvOpCapability = 17,
+    SpirvOpTypeVoid = 19,
+    SpirvOpTypeBool = 20,
+    SpirvOpTypeInt = 21,
+    SpirvOpTypeFloat = 22,
+    SpirvOpTypeVector = 23,
+    SpirvOpTypeMatrix = 24,
+    SpirvOpTypeImage = 25,
+    SpirvOpTypeSampler = 26,
+    SpirvOpTypeSampledImage = 27,
+    SpirvOpTypeArray = 28,
+    SpirvOpTypeRuntimeArray = 29,
+    SpirvOpTypeStruct = 30,
+    SpirvOpTypeOpaque = 31,
+    SpirvOpTypePointer = 32,
+    SpirvOpTypeFunction = 33,
+    SpirvOpTypeEvent = 34,
+    SpirvOpTypeDeviceEvent = 35,
+    SpirvOpTypeReserveId = 36,
+    SpirvOpTypeQueue = 37,
+    SpirvOpTypePipe = 38,
+    SpirvOpTypeForwardPointer = 39,
+    SpirvOpConstantTrue = 41,
+    SpirvOpConstantFalse = 42,
+    SpirvOpConstant = 43,
+    SpirvOpConstantComposite = 44,
+    SpirvOpConstantSampler = 45,
+    SpirvOpConstantNull = 46,
+    SpirvOpSpecConstantTrue = 48,
+    SpirvOpSpecConstantFalse = 49,
+    SpirvOpSpecConstant = 50,
+    SpirvOpSpecConstantComposite = 51,
+    SpirvOpSpecConstantOp = 52,
+    SpirvOpFunction = 54,
+    SpirvOpFunctionParameter = 55,
+    SpirvOpFunctionEnd = 56,
+    SpirvOpFunctionCall = 57,
+    SpirvOpVariable = 59,
+    SpirvOpImageTexelPointer = 60,
+    SpirvOpLoad = 61,
+    SpirvOpStore = 62,
+    SpirvOpCopyMemory = 63,
+    SpirvOpCopyMemorySized = 64,
+    SpirvOpAccessChain = 65,
+    SpirvOpInBoundsAccessChain = 66,
+    SpirvOpPtrAccessChain = 67,
+    SpirvOpArrayLength = 68,
+    SpirvOpGenericPtrMemSemantics = 69,
+    SpirvOpInBoundsPtrAccessChain = 70,
+    SpirvOpDecorate = 71,
+    SpirvOpMemberDecorate = 72,
+    SpirvOpDecorationGroup = 73,
+    SpirvOpGroupDecorate = 74,
+    SpirvOpGroupMemberDecorate = 75,
+    SpirvOpVectorExtractDynamic = 77,
+    SpirvOpVectorInsertDynamic = 78,
+    SpirvOpVectorShuffle = 79,
+    SpirvOpCompositeConstruct = 80,
+    SpirvOpCompositeExtract = 81,
+    SpirvOpCompositeInsert = 82,
+    SpirvOpCopyObject = 83,
+    SpirvOpTranspose = 84,
+    SpirvOpSampledImage = 86,
+    SpirvOpImageSampleImplicitLod = 87,
+    SpirvOpImageSampleExplicitLod = 88,
+    SpirvOpImageSampleDrefImplicitLod = 89,
+    SpirvOpImageSampleDrefExplicitLod = 90,
+    SpirvOpImageSampleProjImplicitLod = 91,
+    SpirvOpImageSampleProjExplicitLod = 92,
+    SpirvOpImageSampleProjDrefImplicitLod = 93,
+    SpirvOpImageSampleProjDrefExplicitLod = 94,
+    SpirvOpImageFetch = 95,
+    SpirvOpImageGather = 96,
+    SpirvOpImageDrefGather = 97,
+    SpirvOpImageRead = 98,
+    SpirvOpImageWrite = 99,
+    SpirvOpImage = 100,
+    SpirvOpImageQueryFormat = 101,
+    SpirvOpImageQueryOrder = 102,
+    SpirvOpImageQuerySizeLod = 103,
+    SpirvOpImageQuerySize = 104,
+    SpirvOpImageQueryLod = 105,
+    SpirvOpImageQueryLevels = 106,
+    SpirvOpImageQuerySamples = 107,
+    SpirvOpConvertFToU = 109,
+    SpirvOpConvertFToS = 110,
+    SpirvOpConvertSToF = 111,
+    SpirvOpConvertUToF = 112,
+    SpirvOpUConvert = 113,
+    SpirvOpSConvert = 114,
+    SpirvOpFConvert = 115,
+    SpirvOpQuantizeToF16 = 116,
+    SpirvOpConvertPtrToU = 117,
+    SpirvOpSatConvertSToU = 118,
+    SpirvOpSatConvertUToS = 119,
+    SpirvOpConvertUToPtr = 120,
+    SpirvOpPtrCastToGeneric = 121,
+    SpirvOpGenericCastToPtr = 122,
+    SpirvOpGenericCastToPtrExplicit = 123,
+    SpirvOpBitcast = 124,
+    SpirvOpSNegate = 126,
+    SpirvOpFNegate = 127,
+    SpirvOpIAdd = 128,
+    SpirvOpFAdd = 129,
+    SpirvOpISub = 130,
+    SpirvOpFSub = 131,
+    SpirvOpIMul = 132,
+    SpirvOpFMul = 133,
+    SpirvOpUDiv = 134,
+    SpirvOpSDiv = 135,
+    SpirvOpFDiv = 136,
+    SpirvOpUMod = 137,
+    SpirvOpSRem = 138,
+    SpirvOpSMod = 139,
+    SpirvOpFRem = 140,
+    SpirvOpFMod = 141,
+    SpirvOpVectorTimesScalar = 142,
+    SpirvOpMatrixTimesScalar = 143,
+    SpirvOpVectorTimesMatrix = 144,
+    SpirvOpMatrixTimesVector = 145,
+    SpirvOpMatrixTimesMatrix = 146,
+    SpirvOpOuterProduct = 147,
+    SpirvOpDot = 148,
+    SpirvOpIAddCarry = 149,
+    SpirvOpISubBorrow = 150,
+    SpirvOpUMulExtended = 151,
+    SpirvOpSMulExtended = 152,
+    SpirvOpAny = 154,
+    SpirvOpAll = 155,
+    SpirvOpIsNan = 156,
+    SpirvOpIsInf = 157,
+    SpirvOpIsFinite = 158,
+    SpirvOpIsNormal = 159,
+    SpirvOpSignBitSet = 160,
+    SpirvOpLessOrGreater = 161,
+    SpirvOpOrdered = 162,
+    SpirvOpUnordered = 163,
+    SpirvOpLogicalEqual = 164,
+    SpirvOpLogicalNotEqual = 165,
+    SpirvOpLogicalOr = 166,
+    SpirvOpLogicalAnd = 167,
+    SpirvOpLogicalNot = 168,
+    SpirvOpSelect = 169,
+    SpirvOpIEqual = 170,
+    SpirvOpINotEqual = 171,
+    SpirvOpUGreaterThan = 172,
+    SpirvOpSGreaterThan = 173,
+    SpirvOpUGreaterThanEqual = 174,
+    SpirvOpSGreaterThanEqual = 175,
+    SpirvOpULessThan = 176,
+    SpirvOpSLessThan = 177,
+    SpirvOpULessThanEqual = 178,
+    SpirvOpSLessThanEqual = 179,
+    SpirvOpFOrdEqual = 180,
+    SpirvOpFUnordEqual = 181,
+    SpirvOpFOrdNotEqual = 182,
+    SpirvOpFUnordNotEqual = 183,
+    SpirvOpFOrdLessThan = 184,
+    SpirvOpFUnordLessThan = 185,
+    SpirvOpFOrdGreaterThan = 186,
+    SpirvOpFUnordGreaterThan = 187,
+    SpirvOpFOrdLessThanEqual = 188,
+    SpirvOpFUnordLessThanEqual = 189,
+    SpirvOpFOrdGreaterThanEqual = 190,
+    SpirvOpFUnordGreaterThanEqual = 191,
+    SpirvOpShiftRightLogical = 194,
+    SpirvOpShiftRightArithmetic = 195,
+    SpirvOpShiftLeftLogical = 196,
+    SpirvOpBitwiseOr = 197,
+    SpirvOpBitwiseXor = 198,
+    SpirvOpBitwiseAnd = 199,
+    SpirvOpNot = 200,
+    SpirvOpBitFieldInsert = 201,
+    SpirvOpBitFieldSExtract = 202,
+    SpirvOpBitFieldUExtract = 203,
+    SpirvOpBitReverse = 204,
+    SpirvOpBitCount = 205,
+    SpirvOpDPdx = 207,
+    SpirvOpDPdy = 208,
+    SpirvOpFwidth = 209,
+    SpirvOpDPdxFine = 210,
+    SpirvOpDPdyFine = 211,
+    SpirvOpFwidthFine = 212,
+    SpirvOpDPdxCoarse = 213,
+    SpirvOpDPdyCoarse = 214,
+    SpirvOpFwidthCoarse = 215,
+    SpirvOpEmitVertex = 218,
+    SpirvOpEndPrimitive = 219,
+    SpirvOpEmitStreamVertex = 220,
+    SpirvOpEndStreamPrimitive = 221,
+    SpirvOpControlBarrier = 224,
+    SpirvOpMemoryBarrier = 225,
+    SpirvOpAtomicLoad = 227,
+    SpirvOpAtomicStore = 228,
+    SpirvOpAtomicExchange = 229,
+    SpirvOpAtomicCompareExchange = 230,
+    SpirvOpAtomicCompareExchangeWeak = 231,
+    SpirvOpAtomicIIncrement = 232,
+    SpirvOpAtomicIDecrement = 233,
+    SpirvOpAtomicIAdd = 234,
+    SpirvOpAtomicISub = 235,
+    SpirvOpAtomicSMin = 236,
+    SpirvOpAtomicUMin = 237,
+    SpirvOpAtomicSMax = 238,
+    SpirvOpAtomicUMax = 239,
+    SpirvOpAtomicAnd = 240,
+    SpirvOpAtomicOr = 241,
+    SpirvOpAtomicXor = 242,
+    SpirvOpPhi = 245,
+    SpirvOpLoopMerge = 246,
+    SpirvOpSelectionMerge = 247,
+    SpirvOpLabel = 248,
+    SpirvOpBranch = 249,
+    SpirvOpBranchConditional = 250,
+    SpirvOpSwitch = 251,
+    SpirvOpKill = 252,
+    SpirvOpReturn = 253,
+    SpirvOpReturnValue = 254,
+    SpirvOpUnreachable = 255,
+    SpirvOpLifetimeStart = 256,
+    SpirvOpLifetimeStop = 257,
+    SpirvOpGroupAsyncCopy = 259,
+    SpirvOpGroupWaitEvents = 260,
+    SpirvOpGroupAll = 261,
+    SpirvOpGroupAny = 262,
+    SpirvOpGroupBroadcast = 263,
+    SpirvOpGroupIAdd = 264,
+    SpirvOpGroupFAdd = 265,
+    SpirvOpGroupFMin = 266,
+    SpirvOpGroupUMin = 267,
+    SpirvOpGroupSMin = 268,
+    SpirvOpGroupFMax = 269,
+    SpirvOpGroupUMax = 270,
+    SpirvOpGroupSMax = 271,
+    SpirvOpReadPipe = 274,
+    SpirvOpWritePipe = 275,
+    SpirvOpReservedReadPipe = 276,
+    SpirvOpReservedWritePipe = 277,
+    SpirvOpReserveReadPipePackets = 278,
+    SpirvOpReserveWritePipePackets = 279,
+    SpirvOpCommitReadPipe = 280,
+    SpirvOpCommitWritePipe = 281,
+    SpirvOpIsValidReserveId = 282,
+    SpirvOpGetNumPipePackets = 283,
+    SpirvOpGetMaxPipePackets = 284,
+    SpirvOpGroupReserveReadPipePackets = 285,
+    SpirvOpGroupReserveWritePipePackets = 286,
+    SpirvOpGroupCommitReadPipe = 287,
+    SpirvOpGroupCommitWritePipe = 288,
+    SpirvOpEnqueueMarker = 291,
+    SpirvOpEnqueueKernel = 292,
+    SpirvOpGetKernelNDrangeSubGroupCount = 293,
+    SpirvOpGetKernelNDrangeMaxSubGroupSize = 294,
+    SpirvOpGetKernelWorkGroupSize = 295,
+    SpirvOpGetKernelPreferredWorkGroupSizeMultiple = 296,
+    SpirvOpRetainEvent = 297,
+    SpirvOpReleaseEvent = 298,
+    SpirvOpCreateUserEvent = 299,
+    SpirvOpIsValidEvent = 300,
+    SpirvOpSetUserEventStatus = 301,
+    SpirvOpCaptureEventProfilingInfo = 302,
+    SpirvOpGetDefaultQueue = 303,
+    SpirvOpBuildNDRange = 304,
+    SpirvOpImageSparseSampleImplicitLod = 305,
+    SpirvOpImageSparseSampleExplicitLod = 306,
+    SpirvOpImageSparseSampleDrefImplicitLod = 307,
+    SpirvOpImageSparseSampleDrefExplicitLod = 308,
+    SpirvOpImageSparseSampleProjImplicitLod = 309,
+    SpirvOpImageSparseSampleProjExplicitLod = 310,
+    SpirvOpImageSparseSampleProjDrefImplicitLod = 311,
+    SpirvOpImageSparseSampleProjDrefExplicitLod = 312,
+    SpirvOpImageSparseFetch = 313,
+    SpirvOpImageSparseGather = 314,
+    SpirvOpImageSparseDrefGather = 315,
+    SpirvOpImageSparseTexelsResident = 316,
+    SpirvOpNoLine = 317,
+    SpirvOpAtomicFlagTestAndSet = 318,
+    SpirvOpAtomicFlagClear = 319,
+    SpirvOpImageSparseRead = 320,
+    SpirvOpSizeOf = 321,
+    SpirvOpTypePipeStorage = 322,
+    SpirvOpConstantPipeStorage = 323,
+    SpirvOpCreatePipeFromPipeStorage = 324,
+    SpirvOpGetKernelLocalSizeForSubgroupCount = 325,
+    SpirvOpGetKernelMaxNumSubgroups = 326,
+    SpirvOpTypeNamedBarrier = 327,
+    SpirvOpNamedBarrierInitialize = 328,
+    SpirvOpMemoryNamedBarrier = 329,
+    SpirvOpModuleProcessed = 330,
+    SpirvOpExecutionModeId = 331,
+    SpirvOpDecorateId = 332,
+    SpirvOpGroupNonUniformElect = 333,
+    SpirvOpGroupNonUniformAll = 334,
+    SpirvOpGroupNonUniformAny = 335,
+    SpirvOpGroupNonUniformAllEqual = 336,
+    SpirvOpGroupNonUniformBroadcast = 337,
+    SpirvOpGroupNonUniformBroadcastFirst = 338,
+    SpirvOpGroupNonUniformBallot = 339,
+    SpirvOpGroupNonUniformInverseBallot = 340,
+    SpirvOpGroupNonUniformBallotBitExtract = 341,
+    SpirvOpGroupNonUniformBallotBitCount = 342,
+    SpirvOpGroupNonUniformBallotFindLSB = 343,
+    SpirvOpGroupNonUniformBallotFindMSB = 344,
+    SpirvOpGroupNonUniformShuffle = 345,
+    SpirvOpGroupNonUniformShuffleXor = 346,
+    SpirvOpGroupNonUniformShuffleUp = 347,
+    SpirvOpGroupNonUniformShuffleDown = 348,
+    SpirvOpGroupNonUniformIAdd = 349,
+    SpirvOpGroupNonUniformFAdd = 350,
+    SpirvOpGroupNonUniformIMul = 351,
+    SpirvOpGroupNonUniformFMul = 352,
+    SpirvOpGroupNonUniformSMin = 353,
+    SpirvOpGroupNonUniformUMin = 354,
+    SpirvOpGroupNonUniformFMin = 355,
+    SpirvOpGroupNonUniformSMax = 356,
+    SpirvOpGroupNonUniformUMax = 357,
+    SpirvOpGroupNonUniformFMax = 358,
+    SpirvOpGroupNonUniformBitwiseAnd = 359,
+    SpirvOpGroupNonUniformBitwiseOr = 360,
+    SpirvOpGroupNonUniformBitwiseXor = 361,
+    SpirvOpGroupNonUniformLogicalAnd = 362,
+    SpirvOpGroupNonUniformLogicalOr = 363,
+    SpirvOpGroupNonUniformLogicalXor = 364,
+    SpirvOpGroupNonUniformQuadBroadcast = 365,
+    SpirvOpGroupNonUniformQuadSwap = 366,
+    SpirvOpCopyLogical = 400,
+    SpirvOpPtrEqual = 401,
+    SpirvOpPtrNotEqual = 402,
+    SpirvOpPtrDiff = 403,
+    SpirvOpColorAttachmentReadEXT = 4160,
+    SpirvOpDepthAttachmentReadEXT = 4161,
+    SpirvOpStencilAttachmentReadEXT = 4162,
+    SpirvOpTerminateInvocation = 4416,
+    SpirvOpSubgroupBallotKHR = 4421,
+    SpirvOpSubgroupFirstInvocationKHR = 4422,
+    SpirvOpSubgroupAllKHR = 4428,
+    SpirvOpSubgroupAnyKHR = 4429,
+    SpirvOpSubgroupAllEqualKHR = 4430,
+    SpirvOpGroupNonUniformRotateKHR = 4431,
+    SpirvOpSubgroupReadInvocationKHR = 4432,
+    SpirvOpTraceRayKHR = 4445,
+    SpirvOpExecuteCallableKHR = 4446,
+    SpirvOpConvertUToAccelerationStructureKHR = 4447,
+    SpirvOpIgnoreIntersectionKHR = 4448,
+    SpirvOpTerminateRayKHR = 4449,
+    SpirvOpSDot = 4450,
+    SpirvOpSDotKHR = 4450,
+    SpirvOpUDot = 4451,
+    SpirvOpUDotKHR = 4451,
+    SpirvOpSUDot = 4452,
+    SpirvOpSUDotKHR = 4452,
+    SpirvOpSDotAccSat = 4453,
+    SpirvOpSDotAccSatKHR = 4453,
+    SpirvOpUDotAccSat = 4454,
+    SpirvOpUDotAccSatKHR = 4454,
+    SpirvOpSUDotAccSat = 4455,
+    SpirvOpSUDotAccSatKHR = 4455,
+    SpirvOpTypeCooperativeMatrixKHR = 4456,
+    SpirvOpCooperativeMatrixLoadKHR = 4457,
+    SpirvOpCooperativeMatrixStoreKHR = 4458,
+    SpirvOpCooperativeMatrixMulAddKHR = 4459,
+    SpirvOpCooperativeMatrixLengthKHR = 4460,
+    SpirvOpTypeRayQueryKHR = 4472,
+    SpirvOpRayQueryInitializeKHR = 4473,
+    SpirvOpRayQueryTerminateKHR = 4474,
+    SpirvOpRayQueryGenerateIntersectionKHR = 4475,
+    SpirvOpRayQueryConfirmIntersectionKHR = 4476,
+    SpirvOpRayQueryProceedKHR = 4477,
+    SpirvOpRayQueryGetIntersectionTypeKHR = 4479,
+    SpirvOpImageSampleWeightedQCOM = 4480,
+    SpirvOpImageBoxFilterQCOM = 4481,
+    SpirvOpImageBlockMatchSSDQCOM = 4482,
+    SpirvOpImageBlockMatchSADQCOM = 4483,
+    SpirvOpGroupIAddNonUniformAMD = 5000,
+    SpirvOpGroupFAddNonUniformAMD = 5001,
+    SpirvOpGroupFMinNonUniformAMD = 5002,
+    SpirvOpGroupUMinNonUniformAMD = 5003,
+    SpirvOpGroupSMinNonUniformAMD = 5004,
+    SpirvOpGroupFMaxNonUniformAMD = 5005,
+    SpirvOpGroupUMaxNonUniformAMD = 5006,
+    SpirvOpGroupSMaxNonUniformAMD = 5007,
+    SpirvOpFragmentMaskFetchAMD = 5011,
+    SpirvOpFragmentFetchAMD = 5012,
+    SpirvOpReadClockKHR = 5056,
+    SpirvOpFinalizeNodePayloadsAMDX = 5075,
+    SpirvOpFinishWritingNodePayloadAMDX = 5078,
+    SpirvOpInitializeNodePayloadsAMDX = 5090,
+    SpirvOpHitObjectRecordHitMotionNV = 5249,
+    SpirvOpHitObjectRecordHitWithIndexMotionNV = 5250,
+    SpirvOpHitObjectRecordMissMotionNV = 5251,
+    SpirvOpHitObjectGetWorldToObjectNV = 5252,
+    SpirvOpHitObjectGetObjectToWorldNV = 5253,
+    SpirvOpHitObjectGetObjectRayDirectionNV = 5254,
+    SpirvOpHitObjectGetObjectRayOriginNV = 5255,
+    SpirvOpHitObjectTraceRayMotionNV = 5256,
+    SpirvOpHitObjectGetShaderRecordBufferHandleNV = 5257,
+    SpirvOpHitObjectGetShaderBindingTableRecordIndexNV = 5258,
+    SpirvOpHitObjectRecordEmptyNV = 5259,
+    SpirvOpHitObjectTraceRayNV = 5260,
+    SpirvOpHitObjectRecordHitNV = 5261,
+    SpirvOpHitObjectRecordHitWithIndexNV = 5262,
+    SpirvOpHitObjectRecordMissNV = 5263,
+    SpirvOpHitObjectExecuteShaderNV = 5264,
+    SpirvOpHitObjectGetCurrentTimeNV = 5265,
+    SpirvOpHitObjectGetAttributesNV = 5266,
+    SpirvOpHitObjectGetHitKindNV = 5267,
+    SpirvOpHitObjectGetPrimitiveIndexNV = 5268,
+    SpirvOpHitObjectGetGeometryIndexNV = 5269,
+    SpirvOpHitObjectGetInstanceIdNV = 5270,
+    SpirvOpHitObjectGetInstanceCustomIndexNV = 5271,
+    SpirvOpHitObjectGetWorldRayDirectionNV = 5272,
+    SpirvOpHitObjectGetWorldRayOriginNV = 5273,
+    SpirvOpHitObjectGetRayTMaxNV = 5274,
+    SpirvOpHitObjectGetRayTMinNV = 5275,
+    SpirvOpHitObjectIsEmptyNV = 5276,
+    SpirvOpHitObjectIsHitNV = 5277,
+    SpirvOpHitObjectIsMissNV = 5278,
+    SpirvOpReorderThreadWithHitObjectNV = 5279,
+    SpirvOpReorderThreadWithHintNV = 5280,
+    SpirvOpTypeHitObjectNV = 5281,
+    SpirvOpImageSampleFootprintNV = 5283,
+    SpirvOpEmitMeshTasksEXT = 5294,
+    SpirvOpSetMeshOutputsEXT = 5295,
+    SpirvOpGroupNonUniformPartitionNV = 5296,
+    SpirvOpWritePackedPrimitiveIndices4x8NV = 5299,
+    SpirvOpFetchMicroTriangleVertexPositionNV = 5300,
+    SpirvOpFetchMicroTriangleVertexBarycentricNV = 5301,
+    SpirvOpReportIntersectionKHR = 5334,
+    SpirvOpReportIntersectionNV = 5334,
+    SpirvOpIgnoreIntersectionNV = 5335,
+    SpirvOpTerminateRayNV = 5336,
+    SpirvOpTraceNV = 5337,
+    SpirvOpTraceMotionNV = 5338,
+    SpirvOpTraceRayMotionNV = 5339,
+    SpirvOpRayQueryGetIntersectionTriangleVertexPositionsKHR = 5340,
+    SpirvOpTypeAccelerationStructureKHR = 5341,
+    SpirvOpTypeAccelerationStructureNV = 5341,
+    SpirvOpExecuteCallableNV = 5344,
+    SpirvOpTypeCooperativeMatrixNV = 5358,
+    SpirvOpCooperativeMatrixLoadNV = 5359,
+    SpirvOpCooperativeMatrixStoreNV = 5360,
+    SpirvOpCooperativeMatrixMulAddNV = 5361,
+    SpirvOpCooperativeMatrixLengthNV = 5362,
+    SpirvOpBeginInvocationInterlockEXT = 5364,
+    SpirvOpEndInvocationInterlockEXT = 5365,
+    SpirvOpDemoteToHelperInvocation = 5380,
+    SpirvOpDemoteToHelperInvocationEXT = 5380,
+    SpirvOpIsHelperInvocationEXT = 5381,
+    SpirvOpConvertUToImageNV = 5391,
+    SpirvOpConvertUToSamplerNV = 5392,
+    SpirvOpConvertImageToUNV = 5393,
+    SpirvOpConvertSamplerToUNV = 5394,
+    SpirvOpConvertUToSampledImageNV = 5395,
+    SpirvOpConvertSampledImageToUNV = 5396,
+    SpirvOpSamplerImageAddressingModeNV = 5397,
+    SpirvOpSubgroupShuffleINTEL = 5571,
+    SpirvOpSubgroupShuffleDownINTEL = 5572,
+    SpirvOpSubgroupShuffleUpINTEL = 5573,
+    SpirvOpSubgroupShuffleXorINTEL = 5574,
+    SpirvOpSubgroupBlockReadINTEL = 5575,
+    SpirvOpSubgroupBlockWriteINTEL = 5576,
+    SpirvOpSubgroupImageBlockReadINTEL = 5577,
+    SpirvOpSubgroupImageBlockWriteINTEL = 5578,
+    SpirvOpSubgroupImageMediaBlockReadINTEL = 5580,
+    SpirvOpSubgroupImageMediaBlockWriteINTEL = 5581,
+    SpirvOpUCountLeadingZerosINTEL = 5585,
+    SpirvOpUCountTrailingZerosINTEL = 5586,
+    SpirvOpAbsISubINTEL = 5587,
+    SpirvOpAbsUSubINTEL = 5588,
+    SpirvOpIAddSatINTEL = 5589,
+    SpirvOpUAddSatINTEL = 5590,
+    SpirvOpIAverageINTEL = 5591,
+    SpirvOpUAverageINTEL = 5592,
+    SpirvOpIAverageRoundedINTEL = 5593,
+    SpirvOpUAverageRoundedINTEL = 5594,
+    SpirvOpISubSatINTEL = 5595,
+    SpirvOpUSubSatINTEL = 5596,
+    SpirvOpIMul32x16INTEL = 5597,
+    SpirvOpUMul32x16INTEL = 5598,
+    SpirvOpConstantFunctionPointerINTEL = 5600,
+    SpirvOpFunctionPointerCallINTEL = 5601,
+    SpirvOpAsmTargetINTEL = 5609,
+    SpirvOpAsmINTEL = 5610,
+    SpirvOpAsmCallINTEL = 5611,
+    SpirvOpAtomicFMinEXT = 5614,
+    SpirvOpAtomicFMaxEXT = 5615,
+    SpirvOpAssumeTrueKHR = 5630,
+    SpirvOpExpectKHR = 5631,
+    SpirvOpDecorateString = 5632,
+    SpirvOpDecorateStringGOOGLE = 5632,
+    SpirvOpMemberDecorateString = 5633,
+    SpirvOpMemberDecorateStringGOOGLE = 5633,
+    SpirvOpVmeImageINTEL = 5699,
+    SpirvOpTypeVmeImageINTEL = 5700,
+    SpirvOpTypeAvcImePayloadINTEL = 5701,
+    SpirvOpTypeAvcRefPayloadINTEL = 5702,
+    SpirvOpTypeAvcSicPayloadINTEL = 5703,
+    SpirvOpTypeAvcMcePayloadINTEL = 5704,
+    SpirvOpTypeAvcMceResultINTEL = 5705,
+    SpirvOpTypeAvcImeResultINTEL = 5706,
+    SpirvOpTypeAvcImeResultSingleReferenceStreamoutINTEL = 5707,
+    SpirvOpTypeAvcImeResultDualReferenceStreamoutINTEL = 5708,
+    SpirvOpTypeAvcImeSingleReferenceStreaminINTEL = 5709,
+    SpirvOpTypeAvcImeDualReferenceStreaminINTEL = 5710,
+    SpirvOpTypeAvcRefResultINTEL = 5711,
+    SpirvOpTypeAvcSicResultINTEL = 5712,
+    SpirvOpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL = 5713,
+    SpirvOpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL = 5714,
+    SpirvOpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL = 5715,
+    SpirvOpSubgroupAvcMceSetInterShapePenaltyINTEL = 5716,
+    SpirvOpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL = 5717,
+    SpirvOpSubgroupAvcMceSetInterDirectionPenaltyINTEL = 5718,
+    SpirvOpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL = 5719,
+    SpirvOpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL = 5720,
+    SpirvOpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL = 5721,
+    SpirvOpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL = 5722,
+    SpirvOpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL = 5723,
+    SpirvOpSubgroupAvcMceSetMotionVectorCostFunctionINTEL = 5724,
+    SpirvOpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL = 5725,
+    SpirvOpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL = 5726,
+    SpirvOpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL = 5727,
+    SpirvOpSubgroupAvcMceSetAcOnlyHaarINTEL = 5728,
+    SpirvOpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL = 5729,
+    SpirvOpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL = 5730,
+    SpirvOpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL = 5731,
+    SpirvOpSubgroupAvcMceConvertToImePayloadINTEL = 5732,
+    SpirvOpSubgroupAvcMceConvertToImeResultINTEL = 5733,
+    SpirvOpSubgroupAvcMceConvertToRefPayloadINTEL = 5734,
+    SpirvOpSubgroupAvcMceConvertToRefResultINTEL = 5735,
+    SpirvOpSubgroupAvcMceConvertToSicPayloadINTEL = 5736,
+    SpirvOpSubgroupAvcMceConvertToSicResultINTEL = 5737,
+    SpirvOpSubgroupAvcMceGetMotionVectorsINTEL = 5738,
+    SpirvOpSubgroupAvcMceGetInterDistortionsINTEL = 5739,
+    SpirvOpSubgroupAvcMceGetBestInterDistortionsINTEL = 5740,
+    SpirvOpSubgroupAvcMceGetInterMajorShapeINTEL = 5741,
+    SpirvOpSubgroupAvcMceGetInterMinorShapeINTEL = 5742,
+    SpirvOpSubgroupAvcMceGetInterDirectionsINTEL = 5743,
+    SpirvOpSubgroupAvcMceGetInterMotionVectorCountINTEL = 5744,
+    SpirvOpSubgroupAvcMceGetInterReferenceIdsINTEL = 5745,
+    SpirvOpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL = 5746,
+    SpirvOpSubgroupAvcImeInitializeINTEL = 5747,
+    SpirvOpSubgroupAvcImeSetSingleReferenceINTEL = 5748,
+    SpirvOpSubgroupAvcImeSetDualReferenceINTEL = 5749,
+    SpirvOpSubgroupAvcImeRefWindowSizeINTEL = 5750,
+    SpirvOpSubgroupAvcImeAdjustRefOffsetINTEL = 5751,
+    SpirvOpSubgroupAvcImeConvertToMcePayloadINTEL = 5752,
+    SpirvOpSubgroupAvcImeSetMaxMotionVectorCountINTEL = 5753,
+    SpirvOpSubgroupAvcImeSetUnidirectionalMixDisableINTEL = 5754,
+    SpirvOpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL = 5755,
+    SpirvOpSubgroupAvcImeSetWeightedSadINTEL = 5756,
+    SpirvOpSubgroupAvcImeEvaluateWithSingleReferenceINTEL = 5757,
+    SpirvOpSubgroupAvcImeEvaluateWithDualReferenceINTEL = 5758,
+    SpirvOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL = 5759,
+    SpirvOpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL = 5760,
+    SpirvOpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL = 5761,
+    SpirvOpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL = 5762,
+    SpirvOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL = 5763,
+    SpirvOpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL = 5764,
+    SpirvOpSubgroupAvcImeConvertToMceResultINTEL = 5765,
+    SpirvOpSubgroupAvcImeGetSingleReferenceStreaminINTEL = 5766,
+    SpirvOpSubgroupAvcImeGetDualReferenceStreaminINTEL = 5767,
+    SpirvOpSubgroupAvcImeStripSingleReferenceStreamoutINTEL = 5768,
+    SpirvOpSubgroupAvcImeStripDualReferenceStreamoutINTEL = 5769,
+    SpirvOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectorsINTEL = 5770,
+    SpirvOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsINTEL = 5771,
+    SpirvOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsINTEL = 5772,
+    SpirvOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsINTEL = 5773,
+    SpirvOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTEL = 5774,
+    SpirvOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINTEL = 5775,
+    SpirvOpSubgroupAvcImeGetBorderReachedINTEL = 5776,
+    SpirvOpSubgroupAvcImeGetTruncatedSearchIndicationINTEL = 5777,
+    SpirvOpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL = 5778,
+    SpirvOpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL = 5779,
+    SpirvOpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL = 5780,
+    SpirvOpSubgroupAvcFmeInitializeINTEL = 5781,
+    SpirvOpSubgroupAvcBmeInitializeINTEL = 5782,
+    SpirvOpSubgroupAvcRefConvertToMcePayloadINTEL = 5783,
+    SpirvOpSubgroupAvcRefSetBidirectionalMixDisableINTEL = 5784,
+    SpirvOpSubgroupAvcRefSetBilinearFilterEnableINTEL = 5785,
+    SpirvOpSubgroupAvcRefEvaluateWithSingleReferenceINTEL = 5786,
+    SpirvOpSubgroupAvcRefEvaluateWithDualReferenceINTEL = 5787,
+    SpirvOpSubgroupAvcRefEvaluateWithMultiReferenceINTEL = 5788,
+    SpirvOpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL = 5789,
+    SpirvOpSubgroupAvcRefConvertToMceResultINTEL = 5790,
+    SpirvOpSubgroupAvcSicInitializeINTEL = 5791,
+    SpirvOpSubgroupAvcSicConfigureSkcINTEL = 5792,
+    SpirvOpSubgroupAvcSicConfigureIpeLumaINTEL = 5793,
+    SpirvOpSubgroupAvcSicConfigureIpeLumaChromaINTEL = 5794,
+    SpirvOpSubgroupAvcSicGetMotionVectorMaskINTEL = 5795,
+    SpirvOpSubgroupAvcSicConvertToMcePayloadINTEL = 5796,
+    SpirvOpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL = 5797,
+    SpirvOpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL = 5798,
+    SpirvOpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL = 5799,
+    SpirvOpSubgroupAvcSicSetBilinearFilterEnableINTEL = 5800,
+    SpirvOpSubgroupAvcSicSetSkcForwardTransformEnableINTEL = 5801,
+    SpirvOpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL = 5802,
+    SpirvOpSubgroupAvcSicEvaluateIpeINTEL = 5803,
+    SpirvOpSubgroupAvcSicEvaluateWithSingleReferenceINTEL = 5804,
+    SpirvOpSubgroupAvcSicEvaluateWithDualReferenceINTEL = 5805,
+    SpirvOpSubgroupAvcSicEvaluateWithMultiReferenceINTEL = 5806,
+    SpirvOpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL = 5807,
+    SpirvOpSubgroupAvcSicConvertToMceResultINTEL = 5808,
+    SpirvOpSubgroupAvcSicGetIpeLumaShapeINTEL = 5809,
+    SpirvOpSubgroupAvcSicGetBestIpeLumaDistortionINTEL = 5810,
+    SpirvOpSubgroupAvcSicGetBestIpeChromaDistortionINTEL = 5811,
+    SpirvOpSubgroupAvcSicGetPackedIpeLumaModesINTEL = 5812,
+    SpirvOpSubgroupAvcSicGetIpeChromaModeINTEL = 5813,
+    SpirvOpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL = 5814,
+    SpirvOpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL = 5815,
+    SpirvOpSubgroupAvcSicGetInterRawSadsINTEL = 5816,
+    SpirvOpVariableLengthArrayINTEL = 5818,
+    SpirvOpSaveMemoryINTEL = 5819,
+    SpirvOpRestoreMemoryINTEL = 5820,
+    SpirvOpArbitraryFloatSinCosPiINTEL = 5840,
+    SpirvOpArbitraryFloatCastINTEL = 5841,
+    SpirvOpArbitraryFloatCastFromIntINTEL = 5842,
+    SpirvOpArbitraryFloatCastToIntINTEL = 5843,
+    SpirvOpArbitraryFloatAddINTEL = 5846,
+    SpirvOpArbitraryFloatSubINTEL = 5847,
+    SpirvOpArbitraryFloatMulINTEL = 5848,
+    SpirvOpArbitraryFloatDivINTEL = 5849,
+    SpirvOpArbitraryFloatGTINTEL = 5850,
+    SpirvOpArbitraryFloatGEINTEL = 5851,
+    SpirvOpArbitraryFloatLTINTEL = 5852,
+    SpirvOpArbitraryFloatLEINTEL = 5853,
+    SpirvOpArbitraryFloatEQINTEL = 5854,
+    SpirvOpArbitraryFloatRecipINTEL = 5855,
+    SpirvOpArbitraryFloatRSqrtINTEL = 5856,
+    SpirvOpArbitraryFloatCbrtINTEL = 5857,
+    SpirvOpArbitraryFloatHypotINTEL = 5858,
+    SpirvOpArbitraryFloatSqrtINTEL = 5859,
+    SpirvOpArbitraryFloatLogINTEL = 5860,
+    SpirvOpArbitraryFloatLog2INTEL = 5861,
+    SpirvOpArbitraryFloatLog10INTEL = 5862,
+    SpirvOpArbitraryFloatLog1pINTEL = 5863,
+    SpirvOpArbitraryFloatExpINTEL = 5864,
+    SpirvOpArbitraryFloatExp2INTEL = 5865,
+    SpirvOpArbitraryFloatExp10INTEL = 5866,
+    SpirvOpArbitraryFloatExpm1INTEL = 5867,
+    SpirvOpArbitraryFloatSinINTEL = 5868,
+    SpirvOpArbitraryFloatCosINTEL = 5869,
+    SpirvOpArbitraryFloatSinCosINTEL = 5870,
+    SpirvOpArbitraryFloatSinPiINTEL = 5871,
+    SpirvOpArbitraryFloatCosPiINTEL = 5872,
+    SpirvOpArbitraryFloatASinINTEL = 5873,
+    SpirvOpArbitraryFloatASinPiINTEL = 5874,
+    SpirvOpArbitraryFloatACosINTEL = 5875,
+    SpirvOpArbitraryFloatACosPiINTEL = 5876,
+    SpirvOpArbitraryFloatATanINTEL = 5877,
+    SpirvOpArbitraryFloatATanPiINTEL = 5878,
+    SpirvOpArbitraryFloatATan2INTEL = 5879,
+    SpirvOpArbitraryFloatPowINTEL = 5880,
+    SpirvOpArbitraryFloatPowRINTEL = 5881,
+    SpirvOpArbitraryFloatPowNINTEL = 5882,
+    SpirvOpLoopControlINTEL = 5887,
+    SpirvOpAliasDomainDeclINTEL = 5911,
+    SpirvOpAliasScopeDeclINTEL = 5912,
+    SpirvOpAliasScopeListDeclINTEL = 5913,
+    SpirvOpFixedSqrtINTEL = 5923,
+    SpirvOpFixedRecipINTEL = 5924,
+    SpirvOpFixedRsqrtINTEL = 5925,
+    SpirvOpFixedSinINTEL = 5926,
+    SpirvOpFixedCosINTEL = 5927,
+    SpirvOpFixedSinCosINTEL = 5928,
+    SpirvOpFixedSinPiINTEL = 5929,
+    SpirvOpFixedCosPiINTEL = 5930,
+    SpirvOpFixedSinCosPiINTEL = 5931,
+    SpirvOpFixedLogINTEL = 5932,
+    SpirvOpFixedExpINTEL = 5933,
+    SpirvOpPtrCastToCrossWorkgroupINTEL = 5934,
+    SpirvOpCrossWorkgroupCastToPtrINTEL = 5938,
+    SpirvOpReadPipeBlockingINTEL = 5946,
+    SpirvOpWritePipeBlockingINTEL = 5947,
+    SpirvOpFPGARegINTEL = 5949,
+    SpirvOpRayQueryGetRayTMinKHR = 6016,
+    SpirvOpRayQueryGetRayFlagsKHR = 6017,
+    SpirvOpRayQueryGetIntersectionTKHR = 6018,
+    SpirvOpRayQueryGetIntersectionInstanceCustomIndexKHR = 6019,
+    SpirvOpRayQueryGetIntersectionInstanceIdKHR = 6020,
+    SpirvOpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR = 6021,
+    SpirvOpRayQueryGetIntersectionGeometryIndexKHR = 6022,
+    SpirvOpRayQueryGetIntersectionPrimitiveIndexKHR = 6023,
+    SpirvOpRayQueryGetIntersectionBarycentricsKHR = 6024,
+    SpirvOpRayQueryGetIntersectionFrontFaceKHR = 6025,
+    SpirvOpRayQueryGetIntersectionCandidateAABBOpaqueKHR = 6026,
+    SpirvOpRayQueryGetIntersectionObjectRayDirectionKHR = 6027,
+    SpirvOpRayQueryGetIntersectionObjectRayOriginKHR = 6028,
+    SpirvOpRayQueryGetWorldRayDirectionKHR = 6029,
+    SpirvOpRayQueryGetWorldRayOriginKHR = 6030,
+    SpirvOpRayQueryGetIntersectionObjectToWorldKHR = 6031,
+    SpirvOpRayQueryGetIntersectionWorldToObjectKHR = 6032,
+    SpirvOpAtomicFAddEXT = 6035,
+    SpirvOpTypeBufferSurfaceINTEL = 6086,
+    SpirvOpTypeStructContinuedINTEL = 6090,
+    SpirvOpConstantCompositeContinuedINTEL = 6091,
+    SpirvOpSpecConstantCompositeContinuedINTEL = 6092,
+    SpirvOpCompositeConstructContinuedINTEL = 6096,
+    SpirvOpConvertFToBF16INTEL = 6116,
+    SpirvOpConvertBF16ToFINTEL = 6117,
+    SpirvOpControlBarrierArriveINTEL = 6142,
+    SpirvOpControlBarrierWaitINTEL = 6143,
+    SpirvOpGroupIMulKHR = 6401,
+    SpirvOpGroupFMulKHR = 6402,
+    SpirvOpGroupBitwiseAndKHR = 6403,
+    SpirvOpGroupBitwiseOrKHR = 6404,
+    SpirvOpGroupBitwiseXorKHR = 6405,
+    SpirvOpGroupLogicalAndKHR = 6406,
+    SpirvOpGroupLogicalOrKHR = 6407,
+    SpirvOpGroupLogicalXorKHR = 6408,
+    SpirvOpMax = 0x7fffffff,
+} SpirvOp;
 
 #ifdef SPV_ENABLE_UTILITY_CODE
 #ifndef __cplusplus
 #include <stdbool.h>
 #endif
-inline void SpvHasResultAndType(SpvOp opcode, bool *hasResult, bool *hasResultType) {
+inline void SpirvHasResultAndType(SpirvOp opcode, bool *hasResult, bool *hasResultType) {
     *hasResult = *hasResultType = false;
     switch (opcode) {
     default: /* unknown opcode */ break;
-    case SpvOpNop: *hasResult = false; *hasResultType = false; break;
-    case SpvOpUndef: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSourceContinued: *hasResult = false; *hasResultType = false; break;
-    case SpvOpSource: *hasResult = false; *hasResultType = false; break;
-    case SpvOpSourceExtension: *hasResult = false; *hasResultType = false; break;
-    case SpvOpName: *hasResult = false; *hasResultType = false; break;
-    case SpvOpMemberName: *hasResult = false; *hasResultType = false; break;
-    case SpvOpString: *hasResult = true; *hasResultType = false; break;
-    case SpvOpLine: *hasResult = false; *hasResultType = false; break;
-    case SpvOpExtension: *hasResult = false; *hasResultType = false; break;
-    case SpvOpExtInstImport: *hasResult = true; *hasResultType = false; break;
-    case SpvOpExtInst: *hasResult = true; *hasResultType = true; break;
-    case SpvOpMemoryModel: *hasResult = false; *hasResultType = false; break;
-    case SpvOpEntryPoint: *hasResult = false; *hasResultType = false; break;
-    case SpvOpExecutionMode: *hasResult = false; *hasResultType = false; break;
-    case SpvOpCapability: *hasResult = false; *hasResultType = false; break;
-    case SpvOpTypeVoid: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeBool: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeInt: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeFloat: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeVector: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeMatrix: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeImage: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeSampler: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeSampledImage: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeArray: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeRuntimeArray: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeStruct: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeOpaque: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypePointer: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeFunction: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeEvent: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeDeviceEvent: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeReserveId: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeQueue: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypePipe: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeForwardPointer: *hasResult = false; *hasResultType = false; break;
-    case SpvOpConstantTrue: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConstantFalse: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConstant: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConstantComposite: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConstantSampler: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConstantNull: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSpecConstantTrue: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSpecConstantFalse: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSpecConstant: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSpecConstantComposite: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSpecConstantOp: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFunction: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFunctionParameter: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFunctionEnd: *hasResult = false; *hasResultType = false; break;
-    case SpvOpFunctionCall: *hasResult = true; *hasResultType = true; break;
-    case SpvOpVariable: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageTexelPointer: *hasResult = true; *hasResultType = true; break;
-    case SpvOpLoad: *hasResult = true; *hasResultType = true; break;
-    case SpvOpStore: *hasResult = false; *hasResultType = false; break;
-    case SpvOpCopyMemory: *hasResult = false; *hasResultType = false; break;
-    case SpvOpCopyMemorySized: *hasResult = false; *hasResultType = false; break;
-    case SpvOpAccessChain: *hasResult = true; *hasResultType = true; break;
-    case SpvOpInBoundsAccessChain: *hasResult = true; *hasResultType = true; break;
-    case SpvOpPtrAccessChain: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArrayLength: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGenericPtrMemSemantics: *hasResult = true; *hasResultType = true; break;
-    case SpvOpInBoundsPtrAccessChain: *hasResult = true; *hasResultType = true; break;
-    case SpvOpDecorate: *hasResult = false; *hasResultType = false; break;
-    case SpvOpMemberDecorate: *hasResult = false; *hasResultType = false; break;
-    case SpvOpDecorationGroup: *hasResult = true; *hasResultType = false; break;
-    case SpvOpGroupDecorate: *hasResult = false; *hasResultType = false; break;
-    case SpvOpGroupMemberDecorate: *hasResult = false; *hasResultType = false; break;
-    case SpvOpVectorExtractDynamic: *hasResult = true; *hasResultType = true; break;
-    case SpvOpVectorInsertDynamic: *hasResult = true; *hasResultType = true; break;
-    case SpvOpVectorShuffle: *hasResult = true; *hasResultType = true; break;
-    case SpvOpCompositeConstruct: *hasResult = true; *hasResultType = true; break;
-    case SpvOpCompositeExtract: *hasResult = true; *hasResultType = true; break;
-    case SpvOpCompositeInsert: *hasResult = true; *hasResultType = true; break;
-    case SpvOpCopyObject: *hasResult = true; *hasResultType = true; break;
-    case SpvOpTranspose: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSampledImage: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSampleImplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSampleExplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSampleDrefImplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSampleDrefExplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSampleProjImplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSampleProjExplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSampleProjDrefImplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSampleProjDrefExplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageFetch: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageGather: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageDrefGather: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageRead: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageWrite: *hasResult = false; *hasResultType = false; break;
-    case SpvOpImage: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageQueryFormat: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageQueryOrder: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageQuerySizeLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageQuerySize: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageQueryLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageQueryLevels: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageQuerySamples: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertFToU: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertFToS: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertSToF: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertUToF: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUConvert: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSConvert: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFConvert: *hasResult = true; *hasResultType = true; break;
-    case SpvOpQuantizeToF16: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertPtrToU: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSatConvertSToU: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSatConvertUToS: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertUToPtr: *hasResult = true; *hasResultType = true; break;
-    case SpvOpPtrCastToGeneric: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGenericCastToPtr: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGenericCastToPtrExplicit: *hasResult = true; *hasResultType = true; break;
-    case SpvOpBitcast: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSNegate: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFNegate: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIAdd: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFAdd: *hasResult = true; *hasResultType = true; break;
-    case SpvOpISub: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFSub: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIMul: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFMul: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUDiv: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSDiv: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFDiv: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUMod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSRem: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSMod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFRem: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFMod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpVectorTimesScalar: *hasResult = true; *hasResultType = true; break;
-    case SpvOpMatrixTimesScalar: *hasResult = true; *hasResultType = true; break;
-    case SpvOpVectorTimesMatrix: *hasResult = true; *hasResultType = true; break;
-    case SpvOpMatrixTimesVector: *hasResult = true; *hasResultType = true; break;
-    case SpvOpMatrixTimesMatrix: *hasResult = true; *hasResultType = true; break;
-    case SpvOpOuterProduct: *hasResult = true; *hasResultType = true; break;
-    case SpvOpDot: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIAddCarry: *hasResult = true; *hasResultType = true; break;
-    case SpvOpISubBorrow: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUMulExtended: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSMulExtended: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAny: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAll: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIsNan: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIsInf: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIsFinite: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIsNormal: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSignBitSet: *hasResult = true; *hasResultType = true; break;
-    case SpvOpLessOrGreater: *hasResult = true; *hasResultType = true; break;
-    case SpvOpOrdered: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUnordered: *hasResult = true; *hasResultType = true; break;
-    case SpvOpLogicalEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpLogicalNotEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpLogicalOr: *hasResult = true; *hasResultType = true; break;
-    case SpvOpLogicalAnd: *hasResult = true; *hasResultType = true; break;
-    case SpvOpLogicalNot: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSelect: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpINotEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUGreaterThan: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSGreaterThan: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUGreaterThanEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSGreaterThanEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpULessThan: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSLessThan: *hasResult = true; *hasResultType = true; break;
-    case SpvOpULessThanEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSLessThanEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFOrdEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFUnordEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFOrdNotEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFUnordNotEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFOrdLessThan: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFUnordLessThan: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFOrdGreaterThan: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFUnordGreaterThan: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFOrdLessThanEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFUnordLessThanEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFOrdGreaterThanEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFUnordGreaterThanEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpShiftRightLogical: *hasResult = true; *hasResultType = true; break;
-    case SpvOpShiftRightArithmetic: *hasResult = true; *hasResultType = true; break;
-    case SpvOpShiftLeftLogical: *hasResult = true; *hasResultType = true; break;
-    case SpvOpBitwiseOr: *hasResult = true; *hasResultType = true; break;
-    case SpvOpBitwiseXor: *hasResult = true; *hasResultType = true; break;
-    case SpvOpBitwiseAnd: *hasResult = true; *hasResultType = true; break;
-    case SpvOpNot: *hasResult = true; *hasResultType = true; break;
-    case SpvOpBitFieldInsert: *hasResult = true; *hasResultType = true; break;
-    case SpvOpBitFieldSExtract: *hasResult = true; *hasResultType = true; break;
-    case SpvOpBitFieldUExtract: *hasResult = true; *hasResultType = true; break;
-    case SpvOpBitReverse: *hasResult = true; *hasResultType = true; break;
-    case SpvOpBitCount: *hasResult = true; *hasResultType = true; break;
-    case SpvOpDPdx: *hasResult = true; *hasResultType = true; break;
-    case SpvOpDPdy: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFwidth: *hasResult = true; *hasResultType = true; break;
-    case SpvOpDPdxFine: *hasResult = true; *hasResultType = true; break;
-    case SpvOpDPdyFine: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFwidthFine: *hasResult = true; *hasResultType = true; break;
-    case SpvOpDPdxCoarse: *hasResult = true; *hasResultType = true; break;
-    case SpvOpDPdyCoarse: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFwidthCoarse: *hasResult = true; *hasResultType = true; break;
-    case SpvOpEmitVertex: *hasResult = false; *hasResultType = false; break;
-    case SpvOpEndPrimitive: *hasResult = false; *hasResultType = false; break;
-    case SpvOpEmitStreamVertex: *hasResult = false; *hasResultType = false; break;
-    case SpvOpEndStreamPrimitive: *hasResult = false; *hasResultType = false; break;
-    case SpvOpControlBarrier: *hasResult = false; *hasResultType = false; break;
-    case SpvOpMemoryBarrier: *hasResult = false; *hasResultType = false; break;
-    case SpvOpAtomicLoad: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicStore: *hasResult = false; *hasResultType = false; break;
-    case SpvOpAtomicExchange: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicCompareExchange: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicCompareExchangeWeak: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicIIncrement: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicIDecrement: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicIAdd: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicISub: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicSMin: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicUMin: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicSMax: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicUMax: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicAnd: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicOr: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicXor: *hasResult = true; *hasResultType = true; break;
-    case SpvOpPhi: *hasResult = true; *hasResultType = true; break;
-    case SpvOpLoopMerge: *hasResult = false; *hasResultType = false; break;
-    case SpvOpSelectionMerge: *hasResult = false; *hasResultType = false; break;
-    case SpvOpLabel: *hasResult = true; *hasResultType = false; break;
-    case SpvOpBranch: *hasResult = false; *hasResultType = false; break;
-    case SpvOpBranchConditional: *hasResult = false; *hasResultType = false; break;
-    case SpvOpSwitch: *hasResult = false; *hasResultType = false; break;
-    case SpvOpKill: *hasResult = false; *hasResultType = false; break;
-    case SpvOpReturn: *hasResult = false; *hasResultType = false; break;
-    case SpvOpReturnValue: *hasResult = false; *hasResultType = false; break;
-    case SpvOpUnreachable: *hasResult = false; *hasResultType = false; break;
-    case SpvOpLifetimeStart: *hasResult = false; *hasResultType = false; break;
-    case SpvOpLifetimeStop: *hasResult = false; *hasResultType = false; break;
-    case SpvOpGroupAsyncCopy: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupWaitEvents: *hasResult = false; *hasResultType = false; break;
-    case SpvOpGroupAll: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupAny: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupBroadcast: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupIAdd: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupFAdd: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupFMin: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupUMin: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupSMin: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupFMax: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupUMax: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupSMax: *hasResult = true; *hasResultType = true; break;
-    case SpvOpReadPipe: *hasResult = true; *hasResultType = true; break;
-    case SpvOpWritePipe: *hasResult = true; *hasResultType = true; break;
-    case SpvOpReservedReadPipe: *hasResult = true; *hasResultType = true; break;
-    case SpvOpReservedWritePipe: *hasResult = true; *hasResultType = true; break;
-    case SpvOpReserveReadPipePackets: *hasResult = true; *hasResultType = true; break;
-    case SpvOpReserveWritePipePackets: *hasResult = true; *hasResultType = true; break;
-    case SpvOpCommitReadPipe: *hasResult = false; *hasResultType = false; break;
-    case SpvOpCommitWritePipe: *hasResult = false; *hasResultType = false; break;
-    case SpvOpIsValidReserveId: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGetNumPipePackets: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGetMaxPipePackets: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupReserveReadPipePackets: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupReserveWritePipePackets: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupCommitReadPipe: *hasResult = false; *hasResultType = false; break;
-    case SpvOpGroupCommitWritePipe: *hasResult = false; *hasResultType = false; break;
-    case SpvOpEnqueueMarker: *hasResult = true; *hasResultType = true; break;
-    case SpvOpEnqueueKernel: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGetKernelNDrangeSubGroupCount: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGetKernelNDrangeMaxSubGroupSize: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGetKernelWorkGroupSize: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGetKernelPreferredWorkGroupSizeMultiple: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRetainEvent: *hasResult = false; *hasResultType = false; break;
-    case SpvOpReleaseEvent: *hasResult = false; *hasResultType = false; break;
-    case SpvOpCreateUserEvent: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIsValidEvent: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSetUserEventStatus: *hasResult = false; *hasResultType = false; break;
-    case SpvOpCaptureEventProfilingInfo: *hasResult = false; *hasResultType = false; break;
-    case SpvOpGetDefaultQueue: *hasResult = true; *hasResultType = true; break;
-    case SpvOpBuildNDRange: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSparseSampleImplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSparseSampleExplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSparseSampleDrefImplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSparseSampleDrefExplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSparseSampleProjImplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSparseSampleProjExplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSparseSampleProjDrefImplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSparseSampleProjDrefExplicitLod: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSparseFetch: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSparseGather: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSparseDrefGather: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSparseTexelsResident: *hasResult = true; *hasResultType = true; break;
-    case SpvOpNoLine: *hasResult = false; *hasResultType = false; break;
-    case SpvOpAtomicFlagTestAndSet: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicFlagClear: *hasResult = false; *hasResultType = false; break;
-    case SpvOpImageSparseRead: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSizeOf: *hasResult = true; *hasResultType = true; break;
-    case SpvOpTypePipeStorage: *hasResult = true; *hasResultType = false; break;
-    case SpvOpConstantPipeStorage: *hasResult = true; *hasResultType = true; break;
-    case SpvOpCreatePipeFromPipeStorage: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGetKernelLocalSizeForSubgroupCount: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGetKernelMaxNumSubgroups: *hasResult = true; *hasResultType = true; break;
-    case SpvOpTypeNamedBarrier: *hasResult = true; *hasResultType = false; break;
-    case SpvOpNamedBarrierInitialize: *hasResult = true; *hasResultType = true; break;
-    case SpvOpMemoryNamedBarrier: *hasResult = false; *hasResultType = false; break;
-    case SpvOpModuleProcessed: *hasResult = false; *hasResultType = false; break;
-    case SpvOpExecutionModeId: *hasResult = false; *hasResultType = false; break;
-    case SpvOpDecorateId: *hasResult = false; *hasResultType = false; break;
-    case SpvOpGroupNonUniformElect: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformAll: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformAny: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformAllEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformBroadcast: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformBroadcastFirst: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformBallot: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformInverseBallot: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformBallotBitExtract: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformBallotBitCount: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformBallotFindLSB: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformBallotFindMSB: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformShuffle: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformShuffleXor: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformShuffleUp: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformShuffleDown: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformIAdd: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformFAdd: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformIMul: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformFMul: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformSMin: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformUMin: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformFMin: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformSMax: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformUMax: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformFMax: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformBitwiseAnd: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformBitwiseOr: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformBitwiseXor: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformLogicalAnd: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformLogicalOr: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformLogicalXor: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformQuadBroadcast: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformQuadSwap: *hasResult = true; *hasResultType = true; break;
-    case SpvOpCopyLogical: *hasResult = true; *hasResultType = true; break;
-    case SpvOpPtrEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpPtrNotEqual: *hasResult = true; *hasResultType = true; break;
-    case SpvOpPtrDiff: *hasResult = true; *hasResultType = true; break;
-    case SpvOpColorAttachmentReadEXT: *hasResult = true; *hasResultType = true; break;
-    case SpvOpDepthAttachmentReadEXT: *hasResult = true; *hasResultType = true; break;
-    case SpvOpStencilAttachmentReadEXT: *hasResult = true; *hasResultType = true; break;
-    case SpvOpTerminateInvocation: *hasResult = false; *hasResultType = false; break;
-    case SpvOpSubgroupBallotKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupFirstInvocationKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAllKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAnyKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAllEqualKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupNonUniformRotateKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupReadInvocationKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpTraceRayKHR: *hasResult = false; *hasResultType = false; break;
-    case SpvOpExecuteCallableKHR: *hasResult = false; *hasResultType = false; break;
-    case SpvOpConvertUToAccelerationStructureKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIgnoreIntersectionKHR: *hasResult = false; *hasResultType = false; break;
-    case SpvOpTerminateRayKHR: *hasResult = false; *hasResultType = false; break;
-    case SpvOpSDot: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUDot: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSUDot: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSDotAccSat: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUDotAccSat: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSUDotAccSat: *hasResult = true; *hasResultType = true; break;
-    case SpvOpTypeCooperativeMatrixKHR: *hasResult = true; *hasResultType = false; break;
-    case SpvOpCooperativeMatrixLoadKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpCooperativeMatrixStoreKHR: *hasResult = false; *hasResultType = false; break;
-    case SpvOpCooperativeMatrixMulAddKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpCooperativeMatrixLengthKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpTypeRayQueryKHR: *hasResult = true; *hasResultType = false; break;
-    case SpvOpRayQueryInitializeKHR: *hasResult = false; *hasResultType = false; break;
-    case SpvOpRayQueryTerminateKHR: *hasResult = false; *hasResultType = false; break;
-    case SpvOpRayQueryGenerateIntersectionKHR: *hasResult = false; *hasResultType = false; break;
-    case SpvOpRayQueryConfirmIntersectionKHR: *hasResult = false; *hasResultType = false; break;
-    case SpvOpRayQueryProceedKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionTypeKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageSampleWeightedQCOM: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageBoxFilterQCOM: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageBlockMatchSSDQCOM: *hasResult = true; *hasResultType = true; break;
-    case SpvOpImageBlockMatchSADQCOM: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupIAddNonUniformAMD: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupFAddNonUniformAMD: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupFMinNonUniformAMD: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupUMinNonUniformAMD: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupSMinNonUniformAMD: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupFMaxNonUniformAMD: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupUMaxNonUniformAMD: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupSMaxNonUniformAMD: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFragmentMaskFetchAMD: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFragmentFetchAMD: *hasResult = true; *hasResultType = true; break;
-    case SpvOpReadClockKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFinalizeNodePayloadsAMDX: *hasResult = false; *hasResultType = false; break;
-    case SpvOpFinishWritingNodePayloadAMDX: *hasResult = true; *hasResultType = true; break;
-    case SpvOpInitializeNodePayloadsAMDX: *hasResult = false; *hasResultType = false; break;
-    case SpvOpHitObjectRecordHitMotionNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpHitObjectRecordHitWithIndexMotionNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpHitObjectRecordMissMotionNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpHitObjectGetWorldToObjectNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetObjectToWorldNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetObjectRayDirectionNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetObjectRayOriginNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectTraceRayMotionNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpHitObjectGetShaderRecordBufferHandleNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetShaderBindingTableRecordIndexNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectRecordEmptyNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpHitObjectTraceRayNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpHitObjectRecordHitNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpHitObjectRecordHitWithIndexNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpHitObjectRecordMissNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpHitObjectExecuteShaderNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpHitObjectGetCurrentTimeNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetAttributesNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpHitObjectGetHitKindNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetPrimitiveIndexNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetGeometryIndexNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetInstanceIdNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetInstanceCustomIndexNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetWorldRayDirectionNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetWorldRayOriginNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetRayTMaxNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectGetRayTMinNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectIsEmptyNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectIsHitNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpHitObjectIsMissNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpReorderThreadWithHitObjectNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpReorderThreadWithHintNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpTypeHitObjectNV: *hasResult = true; *hasResultType = false; break;
-    case SpvOpImageSampleFootprintNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpEmitMeshTasksEXT: *hasResult = false; *hasResultType = false; break;
-    case SpvOpSetMeshOutputsEXT: *hasResult = false; *hasResultType = false; break;
-    case SpvOpGroupNonUniformPartitionNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpWritePackedPrimitiveIndices4x8NV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpFetchMicroTriangleVertexPositionNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFetchMicroTriangleVertexBarycentricNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpReportIntersectionNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIgnoreIntersectionNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpTerminateRayNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpTraceNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpTraceMotionNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpTraceRayMotionNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpRayQueryGetIntersectionTriangleVertexPositionsKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpTypeAccelerationStructureNV: *hasResult = true; *hasResultType = false; break;
-    case SpvOpExecuteCallableNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpTypeCooperativeMatrixNV: *hasResult = true; *hasResultType = false; break;
-    case SpvOpCooperativeMatrixLoadNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpCooperativeMatrixStoreNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpCooperativeMatrixMulAddNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpCooperativeMatrixLengthNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpBeginInvocationInterlockEXT: *hasResult = false; *hasResultType = false; break;
-    case SpvOpEndInvocationInterlockEXT: *hasResult = false; *hasResultType = false; break;
-    case SpvOpDemoteToHelperInvocation: *hasResult = false; *hasResultType = false; break;
-    case SpvOpIsHelperInvocationEXT: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertUToImageNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertUToSamplerNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertImageToUNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertSamplerToUNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertUToSampledImageNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertSampledImageToUNV: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSamplerImageAddressingModeNV: *hasResult = false; *hasResultType = false; break;
-    case SpvOpSubgroupShuffleINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupShuffleDownINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupShuffleUpINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupShuffleXorINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupBlockReadINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupBlockWriteINTEL: *hasResult = false; *hasResultType = false; break;
-    case SpvOpSubgroupImageBlockReadINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupImageBlockWriteINTEL: *hasResult = false; *hasResultType = false; break;
-    case SpvOpSubgroupImageMediaBlockReadINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupImageMediaBlockWriteINTEL: *hasResult = false; *hasResultType = false; break;
-    case SpvOpUCountLeadingZerosINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUCountTrailingZerosINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAbsISubINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAbsUSubINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIAddSatINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUAddSatINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIAverageINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUAverageINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIAverageRoundedINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUAverageRoundedINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpISubSatINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUSubSatINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpIMul32x16INTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpUMul32x16INTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConstantFunctionPointerINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFunctionPointerCallINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAsmTargetINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAsmINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAsmCallINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicFMinEXT: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicFMaxEXT: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAssumeTrueKHR: *hasResult = false; *hasResultType = false; break;
-    case SpvOpExpectKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpDecorateString: *hasResult = false; *hasResultType = false; break;
-    case SpvOpMemberDecorateString: *hasResult = false; *hasResultType = false; break;
-    case SpvOpVmeImageINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpTypeVmeImageINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeAvcImePayloadINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeAvcRefPayloadINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeAvcSicPayloadINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeAvcMcePayloadINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeAvcMceResultINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeAvcImeResultINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeAvcImeResultSingleReferenceStreamoutINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeAvcImeResultDualReferenceStreamoutINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeAvcImeSingleReferenceStreaminINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeAvcImeDualReferenceStreaminINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeAvcRefResultINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeAvcSicResultINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceSetInterShapePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceSetInterDirectionPenaltyINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceSetMotionVectorCostFunctionINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceSetAcOnlyHaarINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceConvertToImePayloadINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceConvertToImeResultINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceConvertToRefPayloadINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceConvertToRefResultINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceConvertToSicPayloadINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceConvertToSicResultINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetMotionVectorsINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetInterDistortionsINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetBestInterDistortionsINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetInterMajorShapeINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetInterMinorShapeINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetInterDirectionsINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetInterMotionVectorCountINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetInterReferenceIdsINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeInitializeINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeSetSingleReferenceINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeSetDualReferenceINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeRefWindowSizeINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeAdjustRefOffsetINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeConvertToMcePayloadINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeSetMaxMotionVectorCountINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeSetUnidirectionalMixDisableINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeSetWeightedSadINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeEvaluateWithSingleReferenceINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeEvaluateWithDualReferenceINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeConvertToMceResultINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetSingleReferenceStreaminINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetDualReferenceStreaminINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeStripSingleReferenceStreamoutINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeStripDualReferenceStreamoutINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectorsINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetBorderReachedINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetTruncatedSearchIndicationINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcFmeInitializeINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcBmeInitializeINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcRefConvertToMcePayloadINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcRefSetBidirectionalMixDisableINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcRefSetBilinearFilterEnableINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcRefEvaluateWithSingleReferenceINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcRefEvaluateWithDualReferenceINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcRefEvaluateWithMultiReferenceINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcRefConvertToMceResultINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicInitializeINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicConfigureSkcINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicConfigureIpeLumaINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicConfigureIpeLumaChromaINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicGetMotionVectorMaskINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicConvertToMcePayloadINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicSetBilinearFilterEnableINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicSetSkcForwardTransformEnableINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicEvaluateIpeINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicEvaluateWithSingleReferenceINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicEvaluateWithDualReferenceINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicEvaluateWithMultiReferenceINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicConvertToMceResultINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicGetIpeLumaShapeINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicGetBestIpeLumaDistortionINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicGetBestIpeChromaDistortionINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicGetPackedIpeLumaModesINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicGetIpeChromaModeINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSubgroupAvcSicGetInterRawSadsINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpVariableLengthArrayINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpSaveMemoryINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRestoreMemoryINTEL: *hasResult = false; *hasResultType = false; break;
-    case SpvOpArbitraryFloatSinCosPiINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatCastINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatCastFromIntINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatCastToIntINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatAddINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatSubINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatMulINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatDivINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatGTINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatGEINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatLTINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatLEINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatEQINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatRecipINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatRSqrtINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatCbrtINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatHypotINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatSqrtINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatLogINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatLog2INTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatLog10INTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatLog1pINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatExpINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatExp2INTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatExp10INTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatExpm1INTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatSinINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatCosINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatSinCosINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatSinPiINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatCosPiINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatASinINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatASinPiINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatACosINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatACosPiINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatATanINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatATanPiINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatATan2INTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatPowINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatPowRINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpArbitraryFloatPowNINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpLoopControlINTEL: *hasResult = false; *hasResultType = false; break;
-    case SpvOpAliasDomainDeclINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpAliasScopeDeclINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpAliasScopeListDeclINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpFixedSqrtINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFixedRecipINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFixedRsqrtINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFixedSinINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFixedCosINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFixedSinCosINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFixedSinPiINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFixedCosPiINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFixedSinCosPiINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFixedLogINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFixedExpINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpPtrCastToCrossWorkgroupINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpCrossWorkgroupCastToPtrINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpReadPipeBlockingINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpWritePipeBlockingINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpFPGARegINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetRayTMinKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetRayFlagsKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionTKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionInstanceCustomIndexKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionInstanceIdKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionGeometryIndexKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionPrimitiveIndexKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionBarycentricsKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionFrontFaceKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionCandidateAABBOpaqueKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionObjectRayDirectionKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionObjectRayOriginKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetWorldRayDirectionKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetWorldRayOriginKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionObjectToWorldKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpRayQueryGetIntersectionWorldToObjectKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpAtomicFAddEXT: *hasResult = true; *hasResultType = true; break;
-    case SpvOpTypeBufferSurfaceINTEL: *hasResult = true; *hasResultType = false; break;
-    case SpvOpTypeStructContinuedINTEL: *hasResult = false; *hasResultType = false; break;
-    case SpvOpConstantCompositeContinuedINTEL: *hasResult = false; *hasResultType = false; break;
-    case SpvOpSpecConstantCompositeContinuedINTEL: *hasResult = false; *hasResultType = false; break;
-    case SpvOpCompositeConstructContinuedINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertFToBF16INTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpConvertBF16ToFINTEL: *hasResult = true; *hasResultType = true; break;
-    case SpvOpControlBarrierArriveINTEL: *hasResult = false; *hasResultType = false; break;
-    case SpvOpControlBarrierWaitINTEL: *hasResult = false; *hasResultType = false; break;
-    case SpvOpGroupIMulKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupFMulKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupBitwiseAndKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupBitwiseOrKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupBitwiseXorKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupLogicalAndKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupLogicalOrKHR: *hasResult = true; *hasResultType = true; break;
-    case SpvOpGroupLogicalXorKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpNop: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpUndef: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSourceContinued: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpSource: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpSourceExtension: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpName: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpMemberName: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpString: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpLine: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpExtension: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpExtInstImport: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpExtInst: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpMemoryModel: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpEntryPoint: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpExecutionMode: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpCapability: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpTypeVoid: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeBool: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeInt: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeFloat: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeVector: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeMatrix: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeImage: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeSampler: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeSampledImage: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeArray: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeRuntimeArray: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeStruct: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeOpaque: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypePointer: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeFunction: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeEvent: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeDeviceEvent: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeReserveId: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeQueue: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypePipe: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeForwardPointer: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpConstantTrue: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConstantFalse: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConstant: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConstantComposite: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConstantSampler: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConstantNull: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSpecConstantTrue: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSpecConstantFalse: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSpecConstant: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSpecConstantComposite: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSpecConstantOp: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFunction: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFunctionParameter: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFunctionEnd: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpFunctionCall: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpVariable: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageTexelPointer: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpLoad: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpStore: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpCopyMemory: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpCopyMemorySized: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpAccessChain: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpInBoundsAccessChain: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpPtrAccessChain: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArrayLength: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGenericPtrMemSemantics: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpInBoundsPtrAccessChain: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpDecorate: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpMemberDecorate: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpDecorationGroup: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpGroupDecorate: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpGroupMemberDecorate: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpVectorExtractDynamic: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpVectorInsertDynamic: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpVectorShuffle: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpCompositeConstruct: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpCompositeExtract: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpCompositeInsert: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpCopyObject: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpTranspose: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSampledImage: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSampleImplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSampleExplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSampleDrefImplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSampleDrefExplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSampleProjImplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSampleProjExplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSampleProjDrefImplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSampleProjDrefExplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageFetch: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageGather: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageDrefGather: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageRead: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageWrite: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpImage: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageQueryFormat: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageQueryOrder: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageQuerySizeLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageQuerySize: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageQueryLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageQueryLevels: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageQuerySamples: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertFToU: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertFToS: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertSToF: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertUToF: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUConvert: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSConvert: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFConvert: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpQuantizeToF16: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertPtrToU: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSatConvertSToU: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSatConvertUToS: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertUToPtr: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpPtrCastToGeneric: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGenericCastToPtr: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGenericCastToPtrExplicit: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpBitcast: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSNegate: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFNegate: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIAdd: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFAdd: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpISub: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFSub: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIMul: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFMul: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUDiv: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSDiv: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFDiv: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUMod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSRem: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSMod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFRem: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFMod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpVectorTimesScalar: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpMatrixTimesScalar: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpVectorTimesMatrix: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpMatrixTimesVector: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpMatrixTimesMatrix: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpOuterProduct: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpDot: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIAddCarry: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpISubBorrow: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUMulExtended: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSMulExtended: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAny: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAll: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIsNan: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIsInf: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIsFinite: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIsNormal: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSignBitSet: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpLessOrGreater: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpOrdered: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUnordered: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpLogicalEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpLogicalNotEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpLogicalOr: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpLogicalAnd: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpLogicalNot: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSelect: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpINotEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUGreaterThan: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSGreaterThan: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUGreaterThanEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSGreaterThanEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpULessThan: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSLessThan: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpULessThanEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSLessThanEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFOrdEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFUnordEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFOrdNotEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFUnordNotEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFOrdLessThan: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFUnordLessThan: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFOrdGreaterThan: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFUnordGreaterThan: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFOrdLessThanEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFUnordLessThanEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFOrdGreaterThanEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFUnordGreaterThanEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpShiftRightLogical: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpShiftRightArithmetic: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpShiftLeftLogical: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpBitwiseOr: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpBitwiseXor: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpBitwiseAnd: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpNot: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpBitFieldInsert: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpBitFieldSExtract: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpBitFieldUExtract: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpBitReverse: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpBitCount: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpDPdx: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpDPdy: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFwidth: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpDPdxFine: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpDPdyFine: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFwidthFine: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpDPdxCoarse: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpDPdyCoarse: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFwidthCoarse: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpEmitVertex: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpEndPrimitive: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpEmitStreamVertex: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpEndStreamPrimitive: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpControlBarrier: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpMemoryBarrier: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpAtomicLoad: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicStore: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpAtomicExchange: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicCompareExchange: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicCompareExchangeWeak: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicIIncrement: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicIDecrement: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicIAdd: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicISub: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicSMin: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicUMin: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicSMax: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicUMax: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicAnd: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicOr: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicXor: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpPhi: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpLoopMerge: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpSelectionMerge: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpLabel: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpBranch: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpBranchConditional: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpSwitch: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpKill: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpReturn: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpReturnValue: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpUnreachable: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpLifetimeStart: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpLifetimeStop: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpGroupAsyncCopy: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupWaitEvents: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpGroupAll: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupAny: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupBroadcast: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupIAdd: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupFAdd: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupFMin: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupUMin: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupSMin: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupFMax: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupUMax: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupSMax: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpReadPipe: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpWritePipe: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpReservedReadPipe: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpReservedWritePipe: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpReserveReadPipePackets: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpReserveWritePipePackets: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpCommitReadPipe: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpCommitWritePipe: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpIsValidReserveId: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGetNumPipePackets: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGetMaxPipePackets: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupReserveReadPipePackets: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupReserveWritePipePackets: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupCommitReadPipe: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpGroupCommitWritePipe: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpEnqueueMarker: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpEnqueueKernel: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGetKernelNDrangeSubGroupCount: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGetKernelNDrangeMaxSubGroupSize: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGetKernelWorkGroupSize: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGetKernelPreferredWorkGroupSizeMultiple: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRetainEvent: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpReleaseEvent: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpCreateUserEvent: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIsValidEvent: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSetUserEventStatus: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpCaptureEventProfilingInfo: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpGetDefaultQueue: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpBuildNDRange: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSparseSampleImplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSparseSampleExplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSparseSampleDrefImplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSparseSampleDrefExplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSparseSampleProjImplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSparseSampleProjExplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSparseSampleProjDrefImplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSparseSampleProjDrefExplicitLod: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSparseFetch: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSparseGather: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSparseDrefGather: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSparseTexelsResident: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpNoLine: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpAtomicFlagTestAndSet: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicFlagClear: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpImageSparseRead: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSizeOf: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpTypePipeStorage: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpConstantPipeStorage: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpCreatePipeFromPipeStorage: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGetKernelLocalSizeForSubgroupCount: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGetKernelMaxNumSubgroups: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpTypeNamedBarrier: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpNamedBarrierInitialize: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpMemoryNamedBarrier: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpModuleProcessed: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpExecutionModeId: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpDecorateId: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpGroupNonUniformElect: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformAll: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformAny: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformAllEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformBroadcast: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformBroadcastFirst: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformBallot: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformInverseBallot: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformBallotBitExtract: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformBallotBitCount: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformBallotFindLSB: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformBallotFindMSB: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformShuffle: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformShuffleXor: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformShuffleUp: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformShuffleDown: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformIAdd: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformFAdd: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformIMul: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformFMul: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformSMin: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformUMin: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformFMin: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformSMax: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformUMax: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformFMax: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformBitwiseAnd: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformBitwiseOr: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformBitwiseXor: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformLogicalAnd: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformLogicalOr: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformLogicalXor: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformQuadBroadcast: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformQuadSwap: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpCopyLogical: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpPtrEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpPtrNotEqual: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpPtrDiff: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpColorAttachmentReadEXT: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpDepthAttachmentReadEXT: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpStencilAttachmentReadEXT: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpTerminateInvocation: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpSubgroupBallotKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupFirstInvocationKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAllKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAnyKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAllEqualKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupNonUniformRotateKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupReadInvocationKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpTraceRayKHR: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpExecuteCallableKHR: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpConvertUToAccelerationStructureKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIgnoreIntersectionKHR: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpTerminateRayKHR: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpSDot: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUDot: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSUDot: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSDotAccSat: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUDotAccSat: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSUDotAccSat: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpTypeCooperativeMatrixKHR: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpCooperativeMatrixLoadKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpCooperativeMatrixStoreKHR: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpCooperativeMatrixMulAddKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpCooperativeMatrixLengthKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpTypeRayQueryKHR: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpRayQueryInitializeKHR: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpRayQueryTerminateKHR: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpRayQueryGenerateIntersectionKHR: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpRayQueryConfirmIntersectionKHR: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpRayQueryProceedKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionTypeKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageSampleWeightedQCOM: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageBoxFilterQCOM: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageBlockMatchSSDQCOM: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpImageBlockMatchSADQCOM: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupIAddNonUniformAMD: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupFAddNonUniformAMD: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupFMinNonUniformAMD: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupUMinNonUniformAMD: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupSMinNonUniformAMD: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupFMaxNonUniformAMD: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupUMaxNonUniformAMD: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupSMaxNonUniformAMD: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFragmentMaskFetchAMD: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFragmentFetchAMD: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpReadClockKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFinalizeNodePayloadsAMDX: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpFinishWritingNodePayloadAMDX: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpInitializeNodePayloadsAMDX: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpHitObjectRecordHitMotionNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpHitObjectRecordHitWithIndexMotionNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpHitObjectRecordMissMotionNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpHitObjectGetWorldToObjectNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetObjectToWorldNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetObjectRayDirectionNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetObjectRayOriginNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectTraceRayMotionNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpHitObjectGetShaderRecordBufferHandleNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetShaderBindingTableRecordIndexNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectRecordEmptyNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpHitObjectTraceRayNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpHitObjectRecordHitNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpHitObjectRecordHitWithIndexNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpHitObjectRecordMissNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpHitObjectExecuteShaderNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpHitObjectGetCurrentTimeNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetAttributesNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpHitObjectGetHitKindNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetPrimitiveIndexNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetGeometryIndexNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetInstanceIdNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetInstanceCustomIndexNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetWorldRayDirectionNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetWorldRayOriginNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetRayTMaxNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectGetRayTMinNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectIsEmptyNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectIsHitNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpHitObjectIsMissNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpReorderThreadWithHitObjectNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpReorderThreadWithHintNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpTypeHitObjectNV: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpImageSampleFootprintNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpEmitMeshTasksEXT: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpSetMeshOutputsEXT: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpGroupNonUniformPartitionNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpWritePackedPrimitiveIndices4x8NV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpFetchMicroTriangleVertexPositionNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFetchMicroTriangleVertexBarycentricNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpReportIntersectionNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIgnoreIntersectionNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpTerminateRayNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpTraceNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpTraceMotionNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpTraceRayMotionNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpRayQueryGetIntersectionTriangleVertexPositionsKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpTypeAccelerationStructureNV: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpExecuteCallableNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpTypeCooperativeMatrixNV: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpCooperativeMatrixLoadNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpCooperativeMatrixStoreNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpCooperativeMatrixMulAddNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpCooperativeMatrixLengthNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpBeginInvocationInterlockEXT: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpEndInvocationInterlockEXT: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpDemoteToHelperInvocation: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpIsHelperInvocationEXT: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertUToImageNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertUToSamplerNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertImageToUNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertSamplerToUNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertUToSampledImageNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertSampledImageToUNV: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSamplerImageAddressingModeNV: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpSubgroupShuffleINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupShuffleDownINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupShuffleUpINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupShuffleXorINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupBlockReadINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupBlockWriteINTEL: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpSubgroupImageBlockReadINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupImageBlockWriteINTEL: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpSubgroupImageMediaBlockReadINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupImageMediaBlockWriteINTEL: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpUCountLeadingZerosINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUCountTrailingZerosINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAbsISubINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAbsUSubINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIAddSatINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUAddSatINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIAverageINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUAverageINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIAverageRoundedINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUAverageRoundedINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpISubSatINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUSubSatINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpIMul32x16INTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpUMul32x16INTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConstantFunctionPointerINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFunctionPointerCallINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAsmTargetINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAsmINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAsmCallINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicFMinEXT: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicFMaxEXT: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAssumeTrueKHR: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpExpectKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpDecorateString: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpMemberDecorateString: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpVmeImageINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpTypeVmeImageINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeAvcImePayloadINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeAvcRefPayloadINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeAvcSicPayloadINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeAvcMcePayloadINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeAvcMceResultINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeAvcImeResultINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeAvcImeResultSingleReferenceStreamoutINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeAvcImeResultDualReferenceStreamoutINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeAvcImeSingleReferenceStreaminINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeAvcImeDualReferenceStreaminINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeAvcRefResultINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeAvcSicResultINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpSubgroupAvcMceGetDefaultInterBaseMultiReferencePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceSetInterBaseMultiReferencePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetDefaultInterShapePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceSetInterShapePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetDefaultInterDirectionPenaltyINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceSetInterDirectionPenaltyINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetDefaultIntraLumaShapePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetDefaultInterMotionVectorCostTableINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetDefaultHighPenaltyCostTableINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetDefaultMediumPenaltyCostTableINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetDefaultLowPenaltyCostTableINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceSetMotionVectorCostFunctionINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetDefaultIntraLumaModePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetDefaultNonDcLumaIntraPenaltyINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetDefaultIntraChromaModeBasePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceSetAcOnlyHaarINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceSetSourceInterlacedFieldPolarityINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceSetSingleReferenceInterlacedFieldPolarityINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceSetDualReferenceInterlacedFieldPolaritiesINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceConvertToImePayloadINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceConvertToImeResultINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceConvertToRefPayloadINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceConvertToRefResultINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceConvertToSicPayloadINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceConvertToSicResultINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetMotionVectorsINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetInterDistortionsINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetBestInterDistortionsINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetInterMajorShapeINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetInterMinorShapeINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetInterDirectionsINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetInterMotionVectorCountINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetInterReferenceIdsINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcMceGetInterReferenceInterlacedFieldPolaritiesINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeInitializeINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeSetSingleReferenceINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeSetDualReferenceINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeRefWindowSizeINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeAdjustRefOffsetINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeConvertToMcePayloadINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeSetMaxMotionVectorCountINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeSetUnidirectionalMixDisableINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeSetEarlySearchTerminationThresholdINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeSetWeightedSadINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeEvaluateWithSingleReferenceINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeEvaluateWithDualReferenceINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeEvaluateWithDualReferenceStreaminINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeEvaluateWithSingleReferenceStreamoutINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeEvaluateWithDualReferenceStreamoutINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeEvaluateWithSingleReferenceStreaminoutINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeEvaluateWithDualReferenceStreaminoutINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeConvertToMceResultINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetSingleReferenceStreaminINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetDualReferenceStreaminINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeStripSingleReferenceStreamoutINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeStripDualReferenceStreamoutINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeMotionVectorsINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeDistortionsINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetStreamoutSingleReferenceMajorShapeReferenceIdsINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeMotionVectorsINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeDistortionsINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetStreamoutDualReferenceMajorShapeReferenceIdsINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetBorderReachedINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetTruncatedSearchIndicationINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetUnidirectionalEarlySearchTerminationINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetWeightingPatternMinimumMotionVectorINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcImeGetWeightingPatternMinimumDistortionINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcFmeInitializeINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcBmeInitializeINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcRefConvertToMcePayloadINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcRefSetBidirectionalMixDisableINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcRefSetBilinearFilterEnableINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcRefEvaluateWithSingleReferenceINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcRefEvaluateWithDualReferenceINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcRefEvaluateWithMultiReferenceINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcRefEvaluateWithMultiReferenceInterlacedINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcRefConvertToMceResultINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicInitializeINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicConfigureSkcINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicConfigureIpeLumaINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicConfigureIpeLumaChromaINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicGetMotionVectorMaskINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicConvertToMcePayloadINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicSetIntraLumaShapePenaltyINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicSetIntraLumaModeCostFunctionINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicSetIntraChromaModeCostFunctionINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicSetBilinearFilterEnableINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicSetSkcForwardTransformEnableINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicSetBlockBasedRawSkipSadINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicEvaluateIpeINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicEvaluateWithSingleReferenceINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicEvaluateWithDualReferenceINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicEvaluateWithMultiReferenceINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicEvaluateWithMultiReferenceInterlacedINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicConvertToMceResultINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicGetIpeLumaShapeINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicGetBestIpeLumaDistortionINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicGetBestIpeChromaDistortionINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicGetPackedIpeLumaModesINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicGetIpeChromaModeINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicGetPackedSkcLumaCountThresholdINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicGetPackedSkcLumaSumThresholdINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSubgroupAvcSicGetInterRawSadsINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpVariableLengthArrayINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpSaveMemoryINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRestoreMemoryINTEL: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpArbitraryFloatSinCosPiINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatCastINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatCastFromIntINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatCastToIntINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatAddINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatSubINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatMulINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatDivINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatGTINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatGEINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatLTINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatLEINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatEQINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatRecipINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatRSqrtINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatCbrtINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatHypotINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatSqrtINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatLogINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatLog2INTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatLog10INTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatLog1pINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatExpINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatExp2INTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatExp10INTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatExpm1INTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatSinINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatCosINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatSinCosINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatSinPiINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatCosPiINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatASinINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatASinPiINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatACosINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatACosPiINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatATanINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatATanPiINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatATan2INTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatPowINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatPowRINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpArbitraryFloatPowNINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpLoopControlINTEL: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpAliasDomainDeclINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpAliasScopeDeclINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpAliasScopeListDeclINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpFixedSqrtINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFixedRecipINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFixedRsqrtINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFixedSinINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFixedCosINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFixedSinCosINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFixedSinPiINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFixedCosPiINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFixedSinCosPiINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFixedLogINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFixedExpINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpPtrCastToCrossWorkgroupINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpCrossWorkgroupCastToPtrINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpReadPipeBlockingINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpWritePipeBlockingINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpFPGARegINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetRayTMinKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetRayFlagsKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionTKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionInstanceCustomIndexKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionInstanceIdKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionInstanceShaderBindingTableRecordOffsetKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionGeometryIndexKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionPrimitiveIndexKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionBarycentricsKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionFrontFaceKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionCandidateAABBOpaqueKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionObjectRayDirectionKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionObjectRayOriginKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetWorldRayDirectionKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetWorldRayOriginKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionObjectToWorldKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpRayQueryGetIntersectionWorldToObjectKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpAtomicFAddEXT: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpTypeBufferSurfaceINTEL: *hasResult = true; *hasResultType = false; break;
+    case SpirvOpTypeStructContinuedINTEL: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpConstantCompositeContinuedINTEL: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpSpecConstantCompositeContinuedINTEL: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpCompositeConstructContinuedINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertFToBF16INTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpConvertBF16ToFINTEL: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpControlBarrierArriveINTEL: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpControlBarrierWaitINTEL: *hasResult = false; *hasResultType = false; break;
+    case SpirvOpGroupIMulKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupFMulKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupBitwiseAndKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupBitwiseOrKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupBitwiseXorKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupLogicalAndKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupLogicalOrKHR: *hasResult = true; *hasResultType = true; break;
+    case SpirvOpGroupLogicalXorKHR: *hasResult = true; *hasResultType = true; break;
     }
 }
 #endif /* SPV_ENABLE_UTILITY_CODE */
